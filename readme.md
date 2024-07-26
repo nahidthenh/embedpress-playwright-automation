@@ -1,4 +1,4 @@
-# EmbedPress Test Automation Plugin
+# EmbedPress Test Automation
 Testing the EmbedPress Plugin Using Playwright
 
 # About EmbedPress
