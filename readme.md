@@ -30,15 +30,15 @@ npx playwright test
 
 ### Step 3.1 - Running a Specific Test
 ```bash
-npx playwright test tests/modern_pdf.spec.js
+npx playwright test tests/gutenberg/modern_pdf.spec.js
 ```
 
 ### Step 3.2 - Running a Specific Test on a Specific Browser
 ```bash
-npx playwright test tests/modern_pdf.spec.js --project chromium
+npx playwright test tests/gutenberg/modern_pdf.spec.js --project chromium
 ```
 
 ### Step 3.3 - Running a Specific Test on a Specific Browser with headed mode
 ```bash
-npx playwright test tests/modern_pdf.spec.js --project chromium --headed
+npx playwright test tests/gutenberg/modern_pdf.spec.js --project chromium --headed
 ```
