@@ -11,7 +11,6 @@ test.describe("Gutenberg Modern PDF", () => {
     });
 
     test('To Enable All Controls', async ({ page }) => {
-
         await expect(page.frameLocator('iframe[title="sample_pdf"]').nth(0).getByRole('radio', { name: 'Text' })).toBeVisible();
         await expect(page.frameLocator('iframe[title="sample_pdf"]').nth(0).getByRole('radio', { name: 'Draw' })).toBeVisible();
         await expect(page.frameLocator('iframe[title="sample_pdf"]').nth(0).getByRole('radio', { name: 'Add or edit images' })).toBeVisible();
@@ -49,10 +48,8 @@ test.describe("Gutenberg Modern PDF", () => {
     });
 
     test('To Enable Few Controls', async ({ page }) => {
-
         await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Text' })).toBeVisible();
         await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Text' })).toBeVisible();
-
         await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Draw' })).toBeVisible();
         await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Add or edit images' })).toBeVisible();
         await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').locator('#scaleSelect')).toBeVisible();
