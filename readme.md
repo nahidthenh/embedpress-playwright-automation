@@ -1,41 +1,46 @@
-# essential-addons-demopage-test-automation
-Testing the Essential Addons For Elementor Demo Pages Using Playwright
+# EmbedPress-test-automation
+Testing the EmbedPress Plugin Using Playwright
 
 ## Getting Started
 
 Install playwright using the following command:
 
-```
-npm init playwright@latest
-```
+# About EmbedPress
 
-Install dotenv:
+EMBEDPRESS – EMBED FROM UNLIMITED SOURCES – EMBED PDF WITH 3D FLIPBOOK VIEWER, EMBED YOUTUBE, SOCIAL FEEDS, GOOGLE DOCS, MAPS, VIMEO, WISTIA, SPOTIFY, ETC WITHOUT CODING & DISPLAY IN WEBSITES CREATED WITH ELEMENTOR, GUTENBERG BLOCK EDITOR, OR OTHER PAGE BUILDERS
 
-```
-npm install dotenv@latest
-```
+EmbedPress enhances the interactive storytelling on your WordPress website by offering one-click embeds of videos, social feeds, maps, PDFs, 3D flipbooks, posts, pages, documents, and much more from unlimited multimedia content sources.
 
-Install playwright-slack-report
+Fuel up your website’s engagement and make it aesthetically pleasing by embedding content directly in Classic Editor, Gutenberg Block Editor, Elementor, or by using EmbedPress shortcodes on other WordPress page builders with ease.
 
-```
-npm install playwright-slack-report@latest
-```
+## How to Use it?
 
-To update playwright:
+### Step 1 - Clone this repo
+```bash
+git clone git@github.com:nahidthenh/embedpress-playwright-automation.git
 
 ```
-npm install -D @playwright/test@latest
-```
-
-Usually after Playwright update, browsers need to be updated with command:
-
-```
-npx playwright install --with-deps
-```
-
-Install WordPress e2e test Utils For Playwright
-Documentation: https://github.com/WordPress/gutenberg/tree/trunk/packages/e2e-test-utils-playwright
+### Step 2 - Install NPM
+```bash
+npm install -f
 
 ```
-npm install @wordpress/e2e-test-utils-playwright
+### Step 3 - Running the Script
+```bash
+npx playwright test
+```
+
+### Step 3.1 - Running a Specific Test
+```bash
+npx playwright test tests/modern_pdf.spec.js
+```
+
+### Step 3.2 - Running a Specific Test on a Specific Browser
+```bash
+npx playwright test tests/modern_pdf.spec.js --project chromium
+```
+
+### Step 3.3 - Running a Specific Test on a Specific Browser with headed mode
+```bash
+npx playwright test tests/modern_pdf.spec.js --project chromium --headed
 ```
