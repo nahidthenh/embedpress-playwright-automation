@@ -1,19 +1,17 @@
-# EmbedPress-test-automation
+# EmbedPress Test Automation Plugin
 Testing the EmbedPress Plugin Using Playwright
-
-## Getting Started
-
-Install playwright using the following command:
 
 # About EmbedPress
 
-EMBEDPRESS – EMBED FROM UNLIMITED SOURCES – EMBED PDF WITH 3D FLIPBOOK VIEWER, EMBED YOUTUBE, SOCIAL FEEDS, GOOGLE DOCS, MAPS, VIMEO, WISTIA, SPOTIFY, ETC WITHOUT CODING & DISPLAY IN WEBSITES CREATED WITH ELEMENTOR, GUTENBERG BLOCK EDITOR, OR OTHER PAGE BUILDERS
+EmbedPress – embed from unlimited sources – embed pdf with 3d flipbook viewer, embed youtube, social feeds, google docs, maps, vimeo, wistia, spotify, etc without coding & display in websites created with elementor, gutenberg block editor, or other page builders
 
 EmbedPress enhances the interactive storytelling on your WordPress website by offering one-click embeds of videos, social feeds, maps, PDFs, 3D flipbooks, posts, pages, documents, and much more from unlimited multimedia content sources.
 
 Fuel up your website’s engagement and make it aesthetically pleasing by embedding content directly in Classic Editor, Gutenberg Block Editor, Elementor, or by using EmbedPress shortcodes on other WordPress page builders with ease.
 
-## How to Use it?
+## Getting Started
+
+Install playwright using the following command:
 
 ### Step 1 - Clone this repo
 ```bash
