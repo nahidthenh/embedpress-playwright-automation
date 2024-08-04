@@ -11,6 +11,9 @@ test.describe("Gutenberg Modern PDF", () => {
     });
 
     test('To Enable All Controls', async ({ page }) => {
+        await expect(page.frameLocator('#embedpress-pdf-1721988006079 iframe[title="sample_pdf"]').getByRole('button', { name: 'Zoom In' })).toBeVisible();
+        await expect(page.frameLocator('#embedpress-pdf-1721988006079 iframe[title="sample_pdf"]').getByRole('button', { name: 'Zoom Out' })).toBeVisible();
+        await expect(page.frameLocator('#embedpress-pdf-1721988006079 iframe[title="sample_pdf"]').locator('#scaleSelect')).toBeVisible();
         await expect(page.frameLocator('iframe[title="sample_pdf"]').nth(0).getByRole('radio', { name: 'Text' })).toBeVisible();
         await expect(page.frameLocator('iframe[title="sample_pdf"]').nth(0).getByRole('radio', { name: 'Draw' })).toBeVisible();
         await expect(page.frameLocator('iframe[title="sample_pdf"]').nth(0).getByRole('radio', { name: 'Add or edit images' })).toBeVisible();
