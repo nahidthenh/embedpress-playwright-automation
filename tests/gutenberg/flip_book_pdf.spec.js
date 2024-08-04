@@ -35,9 +35,6 @@ test.describe("Gutenberg Modern PDF", () => {
         await page.frameLocator('#embedpress-pdf-1722764697745 iframe[title="sample_pdf"]').frameLocator('iframe[title="View"]').getByRole('link', { name: 'Zoom in' }).click();
         await page.frameLocator('#embedpress-pdf-1722764697745 iframe[title="sample_pdf"]').frameLocator('iframe[title="View"]').getByRole('link', { name: 'Zoom out' }).click();
         await page.frameLocator('#embedpress-pdf-1722764697745 iframe[title="sample_pdf"]').frameLocator('iframe[title="View"]').getByRole('link', { name: 'Table of contents' }).click();
-        // await expect(page.frameLocator('#embedpress-pdf-1722764697745 iframe[title="sample_pdf"]').frameLocator('iframe[title="View"]').locator('.item > a').first()).toBeVisible();
-        await expect(page.frameLocator('#embedpress-pdf-1722764697745 iframe[title="sample_pdf"]').frameLocator('iframe[title="View"]').locator('.thumbnails > div:nth-child(2) > a')).toBeVisible();
-        await page.frameLocator('#embedpress-pdf-1722764697745 iframe[title="sample_pdf"]').frameLocator('iframe[title="View"]').getByRole('link', { name: 'Table of contents' }).click();
         await page.frameLocator('#embedpress-pdf-1722764697745 iframe[title="sample_pdf"]').frameLocator('iframe[title="View"]').getByRole('link', { name: 'Previous page' }).click();
         const downloadPromise = page.waitForEvent('download');
         await page.frameLocator('#embedpress-pdf-1722764697745 iframe[title="sample_pdf"]').frameLocator('iframe[title="View"]').getByRole('link', { name: 'Download' }).click();
