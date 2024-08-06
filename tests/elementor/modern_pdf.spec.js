@@ -4,14 +4,13 @@ let slug = 'modern-pdf-elementor';
 
 
 test.describe("Elementor Modern PDF", () => {
-    const selector = '#ep-elementor-content-60c5872 iframe[title="sample_pdf"]'
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
-        await page.waitForSelector(selector, { state: 'visible' });
     });
 
     test('To Enable All Controls', async ({ page }) => {
         const frameSelector = '#ep-elementor-content-60c5872 iframe[title="sample_pdf"]';
+        await page.waitForSelector(frameSelector, { state: 'visible' });
         const mainFrame = page.frameLocator(frameSelector);
 
         const controls = [
@@ -78,66 +77,66 @@ test.describe("Elementor Modern PDF", () => {
 
 
 
-    // test('To Enable Few Controls', async ({ page }) => {
-    //     const frameSelector = '#some_control_disable iframe[title="sample_pdf"]';
-    //     const mainFrame = page.frameLocator(frameSelector);
+    test('To Enable Few Controls', async ({ page }) => {
+        const frameSelector = '#ep-elementor-content-9a5be7a iframe[title="sample_pdf"]';
+        const mainFrame = page.frameLocator(frameSelector);
 
-    //     const controls = [
-    //         { role: 'radio', name: 'Text' },
-    //         { role: 'radio', name: 'Draw' },
-    //         { role: 'radio', name: 'Add or edit images' },
-    //         { role: 'button', name: 'Zoom In' },
-    //         { role: 'button', name: 'Zoom Out' },
-    //         { role: 'button', name: 'Toggle Sidebar' },
-    //         { role: 'button', name: 'Find' },
-    //         { role: 'button', name: 'Next' },
-    //         { role: 'spinbutton', name: 'Page' },
-    //         { role: 'button', name: 'Tools' }
-    //     ];
+        const controls = [
+            { role: 'radio', name: 'Text' },
+            { role: 'radio', name: 'Draw' },
+            { role: 'radio', name: 'Add or edit images' },
+            { role: 'button', name: 'Zoom In' },
+            { role: 'button', name: 'Zoom Out' },
+            { role: 'button', name: 'Toggle Sidebar' },
+            { role: 'button', name: 'Find' },
+            { role: 'button', name: 'Next' },
+            { role: 'spinbutton', name: 'Page' },
+            { role: 'button', name: 'Tools' }
+        ];
 
-    //     const extraElements = [
-    //         { selector: '#scaleSelect' },
-    //         { text: 'of ⁨4⁩' },
-    //     ];
+        const extraElements = [
+            { selector: '#scaleSelect' },
+            { text: 'of ⁨4⁩' },
+        ];
 
-    //     // Check visibility of all controls
-    //     for (const control of controls) {
-    //         await expect(mainFrame.getByRole(control.role, { name: control.name })).toBeVisible();
-    //     }
+        // Check visibility of all controls
+        for (const control of controls) {
+            await expect(mainFrame.getByRole(control.role, { name: control.name })).toBeVisible();
+        }
 
-    //     // Check visibility of extra elements
-    //     for (const element of extraElements) {
-    //         if (element.selector) {
-    //             await expect(mainFrame.locator(element.selector)).toBeVisible();
-    //         } else if (element.text) {
-    //             await expect(mainFrame.getByText(element.text)).toBeVisible();
-    //         }
-    //     }
+        // Check visibility of extra elements
+        for (const element of extraElements) {
+            if (element.selector) {
+                await expect(mainFrame.locator(element.selector)).toBeVisible();
+            } else if (element.text) {
+                await expect(mainFrame.getByText(element.text)).toBeVisible();
+            }
+        }
 
-    //     // Perform additional actions
-    //     await mainFrame.getByRole('button', { name: 'Tools' }).click();
+        // Perform additional actions
+        await mainFrame.getByRole('button', { name: 'Tools' }).click();
 
 
-    //     const toolsControls = [
-    //         { role: 'link', name: 'Current Page' },
-    //         { role: 'button', name: 'Go to Last Page' },
-    //         { role: 'button', name: 'Rotate Clockwise' },
-    //         { role: 'button', name: 'Rotate Counterclockwise' },
-    //         { role: 'radio', name: 'Text Selection Tool' },
-    //         { role: 'radio', name: 'Hand Tool' },
-    //         { role: 'radio', name: 'Page Scrolling' },
-    //         { role: 'radio', name: 'Vertical Scrolling' },
-    //         { role: 'radio', name: 'Horizontal Scrolling' },
-    //         { role: 'radio', name: 'Wrapped Scrolling' },
-    //         { role: 'radio', name: 'No Spreads' },
-    //         { role: 'radio', name: 'Odd Spreads' },
-    //         { role: 'radio', name: 'Even Spreads' },
-    //     ];
-    //     // Check visibility of all controls
-    //     for (const toolControl of toolsControls) {
-    //         await expect(mainFrame.getByRole(toolControl.role, { name: toolControl.name })).toBeVisible();
-    //     }
+        const toolsControls = [
+            { role: 'link', name: 'Current Page' },
+            { role: 'button', name: 'Go to Last Page' },
+            { role: 'button', name: 'Rotate Clockwise' },
+            { role: 'button', name: 'Rotate Counterclockwise' },
+            { role: 'radio', name: 'Text Selection Tool' },
+            { role: 'radio', name: 'Hand Tool' },
+            { role: 'radio', name: 'Page Scrolling' },
+            { role: 'radio', name: 'Vertical Scrolling' },
+            { role: 'radio', name: 'Horizontal Scrolling' },
+            { role: 'radio', name: 'Wrapped Scrolling' },
+            { role: 'radio', name: 'No Spreads' },
+            { role: 'radio', name: 'Odd Spreads' },
+            { role: 'radio', name: 'Even Spreads' },
+        ];
+        // Check visibility of all controls
+        for (const toolControl of toolsControls) {
+            await expect(mainFrame.getByRole(toolControl.role, { name: toolControl.name })).toBeVisible();
+        }
 
-    // });
+    });
 
 });
