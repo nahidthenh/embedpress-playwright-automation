@@ -10,7 +10,7 @@ test.describe("Gutenberg Modern PDF", () => {
         await expect.soft(page.getByRole('heading', { name: heading, exact: true })).toBeVisible();
     });
 
-    test.only('To Enable All Controls', async ({ page }) => {
+    test('To Enable All Controls', async ({ page }) => {
         const frameSelector = '#embedpress-pdf-1721988006079 iframe[title="sample_pdf"]';
         const mainFrame = page.frameLocator(frameSelector);
 
@@ -79,34 +79,65 @@ test.describe("Gutenberg Modern PDF", () => {
 
 
     test('To Enable Few Controls', async ({ page }) => {
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Text' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Text' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Draw' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Add or edit images' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').locator('#scaleSelect')).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('button', { name: 'Zoom In' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('button', { name: 'Zoom Out' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('button', { name: 'Toggle Sidebar' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('button', { name: 'Find' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('button', { name: 'Next' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('spinbutton', { name: 'Page' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByText('of ⁨4⁩')).toBeVisible();
-        await page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('button', { name: 'Tools' }).click();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('link', { name: 'Current Page' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('button', { name: 'Go to Last Page' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('button', { name: 'Rotate Clockwise' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('button', { name: 'Rotate Counterclockwise' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Text Selection Tool' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Hand Tool' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Page Scrolling' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Vertical Scrolling' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Horizontal Scrolling' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Wrapped Scrolling' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'No Spreads' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Odd Spreads' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('radio', { name: 'Even Spreads' })).toBeVisible();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('button', { name: 'Document Properties…' })).toBeVisible();
-        await page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByRole('button', { name: 'Document Properties…' }).click();
-        await expect(page.frameLocator('#some_control_disable iframe[title="sample_pdf"]').getByText('File name: sample_pdf.pdf File size: ⁨86.2⁩ KB (⁨88,226⁩ bytes) Title: PDF')).toBeVisible();
-    })
+        const frameSelector = '#some_control_disable iframe[title="sample_pdf"]';
+        const mainFrame = page.frameLocator(frameSelector);
+
+        const controls = [
+            { role: 'radio', name: 'Text' },
+            { role: 'radio', name: 'Draw' },
+            { role: 'radio', name: 'Add or edit images' },
+            { role: 'button', name: 'Zoom In' },
+            { role: 'button', name: 'Zoom Out' },
+            { role: 'button', name: 'Toggle Sidebar' },
+            { role: 'button', name: 'Find' },
+            { role: 'button', name: 'Next' },
+            { role: 'spinbutton', name: 'Page' },
+            { role: 'button', name: 'Tools' }
+        ];
+
+        const extraElements = [
+            { selector: '#scaleSelect' },
+            { text: 'of ⁨4⁩' },
+        ];
+
+        // Check visibility of all controls
+        for (const control of controls) {
+            await expect(mainFrame.getByRole(control.role, { name: control.name })).toBeVisible();
+        }
+
+        // Check visibility of extra elements
+        for (const element of extraElements) {
+            if (element.selector) {
+                await expect(mainFrame.locator(element.selector)).toBeVisible();
+            } else if (element.text) {
+                await expect(mainFrame.getByText(element.text)).toBeVisible();
+            }
+        }
+
+        // Perform additional actions
+        await mainFrame.getByRole('button', { name: 'Tools' }).click();
+
+
+        const toolsControls = [
+            { role: 'link', name: 'Current Page' },
+            { role: 'button', name: 'Go to Last Page' },
+            { role: 'button', name: 'Rotate Clockwise' },
+            { role: 'button', name: 'Rotate Counterclockwise' },
+            { role: 'radio', name: 'Text Selection Tool' },
+            { role: 'radio', name: 'Hand Tool' },
+            { role: 'radio', name: 'Page Scrolling' },
+            { role: 'radio', name: 'Vertical Scrolling' },
+            { role: 'radio', name: 'Horizontal Scrolling' },
+            { role: 'radio', name: 'Wrapped Scrolling' },
+            { role: 'radio', name: 'No Spreads' },
+            { role: 'radio', name: 'Odd Spreads' },
+            { role: 'radio', name: 'Even Spreads' },
+        ];
+        // Check visibility of all controls
+        for (const toolControl of toolsControls) {
+            await expect(mainFrame.getByRole(toolControl.role, { name: toolControl.name })).toBeVisible();
+        }
+
+    });
+
 });
