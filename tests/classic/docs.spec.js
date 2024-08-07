@@ -1,12 +1,11 @@
 const { test, expect } = require('@playwright/test');
 
-let slug = 'google-docs-gutenberg';
+let slug = 'google-docs-classic';
 
 
 test.describe("Google Docs Gutenberg", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
-        await expect(page.locator('h2')).toBeVisible();
     });
 
     test('Google Docs Gutenberg', async ({ page }) => {

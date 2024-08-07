@@ -5,7 +5,7 @@ let slug = 'google-docs-elementor';
 
 test.describe("Google Docs Gutenberg", () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto(slug);await expect(page.locator('h2')).toBeVisible();
+        await page.goto(slug);
         await expect(page.locator('h2')).toBeVisible();
     });
 
