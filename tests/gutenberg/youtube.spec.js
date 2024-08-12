@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-let slug = 'gutenberg-youtube';
+let slug = 'playwright-gutenberg/gutenberg-youtube';
 
 
 test.describe("Gutenberg YouTube", () => {
