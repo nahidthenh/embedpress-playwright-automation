@@ -31,11 +31,6 @@ test.describe("Gutenberg Spotify", () => {
         await expect(heading).toBeVisible();
         const framelocator = page.frameLocator('iframe[title="Spotify Embed\\: Omar Hisham"]')
 
-        // await expect(page.getByTestId('spotify-artist').getByTestId('tracklist')).toBeVisible();
-
-        // await expect(framelocator.getByRole('link', { name: 'Omar Hisham' })).toBeVisible();
-        // await expect(page.frameLocator('iframe[title="Spotify Embed\\: Omar Hisham"]').getByRole('link', { name: 'Top tracks' })).toBeVisible();
-
         await expect(framelocator.getByRole('link', { name: 'Omar Hisham' })).toBeVisible();
         await expect(framelocator.locator('span').filter({ hasText: 'Top tracks' }).first()).toBeVisible();
         await expect(framelocator.locator('.PlayerControlsShort_playerControlsWrapper__qdkr5')).toBeVisible();
