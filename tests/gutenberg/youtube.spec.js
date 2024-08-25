@@ -13,8 +13,8 @@ test.describe("Gutenberg YouTube", () => {
         // Define selectors for reusability and clarity
         const selectors = {
             heading: page.getByRole('heading', { name: 'YouTube Chanel Gallery' }),
-            postContent: page.locator('#post-7520 div').filter({ hasText: 'YouTube Chanel Default Gallery' }).first(),
-            channelHeader: page.locator('.channel-header'),
+            postContent: page.locator('#post-7520 div').filter({ hasText: 'YouTube Chanel Gallery' }).first(),
+            channelHeader: page.locator('.channel-header').first(),
             firstThumbnail: page.locator('.thumb').first(),
             secondThumbnail: page.locator('div:nth-child(2) > .thumb'),
             firstPageButton: page.getByText('1', { exact: true }).first(),
@@ -44,7 +44,45 @@ test.describe("Gutenberg YouTube", () => {
         await expect(selectors.prevEpisodeButton).toBeVisible();
         await selectors.prevEpisodeButton.click();
     });
+    // Layout Gallery End //
 
+    // Layout Gallery Start //
+    test('YouTube list Layout', async ({ page }) => {
+        // Define selectors for reusability and clarity
+
+        const selectors = {
+            heading: page.getByRole('heading', { name: 'YouTube Chanel List' }),
+            postContent: page.locator('#post-7520 div').filter({ hasText: 'YouTube Chanel List Layout' }).first(),
+            channelHeader: page.locator('.channel-header div:nth-child(2)'),
+            firstThumbnail: page.locator('.thumb').first(),
+            secondThumbnail: page.locator('div:nth-child(2) > .thumb'),
+            firstPageButton: page.getByText('1', { exact: true }).first(),
+            nextEpisodeButton: page.locator('.ep-next'),
+            nextButton: page.getByText('Next'),
+            prevEpisodeButton: page.locator('.ep-prev'),
+        };
+
+        // Ensure heading is visible
+        await selectors.heading.scrollIntoViewIfNeeded();
+        await expect(selectors.heading).toBeVisible();
+
+        // Verify visibility of key elements
+        await expect(selectors.postContent).toBeVisible();
+        await expect(selectors.channelHeader).toBeVisible();
+        await expect(selectors.firstThumbnail).toBeVisible();
+        await expect(selectors.secondThumbnail).toBeVisible();
+
+        // Interact with page buttons and verify navigation
+        await selectors.firstPageButton.click();
+        await expect(selectors.firstPageButton).toBeVisible();
+
+        await selectors.nextEpisodeButton.click();
+        await selectors.nextButton.click();
+
+        // No need for a timeout, visibility check is enough
+        await expect(selectors.prevEpisodeButton).toBeVisible();
+        await selectors.prevEpisodeButton.click();
+    });
     // Layout Gallery End //
 
     test('Default YouTube', async ({ page }) => {
