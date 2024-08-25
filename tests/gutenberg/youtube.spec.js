@@ -8,6 +8,29 @@ test.describe("Gutenberg YouTube", () => {
         await page.goto(slug);
     });
 
+    // Layout Gallery Start //
+    test.only('YouTube Gallery Layout', async ({ page }) => {
+
+        const heading = page.getByRole('heading', { name: 'YouTube Chanel Default' });
+        await heading.scrollIntoViewIfNeeded();
+        await expect(heading).toBeVisible();
+
+        await expect(page.locator('#post-7520 div').filter({ hasText: 'YouTube Chanel Default Layout' }).first()).toBeVisible();
+
+        await expect(page.locator('.channel-header')).toBeVisible();
+        await expect(page.locator('.thumb').first()).toBeVisible();
+        await expect(page.locator('div:nth-child(2) > .thumb')).toBeVisible();
+
+        await page.getByText('1', { exact: true }).first().click();
+        await expect(page.getByText('1', { exact: true }).first()).toBeVisible();
+        await page.locator('.ep-next').click();
+        await page.getByText('Next').click();
+        await page.waitForTimeout(2000);
+        await expect(page.locator('.ep-prev')).toBeVisible();
+        await page.locator('.ep-prev').click();
+    })
+    // Layout Gallery End //
+
     test('Default YouTube', async ({ page }) => {
         const framelocator = page.frameLocator('iframe[title="শ্রেষ্ঠ মানুষেরা - \\[পর্ব ৮\\] - ইবরাহিম \\(আঃ\\)"]')
         await expect(page.getByRole('heading', { name: 'Default YouTube' })).toBeVisible();
