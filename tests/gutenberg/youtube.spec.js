@@ -9,26 +9,42 @@ test.describe("Gutenberg YouTube", () => {
     });
 
     // Layout Gallery Start //
-    test.only('YouTube Gallery Layout', async ({ page }) => {
+    test('YouTube Gallery Layout', async ({ page }) => {
+        // Define selectors for reusability and clarity
+        const selectors = {
+            heading: page.getByRole('heading', { name: 'YouTube Chanel Gallery' }),
+            postContent: page.locator('#post-7520 div').filter({ hasText: 'YouTube Chanel Default Gallery' }).first(),
+            channelHeader: page.locator('.channel-header'),
+            firstThumbnail: page.locator('.thumb').first(),
+            secondThumbnail: page.locator('div:nth-child(2) > .thumb'),
+            firstPageButton: page.getByText('1', { exact: true }).first(),
+            nextEpisodeButton: page.locator('.ep-next'),
+            nextButton: page.getByText('Next'),
+            prevEpisodeButton: page.locator('.ep-prev'),
+        };
 
-        const heading = page.getByRole('heading', { name: 'YouTube Chanel Default' });
-        await heading.scrollIntoViewIfNeeded();
-        await expect(heading).toBeVisible();
+        // Ensure heading is visible
+        await selectors.heading.scrollIntoViewIfNeeded();
+        await expect(selectors.heading).toBeVisible();
 
-        await expect(page.locator('#post-7520 div').filter({ hasText: 'YouTube Chanel Default Layout' }).first()).toBeVisible();
+        // Verify visibility of key elements
+        await expect(selectors.postContent).toBeVisible();
+        await expect(selectors.channelHeader).toBeVisible();
+        await expect(selectors.firstThumbnail).toBeVisible();
+        await expect(selectors.secondThumbnail).toBeVisible();
 
-        await expect(page.locator('.channel-header')).toBeVisible();
-        await expect(page.locator('.thumb').first()).toBeVisible();
-        await expect(page.locator('div:nth-child(2) > .thumb')).toBeVisible();
+        // Interact with page buttons and verify navigation
+        await selectors.firstPageButton.click();
+        await expect(selectors.firstPageButton).toBeVisible();
 
-        await page.getByText('1', { exact: true }).first().click();
-        await expect(page.getByText('1', { exact: true }).first()).toBeVisible();
-        await page.locator('.ep-next').click();
-        await page.getByText('Next').click();
-        await page.waitForTimeout(2000);
-        await expect(page.locator('.ep-prev')).toBeVisible();
-        await page.locator('.ep-prev').click();
-    })
+        await selectors.nextEpisodeButton.click();
+        await selectors.nextButton.click();
+
+        // No need for a timeout, visibility check is enough
+        await expect(selectors.prevEpisodeButton).toBeVisible();
+        await selectors.prevEpisodeButton.click();
+    });
+
     // Layout Gallery End //
 
     test('Default YouTube', async ({ page }) => {
