@@ -8,82 +8,93 @@ test.describe("Gutenberg YouTube", () => {
         await page.goto(slug);
     });
 
-    // Layout Gallery Start //
-    test('YouTube Gallery Layout', async ({ page }) => {
-        // Define selectors for reusability and clarity
-        const selectors = {
-            heading: page.getByRole('heading', { name: 'YouTube Chanel Gallery' }),
-            postContent: page.locator('#post-7520 div').filter({ hasText: 'YouTube Chanel Gallery' }).first(),
-            channelHeader: page.locator('.channel-header').first(),
-            firstThumbnail: page.locator('.thumb').first(),
-            secondThumbnail: page.locator('div:nth-child(2) > .thumb'),
-            firstPageButton: page.getByText('1', { exact: true }).first(),
-            nextEpisodeButton: page.locator('.ep-next'),
-            nextButton: page.getByText('Next'),
-            prevEpisodeButton: page.locator('.ep-prev'),
-        };
 
-        // Ensure heading is visible
-        await selectors.heading.scrollIntoViewIfNeeded();
-        await expect(selectors.heading).toBeVisible();
-
-        // Verify visibility of key elements
-        await expect(selectors.postContent).toBeVisible();
-        await expect(selectors.channelHeader).toBeVisible();
-        await expect(selectors.firstThumbnail).toBeVisible();
-        await expect(selectors.secondThumbnail).toBeVisible();
-
-        // Interact with page buttons and verify navigation
-        await selectors.firstPageButton.click();
-        await expect(selectors.firstPageButton).toBeVisible();
-
-        await selectors.nextEpisodeButton.click();
-        await selectors.nextButton.click();
-
-        // No need for a timeout, visibility check is enough
-        await expect(selectors.prevEpisodeButton).toBeVisible();
-        await selectors.prevEpisodeButton.click();
+    test('YouTube Chanel Gallery Layout', async ({ page }) => {
+        await expect(page.getByRole('heading', { name: 'YouTube Chanel Gallery' })).toBeVisible();
+        await expect(page.frameLocator('iframe[title="MrBeast"]').locator('.ytp-cued-thumbnail-overlay-image')).toBeVisible();
+        await expect(page.locator('.channel-header').first()).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'MrBeast' })).toBeVisible();
+        await expect(page.getByRole('img', { name: 'MrBeast' })).toBeVisible();
+        await expect(page.frameLocator('iframe[title="MrBeast"]').getByLabel('Watch on www.youtube.com')).toBeVisible();
+        await expect(page.locator('.thumb').first()).toBeVisible();
+        await expect(page.locator('div:nth-child(2) > .thumb').first()).toBeVisible();
+        await expect(page.locator('.description-container').first()).toBeVisible();
+        await expect(page.locator('.page-number').first()).toBeVisible();
+        await expect(page.locator('.ep-next').first()).toBeVisible();
+        await page.locator('.ep-next').first().click();
+        await page.waitForTimeout(2000)
+        await expect(page.locator('.ep-prev').first()).toBeVisible();
     });
-    // Layout Gallery End //
 
-    // Layout Gallery Start //
-    test('YouTube list Layout', async ({ page }) => {
-        // Define selectors for reusability and clarity
 
-        const selectors = {
-            heading: page.getByRole('heading', { name: 'YouTube Chanel List' }),
-            postContent: page.locator('#post-7520 div').filter({ hasText: 'YouTube Chanel List Layout' }).first(),
-            channelHeader: page.locator('.channel-header div:nth-child(2)'),
-            firstThumbnail: page.locator('.thumb').first(),
-            secondThumbnail: page.locator('div:nth-child(2) > .thumb'),
-            firstPageButton: page.getByText('1', { exact: true }).first(),
-            nextEpisodeButton: page.locator('.ep-next'),
-            nextButton: page.getByText('Next'),
-            prevEpisodeButton: page.locator('.ep-prev'),
-        };
-
-        // Ensure heading is visible
-        await selectors.heading.scrollIntoViewIfNeeded();
-        await expect(selectors.heading).toBeVisible();
-
-        // Verify visibility of key elements
-        await expect(selectors.postContent).toBeVisible();
-        await expect(selectors.channelHeader).toBeVisible();
-        await expect(selectors.firstThumbnail).toBeVisible();
-        await expect(selectors.secondThumbnail).toBeVisible();
-
-        // Interact with page buttons and verify navigation
-        await selectors.firstPageButton.click();
-        await expect(selectors.firstPageButton).toBeVisible();
-
-        await selectors.nextEpisodeButton.click();
-        await selectors.nextButton.click();
-
-        // No need for a timeout, visibility check is enough
-        await expect(selectors.prevEpisodeButton).toBeVisible();
-        await selectors.prevEpisodeButton.click();
+    test('YouTube Chanel List Layout', async ({ page }) => {
+        await expect(page.getByRole('heading', { name: 'YouTube Chanel List' })).toBeVisible();
+        await expect(page.locator('div:nth-child(2) > .wp-block-group__inner-container > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .channel-header')).toBeVisible();
+        await expect(page.locator('div:nth-child(2) > .youtube__content__body > .content__wrap > div').first()).toBeVisible();
+        await expect(page.locator('div:nth-child(2) > .youtube__content__body > .content__wrap > div > .body > .description-container > .details > .channel').first()).toBeVisible();
+        await expect(page.locator('div:nth-child(2) > .youtube__content__body > .content__wrap > div > .body > .description-container > .thumbnail').first()).toBeVisible();
+        await expect(page.locator('div:nth-child(2) > .youtube__content__body > .content__wrap > div:nth-child(2)').first()).toBeVisible();
+        await page.locator('div:nth-child(2) > .youtube__content__body > .content__wrap > div > .thumb > .play-icon > img').first().click();
+        await page.waitForTimeout(2000)
+        await expect(page.frameLocator('#videoIframe').locator('div').filter({ hasText: /^Jamuna TVSubscribeSubscribed$/ }).first()).toBeVisible();
+        await expect(page.getByText('×', { exact: true })).toBeVisible();
+        await page.getByText('×', { exact: true }).click();
     });
-    // Layout Gallery End //
+
+
+    test('YouTube Chanel Grid Layout', async ({ page }) => {
+
+    });
+
+
+    test('YouTube Chanel Carousel Layout', async ({ page }) => {
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     test('Default YouTube', async ({ page }) => {
         const framelocator = page.frameLocator('iframe[title="শ্রেষ্ঠ মানুষেরা - \\[পর্ব ৮\\] - ইবরাহিম \\(আঃ\\)"]')
