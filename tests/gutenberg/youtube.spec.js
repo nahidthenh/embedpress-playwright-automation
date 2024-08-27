@@ -78,57 +78,31 @@ test.describe("Gutenberg YouTube", () => {
 
 
     test('YouTube Chanel Carousel Layout', async ({ page }) => {
-
+        const heading = page.getByRole('heading', { name: 'YouTube Chanel Carousel' });
+        await heading.scrollIntoViewIfNeeded();
+        await expect(heading).toBeVisible();
+        await expect(page.locator('div:nth-child(4) > div > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .channel-header')).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'গল্পকথন by কল্লোল' })).toBeVisible();
+        await expect(page.getByRole('img', { name: 'গল্পকথন by কল্লোল' })).toBeVisible();
+        await expect(page.getByRole('link', { name: 'Subscribe' }).nth(3)).toBeVisible();
+        await expect(page.getByRole('button', { name: '❮' })).toBeVisible();
+        await expect(page.getByRole('button', { name: '❯' })).toBeVisible();
+        await expect(page.locator('div:nth-child(4) > div > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .content__wrap > div > .thumb').first()).toBeVisible();
+        await expect(page.locator('div:nth-child(4) > div > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .content__wrap > div > .body > .description-container').first()).toBeVisible();
+        await expect(page.locator('div:nth-child(4) > div > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .content__wrap > div > .body > .description-container > .details > .channel').first()).toBeVisible();
+        await page.getByRole('button', { name: '❯' }).click();
+        await page.locator('div:nth-child(4) > div > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .content__wrap > div:nth-child(6) > .thumb').click();
+        await page.waitForTimeout(1000)
+        await expect(page.getByText('×', { exact: true })).toBeVisible();
+        await page.getByText('×', { exact: true }).click();
+        await page.getByRole('button', { name: '❮' }).click();
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     test('Default YouTube', async ({ page }) => {
         const framelocator = page.frameLocator('iframe[title="শ্রেষ্ঠ মানুষেরা - \\[পর্ব ৮\\] - ইবরাহিম \\(আঃ\\)"]')
-        await expect(page.getByRole('heading', { name: 'Default YouTube' })).toBeVisible();
+        const heading = page.getByRole('heading', { name: 'Default YouTube' });
+        await heading.scrollIntoViewIfNeeded();
+        await expect(heading).toBeVisible();
         await expect(page.getByText('Copy URL Form Right-click on')).toBeVisible();
         await expect(page.locator('.ep-embed-content-wraper').first()).toBeVisible();
         await expect(framelocator.getByLabel('Play', { exact: true })).toBeVisible();
