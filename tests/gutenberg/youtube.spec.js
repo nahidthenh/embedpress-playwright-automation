@@ -8,27 +8,30 @@ test.describe("Gutenberg YouTube", () => {
         await page.goto(slug);
     });
 
+    test('YouTube Channel Gallery Layout', async ({ page }) => {
+        const expectations = [
+            { element: page.getByRole('heading', { name: 'YouTube Chanel Gallery' }) },
+            { element: page.frameLocator('iframe[title="MrBeast"]').locator('.ytp-cued-thumbnail-overlay-image') },
+            { element: page.locator('.channel-header').first() },
+            { element: page.getByRole('heading', { name: 'MrBeast' }) },
+            { element: page.getByRole('img', { name: 'MrBeast' }) },
+            { element: page.frameLocator('iframe[title="MrBeast"]').getByLabel('Watch on www.youtube.com') },
+            { element: page.locator('.thumb').first() },
+            { element: page.locator('div:nth-child(2) > .thumb').first() },
+            { element: page.locator('.description-container').first() },
+            { element: page.locator('.page-number').first() },
+            { element: page.locator('.ep-next').first() }
+        ];
 
-    test('YouTube Chanel Gallery Layout', async ({ page }) => {
+        for (const { element } of expectations) {
+            await expect(element).toBeVisible();
+        }
 
-        const heading = page.getByRole('heading', { name: 'YouTube Chanel Gallery' });
-        await heading.scrollIntoViewIfNeeded();
-        await expect(heading).toBeVisible();
-
-        await expect(page.frameLocator('iframe[title="MrBeast"]').locator('.ytp-cued-thumbnail-overlay-image')).toBeVisible();
-        await expect(page.locator('.channel-header').first()).toBeVisible();
-        await expect(page.getByRole('heading', { name: 'MrBeast' })).toBeVisible();
-        await expect(page.getByRole('img', { name: 'MrBeast' })).toBeVisible();
-        await expect(page.frameLocator('iframe[title="MrBeast"]').getByLabel('Watch on www.youtube.com')).toBeVisible();
-        await expect(page.locator('.thumb').first()).toBeVisible();
-        await expect(page.locator('div:nth-child(2) > .thumb').first()).toBeVisible();
-        await expect(page.locator('.description-container').first()).toBeVisible();
-        await expect(page.locator('.page-number').first()).toBeVisible();
-        await expect(page.locator('.ep-next').first()).toBeVisible();
-        await page.locator('.ep-next').first().click();
-        await page.waitForTimeout(2000)
+        const nextEpisodeButton = page.locator('.ep-next').first();
+        await nextEpisodeButton.click();
         await expect(page.locator('.ep-prev').first()).toBeVisible();
     });
+
 
 
     test('YouTube Chanel List Layout', async ({ page }) => {
