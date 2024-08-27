@@ -10,7 +10,11 @@ test.describe("Gutenberg YouTube", () => {
 
 
     test('YouTube Chanel Gallery Layout', async ({ page }) => {
-        await expect(page.getByRole('heading', { name: 'YouTube Chanel Gallery' })).toBeVisible();
+
+        const heading = page.getByRole('heading', { name: 'YouTube Chanel Gallery' });
+        await heading.scrollIntoViewIfNeeded();
+        await expect(heading).toBeVisible();
+
         await expect(page.frameLocator('iframe[title="MrBeast"]').locator('.ytp-cued-thumbnail-overlay-image')).toBeVisible();
         await expect(page.locator('.channel-header').first()).toBeVisible();
         await expect(page.getByRole('heading', { name: 'MrBeast' })).toBeVisible();
@@ -28,7 +32,9 @@ test.describe("Gutenberg YouTube", () => {
 
 
     test('YouTube Chanel List Layout', async ({ page }) => {
-        await expect(page.getByRole('heading', { name: 'YouTube Chanel List' })).toBeVisible();
+        const heading = page.getByRole('heading', { name: 'YouTube Chanel List' });
+        await heading.scrollIntoViewIfNeeded();
+        await expect(heading).toBeVisible();
         await expect(page.locator('div:nth-child(2) > .wp-block-group__inner-container > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .channel-header')).toBeVisible();
         await expect(page.locator('div:nth-child(2) > .youtube__content__body > .content__wrap > div').first()).toBeVisible();
         await expect(page.locator('div:nth-child(2) > .youtube__content__body > .content__wrap > div > .body > .description-container > .details > .channel').first()).toBeVisible();
@@ -43,6 +49,30 @@ test.describe("Gutenberg YouTube", () => {
 
 
     test('YouTube Chanel Grid Layout', async ({ page }) => {
+
+        const heading = page.getByRole('heading', { name: 'YouTube Chanel Grid' });
+        await heading.scrollIntoViewIfNeeded();
+        await expect(heading).toBeVisible();
+
+        await expect(page.locator('div:nth-child(3) > .wp-block-group__inner-container > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .channel-header')).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'SATV' })).toBeVisible();
+        await expect(page.getByRole('img', { name: 'SATV' })).toBeVisible();
+        await expect(page.getByRole('link', { name: 'Subscribe' }).nth(2)).toBeVisible();
+        await expect(page.locator('div:nth-child(3) > .wp-block-group__inner-container > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .content__wrap > div > .thumb').first()).toBeVisible();
+        await expect(page.locator('div:nth-child(3) > .wp-block-group__inner-container > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .content__wrap > div > .body > .description-container').first()).toBeVisible();
+        await expect(page.locator('div:nth-child(3) > .wp-block-group__inner-container > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .content__wrap > div:nth-child(2) > .thumb')).toBeVisible();
+        await expect(page.locator('div:nth-child(3) > .wp-block-group__inner-container > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .ep-youtube__content__pagination > .is_desktop_device > span').first()).toBeVisible();
+        await expect(page.locator('div:nth-child(3) > .wp-block-group__inner-container > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .ep-youtube__content__pagination > .ep-next')).toBeVisible();
+        await page.getByText('Next').nth(2).click();
+        await page.waitForTimeout(2000)
+        await page.locator('div:nth-child(3) > .wp-block-group__inner-container > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .content__wrap > div:nth-child(2) > .thumb > .play-icon > img').click();
+        await page.waitForTimeout(2000)
+        await expect(page.frameLocator('#videoIframe').locator('video')).toBeVisible();
+        await page.waitForTimeout(1000)
+        await page.getByText('×', { exact: true }).click();
+        await expect(page.locator('div:nth-child(3) > .wp-block-group__inner-container > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .ep-youtube__content__pagination > .ep-prev')).toBeVisible();
+        await page.waitForTimeout(1000)
+        await page.locator('div:nth-child(3) > .wp-block-group__inner-container > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .ep-youtube__content__pagination > .ep-prev').click();
 
     });
 
