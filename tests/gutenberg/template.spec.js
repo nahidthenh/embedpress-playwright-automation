@@ -7,27 +7,15 @@ test.describe('Check for console errors', () => {
 
 
     // });
+    // https://www.checklyhq.com/blog/how-to-monitor-javascript-logs-and-exceptions-with-playwright/
 
-    test('Check if heading is visible', async ({ page }) => {
-        // Error Finding 
-
+    test('Localhost error logging', async ({ page }) => {
         const logs = []
-
-        page.on('console', (message) => {
-            logs.push({ message, type: message.type() })
-        })
-
-        const errors = []
-
-        page.on('console', msg => {
-            if (msg.type() === 'error')
-                errors.push(`Error text: "${msg.text()}"`);
-        });
-
-        await page.goto(slug);
-
-        console.log(logs)
-
-        console.log(errors)
-    });
+        // Listen for all console logs
+        page.on('console', msg => { logs.push({ msg, type: msg.type() }) });
+        // Listen for all console events and handle errors
+        await page.goto('slug');
+        console.log(logs);
+    })
+  
 });
