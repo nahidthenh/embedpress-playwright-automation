@@ -3,38 +3,31 @@ const { test, expect } = require('@playwright/test');
 let slug = 'flip-book-pdf';
 
 test.describe('Check for console errors', () => {
-    test.beforeEach(async ({ page }) => {
-        // Array to store console errors
-
-        await page.goto(slug);
-
-        //await page.waitForTimeout(10000)
-
-        let consoleErrors = [];
-
-        // Listen for all console logs
-        page.on('console', msg => console.log(msg.text()));
-
-        await page.goto(slug);
-        // Listen for console messages
-        page.on('console', message => {
-
-            consoleErrors.push(message.text());
-            consoleErrors.log(consoleErrors)
-
-        });
+    // test.beforeEach(async ({ page }) => {
 
 
-
-        // If any console errors were captured, log them
-        if (consoleErrors.length > 0) {
-            console.log('Console Errors:', consoleErrors);
-        } else {
-            console.log('No console errors found.');
-        }
-    });
+    // });
 
     test('Check if heading is visible', async ({ page }) => {
+        // Error Finding 
 
+        const logs = []
+
+        page.on('console', (message) => {
+            logs.push({ message, type: message.type() })
+        })
+
+        const errors = []
+
+        page.on('console', msg => {
+            if (msg.type() === 'error')
+                errors.push(`Error text: "${msg.text()}"`);
+        });
+
+        await page.goto(slug);
+
+        console.log(logs)
+
+        console.log(errors)
     });
 });
