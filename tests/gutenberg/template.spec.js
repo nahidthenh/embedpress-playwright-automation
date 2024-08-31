@@ -29,8 +29,8 @@ test.describe('Check for console errors', () => {
         });
 
         // Navigate to the page
-        await page.goto('https://embedpress.qcheck.site/playwright-gutenberg/google-docs-gutenberg/');
-
+        await page.goto('https://embedpress.qcheck.site/playwright-elementor/flip-book-pdf-elementor/');
+        await page.waitForLoadState()
         // Output logs, errors, and exceptions
         console.log('Exceptions:', exceptions);
         console.log('Errors:', errors);
