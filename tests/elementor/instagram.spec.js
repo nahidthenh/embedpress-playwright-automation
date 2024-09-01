@@ -9,7 +9,10 @@ test.describe("Elementor Instagram Feed", () => {
     });
 
     test('User Account Business Type', async ({ page }) => {
-        await expect(page.getByRole('heading', { name: 'User Account Business Type' })).toBeVisible();
+        const heading = page.getByRole('heading', { name: 'User Account Business Type' });
+        await heading.scrollIntoViewIfNeeded();
+        await expect(heading).toBeVisible();
+
         await expect(page.locator('#ep-elements-id-4337908').getByRole('banner')).toBeVisible();
         await expect(page.locator('#ep-elements-id-4337908').getByRole('img', { name: 'Md. Nahid Hasan' })).toBeVisible();
         await expect(page.locator('#ep-elements-id-4337908').getByRole('link', { name: 'nahidthenh55' })).toBeVisible();
@@ -31,5 +34,15 @@ test.describe("Elementor Instagram Feed", () => {
         await expect(page.locator('.insta-gallery-item-comments').first()).toBeVisible();
     });
 
-    // test('', async ({ page }) => { });
+    test('Hashtag', async ({ page }) => {
+        const heading = page.getByRole('heading', { name: '#Hashtag' });
+        await heading.scrollIntoViewIfNeeded()
+        await expect(heading).toBeVisible();
+
+        await expect(page.getByText('#parentingtips Follow Me')).toBeVisible();
+        await expect(page.getByRole('link', { name: '#parentingtips' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-0682a59').getByRole('link', { name: 'Follow Me' })).toBeVisible();
+        await expect(page.locator('[id="\\30 682a59"] > .ose-instagram-feed > .posts-tab-options')).toBeVisible();
+    });
+    // test('Hashtag', async ({ page }) => { });
 });
