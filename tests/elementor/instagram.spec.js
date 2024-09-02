@@ -51,35 +51,17 @@ test.describe("Elementor Instagram Feed", () => {
         });
         await heading.scrollIntoViewIfNeeded()
         await expect(heading).toBeVisible();
-
-        // await expect(page.locator('#ep-elements-id-0bd5e50').getByRole('banner')).toBeVisible();
-        // await expect(page.locator('#ep-elements-id-0bd5e50').getByRole('img', { name: 'Md. Nahid Hasan' })).toBeVisible();
-        // await expect(page.locator('#ep-elements-id-0bd5e50').getByRole('link', { name: 'nahidthenh55' })).toBeVisible();
-        // await expect(page.locator('#ep-elements-id-0bd5e50').getByText('138 posts')).toBeVisible();
-        // await expect(page.locator('#ep-elements-id-0bd5e50').getByRole('link', { name: 'Follow Me' })).toBeVisible();
-        // await expect(page.locator('[id="\\30 bd5e50"] > .ose-instagram-feed > .posts-tab-options')).toBeVisible();
-        // await expect(page.locator('#ep-elements-id-0bd5e50').getByText('Posts', { exact: true })).toBeVisible();
-        // await page.locator('#ep-elements-id-0bd5e50 li').filter({ hasText: 'Reels' }).getByRole('img').click();
-        // await page.locator('#ep-elements-id-0bd5e50').getByText('Reels').click();
-        // await page.locator('#ep-elements-id-0bd5e50').getByText('Album').click();
-        // await page.locator('#ep-elements-id-0bd5e50').getByText('Posts', { exact: true }).click();
-
-        // await page.waitForSelector("//div[@class='elementor-element-4510ea3']//div[@class='insta-gallery']//div[1]//div[2]");
-        // const hello = page.locator("//div[@class='elementor-element-4510ea3']//div[@class='insta-gallery']//div[1]//div[2]").first();
-        
-        const element = page.locator(".elementor-element-4510ea3 > .insta-gallery > .insta-gallery-item").first();
-        const element2 = element.locator(".insta-gallery-item-permalink");
-        // await element2.waitFor({ state: 'visible' });
-        await element2.scrollIntoViewIfNeeded();
-        await element2.hover();
-
-        await element2.click();
-        await expect(page.getByText('nahidthenh55 Follow', { exact: true })).toBeVisible();
-        await page.getByText('Post 1: “The Future of').click();
-        await expect(page.getByRole('img', { name: 'Post 1: “The Future of' })).toBeVisible();
-        await page.locator('#ep-elements-id-0bd5e50').getByText('✕').click();
+        await expect(page.locator('#ep-elements-id-0bd5e50').getByRole('banner')).toBeVisible();
+        await expect(page.locator('#ep-elements-id-0bd5e50').getByRole('img', { name: 'Md. Nahid Hasan' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-0bd5e50').getByRole('link', { name: 'nahidthenh55' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-0bd5e50').getByText('138 posts')).toBeVisible();
+        await expect(page.locator('#ep-elements-id-0bd5e50').getByRole('link', { name: 'Follow Me' })).toBeVisible();
+        await expect(page.locator('[id="\\30 bd5e50"] > .ose-instagram-feed > .posts-tab-options')).toBeVisible();
+        await expect(page.locator('#ep-elements-id-0bd5e50').getByText('Posts', { exact: true })).toBeVisible();
+        await page.locator('#ep-elements-id-0bd5e50 li').filter({ hasText: 'Reels' }).getByRole('img').click();
+        await page.locator('#ep-elements-id-0bd5e50').getByText('Reels').click();
+        await page.locator('#ep-elements-id-0bd5e50').getByText('Album').click();
+        await page.locator('#ep-elements-id-0bd5e50').getByText('Posts', { exact: true }).click();
         await expect(page.locator('#ep-elements-id-0bd5e50').getByRole('button', { name: 'Load More' })).toBeVisible();
-
     });
-
 });
