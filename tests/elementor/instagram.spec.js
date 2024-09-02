@@ -64,4 +64,24 @@ test.describe("Elementor Instagram Feed", () => {
         await page.locator('#ep-elements-id-0bd5e50').getByText('Posts', { exact: true }).click();
         await expect(page.locator('#ep-elements-id-0bd5e50').getByRole('button', { name: 'Load More' })).toBeVisible();
     });
+
+    test('Masonry layout', async ({ page }) => {
+        const heading = page.getByRole('heading', {
+            name: 'Masonry layout'
+        });
+        await heading.scrollIntoViewIfNeeded();
+        await expect(page.locator('#ep-elements-id-4e3befc').getByRole('banner')).toBeVisible();
+        await expect(page.locator('#ep-elements-id-4e3befc').getByRole('link', { name: 'nahidthenh55' })).toBeVisible();
+    });
+
+    test('Carousel layout', async ({ page }) => {
+        const heading = page.getByRole('heading', {
+            name: 'Carousel layout'
+        });
+        await heading.scrollIntoViewIfNeeded();
+
+        await expect(page.locator('#ep-elements-id-826ff3e').getByRole('banner')).toBeVisible();
+        await expect(page.locator('#ep-elements-id-826ff3e').getByText('Md. Nahid Hasan')).toBeVisible();
+        await expect(page.locator('[id="\\38 26ff3e"] > .ose-instagram-feed > .instagram-container > .embedpress-insta-container > .insta-gallery > div > .insta-gallery-image').first()).toBeVisible();
+    });
 });
