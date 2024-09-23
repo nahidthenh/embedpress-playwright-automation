@@ -3,6 +3,10 @@ const { test, expect } = require('@playwright/test');
 let slug = 'playwright-gutenberg/gutenberg-youtube';
 
 
+/* The above code is a test script written in JavaScript using the Jest testing framework. It is
+setting up a test suite for a feature called "Gutenberg YouTube". The `beforeEach` hook is used to
+run a function before each test case in the suite. In this case, it is navigating the test page to a
+URL specified by the `slug` variable. */
 test.describe("Gutenberg YouTube", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
@@ -50,6 +54,8 @@ test.describe("Gutenberg YouTube", () => {
         await page.getByText('×', { exact: true }).click();
     });
 
+    /* The above code is a test script written in JavaScript using the Playwright testing library. It is
+    testing the layout and functionality of a YouTube channel grid on a web page. */
 
     test('YouTube Chanel Grid Layout', async ({ page }) => {
 
