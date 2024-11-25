@@ -21,6 +21,8 @@ jobs:
       run: npx playwright install --with-deps chromium
     - name: Run Playwright tests for Chromium
       run: npx playwright test --project=chromium --workers=4
+    - name: Generate Test Summary
+      run: node generate-summary.js
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
