@@ -8,10 +8,6 @@ test.describe('Elementor Spotify', () => {
         await page.goto(slug);
     });
 
-    test.afterEach(async ({ page }) => {
-        await page.close();
-    });
-
     test('Spotify Single', async ({ page }) => {
         const heading = page.getByRole('heading', { name: 'Spotify Single' });
         await heading.scrollIntoViewIfNeeded();
@@ -41,7 +37,6 @@ test.describe('Elementor Spotify', () => {
         await iframe.getByTestId('play-pause-button').click();
         await page.waitForTimeout(3000);
         await iframe.getByTestId('play-pause-button').click();
-        await iframe.getByLabel('Close').click();
     });
 
     test('Spotify Album', async ({ page }) => {
@@ -61,7 +56,6 @@ test.describe('Elementor Spotify', () => {
         await iframe.getByTestId('play-pause-button').click();
         await page.waitForTimeout(3000);
         await iframe.getByTestId('play-pause-button').click();
-        await iframe.getByLabel('Close').click();
     });
 
     test('Spotify Playlist', async ({ page }) => {
@@ -80,6 +74,5 @@ test.describe('Elementor Spotify', () => {
         await iframe.getByTestId('play-pause-button').click();
         await page.waitForTimeout(3000);
         await iframe.getByTestId('play-pause-button').click();
-        await iframe.getByLabel('Close').click();
     });
 });
