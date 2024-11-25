@@ -36,6 +36,7 @@ test.describe('Check for console errors', () => {
         console.log('Errors:', errors);
         console.log('Logs:', logs);
     });
+    
 
 
 
