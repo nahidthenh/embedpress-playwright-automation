@@ -51,15 +51,15 @@ test.describe("Elementor YouTube", () => {
         await heading.scrollIntoViewIfNeeded();
         await expect(heading).toBeVisible();
         await expect(page.locator('[id="\\31 d37408"] > .ose-youtube > .ep-player-wrap > .channel-header')).toBeVisible();
-        await expect(page.getByRole('img', { name: 'Bangladesh Cricket : The' })).toBeVisible();
-        await expect(page.getByRole('heading', { name: 'Bangladesh Cricket : The' })).toBeVisible();
+        await expect(page.getByRole('img', { name: 'UFC' })).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'UFC' })).toBeVisible();
         await expect(page.locator('#ep-elements-id-1d37408').getByRole('link', { name: 'Subscribe' })).toBeVisible();
         await expect(page.locator('[id="\\31 d37408"] > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .content__wrap > div > .thumb').first()).toBeVisible();
         await expect(page.locator('[id="\\31 d37408"] > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .content__wrap > div:nth-child(2) > .thumb')).toBeVisible();
         await expect(page.locator('[id="\\31 d37408"] > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .content__wrap > div > .body > .description-container').first()).toBeVisible();
         await expect(page.locator('[id="\\31 d37408"] > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .content__wrap > div:nth-child(2) > .body > .description-container')).toBeVisible();
         await page.locator('[id="\\31 d37408"] > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .content__wrap > div:nth-child(2) > .thumb > .play-icon > img').click();
-        await page.waitForTimeout(1000)
+        await page.waitForTimeout(1100)
         await expect(page.frameLocator('#videoIframe').locator('video')).toBeVisible();
         await expect(page.getByText('×', { exact: true })).toBeVisible();
         await page.getByText('×', { exact: true }).click();
