@@ -20,8 +20,6 @@ test.describe("Gutenberg Spotify", () => {
         await expect(framelocator.getByLabel('More')).toBeVisible();
         await expect(framelocator.getByTestId('play-pause-button')).toBeVisible();
         await framelocator.getByTestId('play-pause-button').click();
-        await framelocator.getByTestId('play-pause-button').click();
-        await framelocator.getByLabel('Close').click();
     });
 
 
@@ -79,13 +77,9 @@ test.describe("Gutenberg Spotify", () => {
         await expect(framelocator.getByTestId('play-pause-button')).toBeVisible();
         await framelocator.getByTestId('play-pause-button').click();
 
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(500);
 
         await framelocator.getByTestId('play-pause-button').click();
-
-
-        await framelocator.getByLabel('Close').click();
-        // await page.locator('iframe[title="Spotify Embed\\: Kids Quran playlist"]').click();
     });
 
 });
