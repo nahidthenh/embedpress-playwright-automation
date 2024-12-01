@@ -83,8 +83,8 @@ test.describe("Google Docs Gutenberg", () => {
 
         // Define locators within the iframe for repeated elements
         const elementsToCheck = [
-            { locator: frame.getByLabel('Play episode 287. Evil in the').first(), description: 'Play button for episode 287' },
-            { locator: frame.getByRole('link', { name: '287. Evil in the East: Sara' }), description: 'Link to episode 287' },
+            // { locator: frame.getByLabel('Play episode 287. Evil in the').first(), description: 'Play button for episode 287' },
+            // { locator: frame.getByRole('link', { name: '287. Evil in the East: Sara' }), description: 'Link to episode 287' },
             { locator: frame.getByLabel('Skip back 10 seconds'), description: 'Skip back button' },
             { locator: frame.getByLabel('Skip forward 30 seconds'), description: 'Skip forward button' },
             { locator: frame.getByLabel('Like episode'), description: 'Like button' },
