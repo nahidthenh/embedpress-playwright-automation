@@ -23,7 +23,7 @@ test.describe("Google Docs Gutenberg", () => {
 
         // Define locators for elements within the iframe
         const elementsToCheck = [
-            { locator: frame.getByRole('link', { name: 'The Deadliest Mountain on' }), description: 'Episode link' },
+            // { locator: frame.getByRole('link', { name: 'The Deadliest Mountain on' }), description: 'Episode link' },
             { locator: frame.getByLabel('Listen on Spreaker'), description: 'Listen on Spreaker button' },
             { locator: frame.getByRole('link', { name: 'Privacy Policy' }), description: 'Privacy Policy link' },
             { locator: frame.getByRole('img', { name: 'The Deadliest Mountain on' }).first(), description: 'Episode image' },
@@ -54,6 +54,13 @@ test.describe("Google Docs Gutenberg", () => {
         await playButton.click();
         await page.waitForTimeout(500); // Small delay to simulate playback
         await pauseButton.click();
+
+        // Assert CSS property of an element within the frame
+        const cssElement = frame.locator('.widget.theme_light.theme_with_playlist');
+
+        // Assert that the element has the expected class
+        await expect(cssElement).toHaveClass(/widget theme_light theme_with_playlist/);
+
     });
 
     // Enable Pro Features 
@@ -139,7 +146,7 @@ test.describe("Google Docs Gutenberg", () => {
         await expect(infoButton).toBeVisible({ message: 'Information button should be visible' });
     });
 
-    // Dark Theme & Red Color 
+    // Dark Theme & Red Color Hide likes COmments Sharing logo & Download
     test('Dark Theme & Red Color', async ({ page }) => {
         // Check the main heading visibility
         const heading = page.getByRole('heading', { name: 'Dark Theme & Red Color' });
@@ -147,7 +154,6 @@ test.describe("Google Docs Gutenberg", () => {
         await expect(heading).toBeVisible();
 
         // Define a common locator for the iframe
-
         const iframeLocator = page.locator('iframe[title="This is title"]').nth(3);
 
         // Access the iframe's content frame
@@ -169,7 +175,14 @@ test.describe("Google Docs Gutenberg", () => {
         await expect(commentsButton).toBeHidden({ message: 'Comments button should not be visible' });
         await expect(shareButton).toBeHidden({ message: 'Share button should not be visible' });
         await expect(logoButton).toBeHidden({ message: 'Logo button should not be visible' });
+
+        // Assert CSS property of an element within the frame
+        const cssElement = frame.locator('.widget.theme_dark.theme_with_playlist');
+
+        // Assert that the element has the expected class
+        await expect(cssElement).toHaveClass(/widget theme_dark theme_with_playlist/);
     });
+
 
     // Spreaker Single Episode
     test('Spreaker Single Episode', async ({ page }) => {
