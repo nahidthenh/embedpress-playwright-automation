@@ -1,12 +1,12 @@
 const { test, expect } = require('@playwright/test');
 
-let slug = 'gutenberg-spreaker';
+let slug = 'elementor-spreaker';
 
 
-test.describe("Soreaker Gutenberg", () => {
+test.describe("Elementor Spreaker", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
-        await expect(page.getByRole('heading', { name: 'Gutenberg Spreaker' })).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'Elementor Spreaker' })).toBeVisible();
     });
     // Spreaker Playlist
     test('Spreaker Playlist', async ({ page }) => {
@@ -71,9 +71,9 @@ test.describe("Soreaker Gutenberg", () => {
         await expect(heading).toBeVisible();
 
         // Define a common locator for the embedded iframe
+
         const iframeLocator = page
-            .locator('.wp-block-group > .wp-block-group > [id="\\33 21d67dc-8e7a-4c3e-8270-d28d0c58a35f"] > .wp-block-embed__wrapper > #ep-gutenberg-content-309519c8aa6759d7384069d7a70f4aeb > div > .ep-embed-content-wraper > .ose-spreaker > iframe')
-            .first();
+            .locator('#ep-elements-id-90c2277 iframe[title="This is title"]').first();
 
         // Access the iframe's content frame
         const frame = await iframeLocator.contentFrame();
@@ -122,7 +122,7 @@ test.describe("Soreaker Gutenberg", () => {
 
         // Define a common locator for the embedded iframe
         const iframeLocator = page
-            .locator('div:nth-child(3) > .wp-block-group > [id="\\33 21d67dc-8e7a-4c3e-8270-d28d0c58a35f"] > .wp-block-embed__wrapper > #ep-gutenberg-content-309519c8aa6759d7384069d7a70f4aeb > div > .ep-embed-content-wraper > .ose-spreaker > iframe')
+            .locator('#ep-elements-id-3c6f195 iframe[title="This is title"]')
             .first();
 
         // Access the iframe's content frame
