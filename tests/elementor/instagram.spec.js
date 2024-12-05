@@ -61,7 +61,7 @@ test.describe("Elementor Instagram Feed", () => {
         await expect(page.locator('#ep-elements-id-a67a350').getByText('Album')).toBeVisible();
         await expect(page.locator('#ep-elements-id-a67a350').getByText('Posts', { exact: true })).toBeVisible();
 
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(500);
         await sectionLocator.waitFor();
         await sectionLocator.hover();
         await sectionLocator.locator('.insta-gallery-item-info').click();
@@ -95,7 +95,7 @@ test.describe("Elementor Instagram Feed", () => {
         await expect(page.locator('#ep-elements-id-f5d77c9').getByText('Album')).toBeVisible();
         await expect(page.locator('#ep-elements-id-f5d77c9').getByText('Posts', { exact: true })).toBeVisible();
 
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(500);
         await sectionLocator.waitFor();
         await sectionLocator.hover();
         await sectionLocator.locator('.insta-gallery-item-info').click();
@@ -156,4 +156,15 @@ test.describe("Elementor Instagram Feed", () => {
         await expect(sectionLocator.locator('.insta-gallery-item-info').locator('.insta-gallery-item-comments')).toBeVisible();
     });
 
+    test('Option Disable', async ({ page }) => {
+        const heading = page.getByRole('heading', { name: 'Option Disable' });
+        await heading.scrollIntoViewIfNeeded();
+        await expect(heading).toBeVisible();
+        
+        await expect(page.locator('#ep-elements-id-785f06f').getByRole('link', { name: 'Please Follow' })).toBeHidden({ message: "'Please Follow' link should be hidden" });
+        await expect(page.locator('#ep-elements-id-785f06f').getByRole('link', { name: '#food' })).toBeHidden({ message: "'#food' link should be hidden" });
+        await expect(page.locator('#ep-elements-id-785f06f').getByText('Reels')).toBeHidden({ message: "'Reels' text should be hidden" });
+        await expect(page.locator('#ep-elements-id-785f06f').getByText('Album')).toBeHidden({ message: "'Album' text should be hidden" });
+        await expect(page.locator('#ep-elements-id-785f06f').getByText('Posts', { exact: true })).toBeHidden({ message: "'Posts' text should be hidden" });
+    });
 });
