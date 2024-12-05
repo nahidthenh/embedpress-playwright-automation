@@ -115,5 +115,45 @@ test.describe("Elementor Instagram Feed", () => {
         await expect(sectionLocator.locator('.insta-gallery-item-info').locator('.insta-gallery-item-comments')).toBeVisible();
     });
 
+    test('Carousel', async ({ page }) => {
+        const heading = page.getByRole('heading', { name: 'Carousel' });
+        await heading.scrollIntoViewIfNeeded();
+        await expect(heading).toBeVisible();
+
+        // Locator for the first item in the gallery
+        const sectionLocator = page.locator("div#\\35 a723c2 .ose-instagram-feed .instagram-container .embedpress-insta-container .insta-gallery .insta-gallery-item").first();
+
+        // Locator for the popup element
+        const popupLocator = page.locator("div#\\35 a723c2 .ose-instagram-feed .instagram-container .insta-popup");
+
+        await expect(page.locator('#ep-elements-id-5a723c2').getByRole('banner')).toBeVisible();
+        await expect(page.locator('#ep-elements-id-5a723c2').getByRole('img', { name: 'Md. Nahid Hasan' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-5a723c2').getByRole('link', { name: 'nahidwpd' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-5a723c2').getByRole('link', { name: 'Please Follow' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-5a723c2').getByRole('link', { name: '0 followers' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-5a723c2').getByText('Md. Nahid Hasan')).toBeVisible();
+        await expect(page.locator('#ep-elements-id-5a723c2').getByText('Reels')).toBeVisible();
+        await expect(page.locator('#ep-elements-id-5a723c2').getByText('Album')).toBeVisible();
+        await expect(page.locator('#ep-elements-id-5a723c2').getByText('Posts', { exact: true })).toBeVisible();
+
+        await page.waitForTimeout(500);
+        await sectionLocator.waitFor();
+        await sectionLocator.hover();
+        await sectionLocator.locator('.insta-gallery-item-info').click();
+
+        await popupLocator.getByText('✕').waitFor();
+        await popupLocator.getByText('✕').click();
+
+        // Remove the previous hover action
+        await heading.click();
+        await page.waitForTimeout(500);
+        await expect(sectionLocator.locator('.insta-gallery-item-info').locator('.insta-gallery-item-likes')).not.toBeVisible();
+        await expect(sectionLocator.locator('.insta-gallery-item-info').locator('.insta-gallery-item-comments')).not.toBeVisible();
+
+        await sectionLocator.hover();
+        await page.waitForTimeout(500);
+        await expect(sectionLocator.locator('.insta-gallery-item-info').locator('.insta-gallery-item-likes')).toBeVisible();
+        await expect(sectionLocator.locator('.insta-gallery-item-info').locator('.insta-gallery-item-comments')).toBeVisible();
+    });
 
 });
