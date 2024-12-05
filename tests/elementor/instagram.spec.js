@@ -9,7 +9,7 @@ test.describe("Elementor Instagram Feed", () => {
     });
 
     test('Default Instagram', async ({ page }) => {
-        const heading = page.getByRole('heading', {name: 'Default Instagram' });
+        const heading = page.getByRole('heading', { name: 'Default Instagram' });
         await heading.scrollIntoViewIfNeeded();
         await expect(heading).toBeVisible();
 
@@ -42,5 +42,45 @@ test.describe("Elementor Instagram Feed", () => {
         await page.waitForTimeout(500);
         await page.locator('.popup-close').first().click();
     });
-    
+
+    test('Business Account Pro Features Masonry Layout', async ({ page }) => {
+        const heading = page.getByRole('heading', { name: 'Business Account Pro Features Masonry Layout' });
+        await heading.scrollIntoViewIfNeeded();
+        await expect(heading).toBeVisible();
+
+        const sectionLocator = page.locator("div#a67a350 div.ose-instagram-feed div.instagram-container div.embedpress-insta-container div.insta-gallery div.insta-gallery-item").first();
+        const popupLocator = page.locator("div#a67a350 div.ose-instagram-feed div.instagram-container div.insta-popup");
+
+        await expect(page.locator('#ep-elements-id-a67a350').getByRole('banner')).toBeVisible();
+        await expect(page.locator('#ep-elements-id-a67a350').getByRole('img', { name: 'Md. Nahid Hasan' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-a67a350').getByRole('link', { name: 'nahidwpd' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-a67a350').getByRole('link', { name: 'Please Follow' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-a67a350').getByRole('link', { name: '0 followers' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-a67a350').getByText('Md. Nahid Hasan')).toBeVisible();
+        await expect(page.locator('#ep-elements-id-a67a350').getByText('Reels')).toBeVisible();
+        await expect(page.locator('#ep-elements-id-a67a350').getByText('Album')).toBeVisible();
+        await expect(page.locator('#ep-elements-id-a67a350').getByText('Posts', { exact: true })).toBeVisible();
+
+        await page.waitForTimeout(2000);
+        await sectionLocator.waitFor();
+        await sectionLocator.hover();
+        await sectionLocator.locator('.insta-gallery-item-info').click();
+
+        await popupLocator.getByText('✕').waitFor();
+        await popupLocator.getByText('✕').click();
+
+        // Remove the previous hover action
+        await heading.click();
+        await page.waitForTimeout(500);
+        await expect(sectionLocator.locator('.insta-gallery-item-info').locator('.insta-gallery-item-likes')).not.toBeVisible();
+        await expect(sectionLocator.locator('.insta-gallery-item-info').locator('.insta-gallery-item-comments')).not.toBeVisible();
+
+        await sectionLocator.hover();
+        await page.waitForTimeout(500);
+        await expect(sectionLocator.locator('.insta-gallery-item-info').locator('.insta-gallery-item-likes')).toBeVisible();
+        await expect(sectionLocator.locator('.insta-gallery-item-info').locator('.insta-gallery-item-comments')).toBeVisible();
+    });
+
+
+
 });
