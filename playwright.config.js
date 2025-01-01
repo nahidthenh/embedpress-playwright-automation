@@ -13,17 +13,10 @@ module.exports = defineConfig({
       {
         slackWebHookUrl: process.env.SLACK_WEBHOOK_URL,
         sendResults: 'always',
-        maxNumberOfFailuresToShow: 0,
-        meta: [
-          {
-            key: ":embedpress: - Automation Test Results",
-            value: "<https://nahidthenh.github.io/embedpress-playwright-automation/ | 🇧🇩 Click Here!>",
-          },
-        ],
       },
-      ['html', { outputFolder: 'playwright-report', open: 'never' }],
     ],
-    ['dot'],
+    ['html', { outputFolder: 'playwright-report', open: 'never' }], // Ensure you have the HTML reporter as well
+    ['dot'], // Console output reporter
   ],
   outputDir: 'test-results',
   use: {
