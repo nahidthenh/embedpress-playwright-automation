@@ -13,11 +13,22 @@ async function sendSlackReport() {
     const data = JSON.parse(fs.readFileSync(resultsPath, 'utf-8'));
 
     const summary = {
-        passed: data.suites.reduce((acc, suite) => acc + suite.tests.filter(t => t.status === 'passed').length, 0),
-        failed: data.suites.reduce((acc, suite) => acc + suite.tests.filter(t => t.status === 'failed').length, 0),
-        flaky: data.suites.reduce((acc, suite) => acc + suite.tests.filter(t => t.status === 'flaky').length, 0),
-        skipped: data.suites.reduce((acc, suite) => acc + suite.tests.filter(t => t.status === 'skipped').length, 0),
+        passed: 0,
+        failed: 0,
+        flaky: 0,
+        skipped: 0,
     };
+
+    if (data.suites && Array.isArray(data.suites)) {
+        for (const suite of data.suites) {
+            for (const test of suite.tests || []) {
+                if (test.status === 'passed') summary.passed++;
+                else if (test.status === 'failed') summary.failed++;
+                else if (test.status === 'flaky') summary.flaky++;
+                else if (test.status === 'skipped') summary.skipped++;
+            }
+        }
+    }
 
     const message = {
         text: `*Playwright Test Run Summary*\n
@@ -31,7 +42,7 @@ async function sendSlackReport() {
         await axios.post(SLACK_WEBHOOK_URL, message);
         console.log("Slack report sent successfully!");
     } catch (error) {
-        console.error("Failed to send report to Slack:", error);
+        console.error("Failed to send report to Slack:", error.response ? error.response.data : error.message);
     }
 }
 
