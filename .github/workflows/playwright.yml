@@ -1,9 +1,12 @@
-name: Run Playwright Tests and Publish Report to GitHub Pages
+name: Run Playwright Tests and Publish Report to GitHub Pages with Slack Notifications
 
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: write  # Grants write access to the repository
 
 jobs:
   test:
@@ -25,7 +28,13 @@ jobs:
 
       - name: Run Playwright tests for Chromium
         run: npx playwright test --project=chromium --workers=4
-        continue-on-error: true  # Ensures workflow continues even if tests fail
+        continue-on-error: true # Ensures workflow continues even if tests fail
+
+      - name: Send Slack Notification
+        run: |
+          npx playwright-slack-report --slack-webhook-url=$SLACK_WEBHOOK_URL
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Move HTML Report
         run: mv playwright-report /tmp/playwright-report
@@ -34,5 +43,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages # Corrected parameter
-          publish_dir: /tmp/playwright-report # Corrected parameter
+          publish_branch: gh-pages
+          publish_dir: /tmp/playwright-report
+
