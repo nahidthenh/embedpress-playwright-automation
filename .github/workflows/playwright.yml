@@ -3,7 +3,7 @@ name: Run Playwright Tests for Chromium and Publish Report to GitHub Pages
 on:
   push:
     branches:
-      - main  # Trigger this workflow on push to the main branch
+      - main
 
 jobs:
   test:
@@ -20,25 +20,28 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install Playwright browsers
+        run: npx playwright install
+
       - name: Run Playwright tests for Chromium
         run: npx playwright test --project=chromium --workers=4
 
       - name: Generate HTML Report
-        run: mv playwright-report /tmp/playwright-report  # Move report to a safe location
+        run: mv playwright-report /tmp/playwright-report
 
       - name: Set up GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # Uses the GitHub token for authentication
-          branch: gh-pages  # The branch to deploy to (GitHub Pages)
-          folder: /tmp/playwright-report  # The folder containing the HTML report
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: /tmp/playwright-report
 
       - name: Commit HTML report to gh-pages
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git checkout -b gh-pages  # Checkout gh-pages branch (create if doesn't exist)
-          cp -r /tmp/playwright-report/* ./  # Copy the report to the root of the branch
+          git checkout -b gh-pages
+          cp -r /tmp/playwright-report/* ./
           git add .
           git commit -m "Publish Playwright HTML report"
-          git push --force origin gh-pages  # Force push to gh-pages branch
+          git push --force origin gh-pages
