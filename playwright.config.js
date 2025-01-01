@@ -17,9 +17,11 @@ module.exports = defineConfig({
         meta: [
           {
             key: ":embedpress: - Automation Test Results",
+            value: "<https://nahidthenh.github.io/embedpress-playwright-automation/ | 🇧🇩 Click Here!>",
           },
         ],
       },
+      ['html', { outputFolder: 'playwright-report', open: 'never' }],
     ],
     ['dot'],
   ],
