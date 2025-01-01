@@ -1,17 +1,25 @@
 {
   "name": "embedpress",
   "version": "1.0.0",
-  "description": "",
+  "description": "Testing the EmbedPress Plugin Using Playwright",
   "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nahidthenh/embedpress-playwright-automation.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@playwright/test": "^1.49.0",
-    "@types/node": "^20.14.12"
+  "bugs": {
+    "url": "https://github.com/nahidthenh/embedpress-playwright-automation/issues"
   },
-  "dependencies": {
-    "axios": "^1.7.9"
+  "homepage": "https://github.com/nahidthenh/embedpress-playwright-automation#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.3"
   }
 }
