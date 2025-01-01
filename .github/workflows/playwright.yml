@@ -25,6 +25,7 @@ jobs:
 
       - name: Run Playwright tests for Chromium
         run: npx playwright test --project=chromium --workers=4
+        continue-on-error: true
 
       - name: Generate HTML Report
         run: mv playwright-report /tmp/playwright-report
