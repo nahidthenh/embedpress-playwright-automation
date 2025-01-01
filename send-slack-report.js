@@ -4,7 +4,7 @@ const axios = require('axios');
 const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
 
 async function sendSlackReport() {
-    const resultsPath = './test-results.json';
+    const resultsPath = './test-results.json'; // Ensure this matches the workflow
     if (!fs.existsSync(resultsPath)) {
         console.error("Test results file not found.");
         return;

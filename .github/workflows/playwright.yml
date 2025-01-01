@@ -24,10 +24,10 @@ jobs:
         run: npm install
 
       - name: Run Playwright tests
-        run: npx playwright test --reporter=json
+        run: npx playwright test --reporter=json > test-results.json
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        continue-on-error: true  # Ensures this step doesn't stop the workflow on failure
+        continue-on-error: true
 
       - name: Send Slack Notification
         run: node send-slack-report.js
