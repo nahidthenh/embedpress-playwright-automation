@@ -31,11 +31,11 @@ async function sendSlackReport() {
     }
 
     const message = {
-        text: `*Playwright Test Run Summary*\n
-        - Passed: ${summary.passed}\n
-        - Failed: ${summary.failed}\n
-        - Flaky: ${summary.flaky}\n
-        - Skipped: ${summary.skipped}`,
+        text: `*:embedpress: Automation Report *\n
+       :done: - Passed: ${summary.passed}\n
+       :x: - Failed: ${summary.failed}\n
+       :large_yellow_circle: - Flaky: ${summary.flaky}\n
+       :skip: - Skipped: ${summary.skipped}`,
     };
 
     try {
