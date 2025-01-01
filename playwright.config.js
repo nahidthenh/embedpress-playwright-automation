@@ -1,12 +1,22 @@
-const { defineConfig, devices } = require('@playwright/test');
-require('dotenv').config();
+// @ts-check
+import { defineConfig, devices } from '@playwright/test';
+import { config } from 'dotenv';
 
-module.exports = defineConfig({
-  testDir: './tests',
+config();
+
+export default defineConfig({
+  testDir: "./tests",
   fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  retries: process.env.CI ? 1 : 0,
+  workers: process.env.CI ? 4 : 4,
+  timeout: 30 * 1000,
+
+  expect: {
+    timeout: 5_000,
+    toMatchSnapshot: { maxDiffPixelRatio: 0.03 },
+    toHaveScreenshot: { maxDiffPixelRatio: 0.03 },
+  },
+
   reporter: [
     [
       './node_modules/playwright-slack-report/dist/src/SlackReporter.js',
@@ -23,17 +33,26 @@ module.exports = defineConfig({
       },
     ],
     ['html', { outputFolder: 'playwright-report', open: 'never' }], // Ensure you have the HTML reporter as well
+
     ['dot'], // Console output reporter
   ],
-  outputDir: 'test-results',
+
   use: {
-    baseURL: 'https://embedpress.qa1.site/',
-    trace: 'on-first-retry',
+    baseURL: ' https://embedpress.qa1.site/',
+    testIdAttribute: "data-id",
+
+    //screenshot: "on",
+    trace: "retain-on-failure",
+    video: "retain-on-failure",
+
+    ignoreHTTPSErrors: true,
   },
+
+  /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    }
+      name: "chromium",
+      use: { ...devices["Desktop Chrome"] },
+    },
   ],
 });
