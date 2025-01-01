@@ -4,13 +4,16 @@ const axios = require('axios');
 const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
 
 async function sendSlackReport() {
-    const resultsPath = './test-results.json'; // Ensure this matches the workflow
+    const resultsPath = './test-results.json';
     if (!fs.existsSync(resultsPath)) {
         console.error("Test results file not found.");
         return;
     }
 
     const data = JSON.parse(fs.readFileSync(resultsPath, 'utf-8'));
+
+    // Debug the structure of the data
+    console.log("Test results structure:", JSON.stringify(data, null, 2));
 
     const summary = {
         passed: 0,
@@ -21,21 +24,20 @@ async function sendSlackReport() {
 
     if (data.suites && Array.isArray(data.suites)) {
         for (const suite of data.suites) {
-            for (const test of suite.tests || []) {
-                if (test.status === 'passed') summary.passed++;
-                else if (test.status === 'failed') summary.failed++;
-                else if (test.status === 'flaky') summary.flaky++;
-                else if (test.status === 'skipped') summary.skipped++;
+            if (suite.tests && Array.isArray(suite.tests)) {
+                for (const test of suite.tests) {
+                    if (test.status === 'passed') summary.passed++;
+                    else if (test.status === 'failed') summary.failed++;
+                    else if (test.status === 'flaky') summary.flaky++;
+                    else if (test.status === 'skipped') summary.skipped++;
+                }
             }
         }
     }
 
     const message = {
         text: `*:embedpress: Automation Report *\n
-       :done: - Passed: ${summary.passed}\n
-       :x: - Failed: ${summary.failed}\n
-       :large_yellow_circle: - Flaky: ${summary.flaky}\n
-       :skip: - Skipped: ${summary.skipped}`,
+        :done: - Passed: ${summary.passed}\n | :x: - Failed: ${summary.failed}\n | :large_yellow_circle: - Flaky: ${summary.flaky}\n |:skip: - Skipped: ${summary.skipped}`,
     };
 
     try {

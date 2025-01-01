@@ -75,12 +75,12 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 3817,
+                      "duration": 4311,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:15:35.208Z",
+                      "startTime": "2025-01-01T09:41:58.238Z",
                       "attachments": []
                     }
                   ],
@@ -124,12 +124,12 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 2266,
+                      "duration": 2799,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:15:35.227Z",
+                      "startTime": "2025-01-01T09:41:58.238Z",
                       "attachments": []
                     }
                   ],
@@ -173,12 +173,12 @@
                     {
                       "workerIndex": 2,
                       "status": "passed",
-                      "duration": 4146,
+                      "duration": 6828,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:15:35.208Z",
+                      "startTime": "2025-01-01T09:41:58.288Z",
                       "attachments": []
                     }
                   ],
@@ -222,12 +222,12 @@
                     {
                       "workerIndex": 3,
                       "status": "passed",
-                      "duration": 7937,
+                      "duration": 7895,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:15:35.209Z",
+                      "startTime": "2025-01-01T09:41:58.347Z",
                       "attachments": []
                     }
                   ],
@@ -254,12 +254,12 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 7649,
+                      "duration": 7352,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:15:38.021Z",
+                      "startTime": "2025-01-01T09:42:01.841Z",
                       "attachments": []
                     }
                   ],
@@ -286,12 +286,12 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 8835,
+                      "duration": 7183,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:15:39.565Z",
+                      "startTime": "2025-01-01T09:42:03.356Z",
                       "attachments": []
                     }
                   ],
@@ -318,12 +318,12 @@
                     {
                       "workerIndex": 2,
                       "status": "passed",
-                      "duration": 8990,
+                      "duration": 8761,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:15:39.888Z",
+                      "startTime": "2025-01-01T09:42:05.846Z",
                       "attachments": []
                     }
                   ],
@@ -367,12 +367,12 @@
                     {
                       "workerIndex": 3,
                       "status": "passed",
-                      "duration": 4173,
+                      "duration": 4210,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:15:43.691Z",
+                      "startTime": "2025-01-01T09:42:06.939Z",
                       "attachments": []
                     }
                   ],
@@ -416,12 +416,12 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 4845,
+                      "duration": 5275,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:15:45.686Z",
+                      "startTime": "2025-01-01T09:42:09.208Z",
                       "attachments": []
                     }
                   ],
@@ -446,14 +446,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 0,
                       "status": "passed",
-                      "duration": 2774,
+                      "duration": 3109,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:15:47.878Z",
+                      "startTime": "2025-01-01T09:42:10.557Z",
                       "attachments": []
                     }
                   ],
@@ -495,14 +495,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 3,
                       "status": "passed",
-                      "duration": 27281,
+                      "duration": 15443,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:15:48.428Z",
+                      "startTime": "2025-01-01T09:42:11.166Z",
                       "attachments": []
                     }
                   ],
@@ -527,14 +527,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 0,
                       "status": "passed",
-                      "duration": 34129,
+                      "duration": 15151,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:15:48.898Z",
+                      "startTime": "2025-01-01T09:42:13.691Z",
                       "attachments": []
                     }
                   ],
@@ -561,12 +561,12 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 26647,
+                      "duration": 16630,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:15:50.555Z",
+                      "startTime": "2025-01-01T09:42:14.497Z",
                       "attachments": []
                     }
                   ],
@@ -591,14 +591,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 2,
                       "status": "passed",
-                      "duration": 26081,
+                      "duration": 17550,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:15:50.672Z",
+                      "startTime": "2025-01-01T09:42:14.626Z",
                       "attachments": []
                     }
                   ],
@@ -623,14 +623,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 3,
                       "status": "passed",
-                      "duration": 17444,
+                      "duration": 18312,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:15.717Z",
+                      "startTime": "2025-01-01T09:42:26.621Z",
                       "attachments": []
                     }
                   ],
@@ -655,14 +655,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 0,
                       "status": "passed",
-                      "duration": 15670,
+                      "duration": 16638,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:16.763Z",
+                      "startTime": "2025-01-01T09:42:28.850Z",
                       "attachments": []
                     }
                   ],
@@ -706,12 +706,12 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 2185,
+                      "duration": 1622,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:17.213Z",
+                      "startTime": "2025-01-01T09:42:31.138Z",
                       "attachments": []
                     }
                   ],
@@ -736,14 +736,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 2,
                       "status": "passed",
-                      "duration": 1920,
+                      "duration": 1992,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:19.404Z",
+                      "startTime": "2025-01-01T09:42:32.191Z",
                       "attachments": []
                     }
                   ],
@@ -787,12 +787,12 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 9214,
+                      "duration": 10176,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:21.334Z",
+                      "startTime": "2025-01-01T09:42:32.774Z",
                       "attachments": []
                     }
                   ],
@@ -819,12 +819,12 @@
                     {
                       "workerIndex": 2,
                       "status": "passed",
-                      "duration": 11709,
+                      "duration": 14372,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:23.042Z",
+                      "startTime": "2025-01-01T09:42:34.199Z",
                       "attachments": []
                     }
                   ],
@@ -851,12 +851,12 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 11577,
+                      "duration": 11347,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:30.559Z",
+                      "startTime": "2025-01-01T09:42:42.957Z",
                       "attachments": []
                     }
                   ],
@@ -883,12 +883,12 @@
                     {
                       "workerIndex": 3,
                       "status": "passed",
-                      "duration": 12214,
+                      "duration": 11420,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:32.450Z",
+                      "startTime": "2025-01-01T09:42:44.955Z",
                       "attachments": []
                     }
                   ],
@@ -932,12 +932,12 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 12376,
+                      "duration": 11361,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:33.179Z",
+                      "startTime": "2025-01-01T09:42:45.504Z",
                       "attachments": []
                     }
                   ],
@@ -964,12 +964,12 @@
                     {
                       "workerIndex": 2,
                       "status": "passed",
-                      "duration": 11670,
+                      "duration": 10490,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:34.771Z",
+                      "startTime": "2025-01-01T09:42:48.590Z",
                       "attachments": []
                     }
                   ],
@@ -996,12 +996,12 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 11011,
+                      "duration": 10318,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:42.151Z",
+                      "startTime": "2025-01-01T09:42:54.329Z",
                       "attachments": []
                     }
                   ],
@@ -1028,12 +1028,12 @@
                     {
                       "workerIndex": 3,
                       "status": "passed",
-                      "duration": 11128,
+                      "duration": 10705,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:44.708Z",
+                      "startTime": "2025-01-01T09:42:56.393Z",
                       "attachments": []
                     }
                   ],
@@ -1060,12 +1060,12 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 11235,
+                      "duration": 10745,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:45.562Z",
+                      "startTime": "2025-01-01T09:42:56.872Z",
                       "attachments": []
                     }
                   ],
@@ -1109,12 +1109,12 @@
                     {
                       "workerIndex": 2,
                       "status": "passed",
-                      "duration": 19856,
+                      "duration": 13963,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:46.461Z",
+                      "startTime": "2025-01-01T09:42:59.097Z",
                       "attachments": []
                     }
                   ],
@@ -1141,12 +1141,12 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 14756,
+                      "duration": 13016,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:53.180Z",
+                      "startTime": "2025-01-01T09:43:04.658Z",
                       "attachments": []
                     }
                   ],
@@ -1173,12 +1173,12 @@
                     {
                       "workerIndex": 3,
                       "status": "passed",
-                      "duration": 14234,
+                      "duration": 12677,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:55.854Z",
+                      "startTime": "2025-01-01T09:43:07.122Z",
                       "attachments": []
                     }
                   ],
@@ -1205,12 +1205,12 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 13834,
+                      "duration": 12052,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:16:56.809Z",
+                      "startTime": "2025-01-01T09:43:07.634Z",
                       "attachments": []
                     }
                   ],
@@ -1237,12 +1237,12 @@
                     {
                       "workerIndex": 2,
                       "status": "passed",
-                      "duration": 13359,
+                      "duration": 10708,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:06.346Z",
+                      "startTime": "2025-01-01T09:43:13.079Z",
                       "attachments": []
                     }
                   ],
@@ -1256,7 +1256,7 @@
             },
             {
               "title": "Custom Player Preset 1",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -1268,53 +1268,17 @@
                   "results": [
                     {
                       "workerIndex": 1,
-                      "status": "failed",
-                      "duration": 15725,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('.plyr__poster').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.plyr__poster').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('.plyr__poster').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.plyr__poster').first()\u001b[22m\n\n    at /Users/nahid/Playwright/embedpress/tests/elementor/youtube.spec.js:107:61",
-                        "matcherResult": {
-                          "message": "\u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('.plyr__poster').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.plyr__poster').first()\u001b[22m\n",
-                          "pass": false,
-                          "actual": "hidden",
-                          "name": "toBeVisible",
-                          "expected": "visible",
-                          "log": [
-                            "  - expect.toBeVisible with timeout 5000ms",
-                            "  - waiting for locator('.plyr__poster').first()"
-                          ],
-                          "timeout": 5000
-                        },
-                        "location": {
-                          "file": "/Users/nahid/Playwright/embedpress/tests/elementor/youtube.spec.js",
-                          "column": 61,
-                          "line": 107
-                        },
-                        "snippet": "  105 |\n  106 |         await expect(page.getByText('Copy URL Form URL Box On Top')).toBeVisible();\n> 107 |         await expect(page.locator('.plyr__poster').first()).toBeVisible();\n      |                                                             ^\n  108 |         await expect(page.locator('#ep-elements-id-23222a0 button').filter({ hasText: /^Play$/ })).toBeVisible();\n  109 |         await expect(page.locator('#ep-elements-id-23222a0').getByText('PausePlay')).toBeVisible();\n  110 |         await expect(page.locator('#ep-elements-id-23222a0').getByRole('button', { name: 'Settings' })).toBeVisible();"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/nahid/Playwright/embedpress/tests/elementor/youtube.spec.js",
-                            "column": 61,
-                            "line": 107
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('.plyr__poster').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.plyr__poster').first()\u001b[22m\n\n\n  105 |\n  106 |         await expect(page.getByText('Copy URL Form URL Box On Top')).toBeVisible();\n> 107 |         await expect(page.locator('.plyr__poster').first()).toBeVisible();\n      |                                                             ^\n  108 |         await expect(page.locator('#ep-elements-id-23222a0 button').filter({ hasText: /^Play$/ })).toBeVisible();\n  109 |         await expect(page.locator('#ep-elements-id-23222a0').getByText('PausePlay')).toBeVisible();\n  110 |         await expect(page.locator('#ep-elements-id-23222a0').getByRole('button', { name: 'Settings' })).toBeVisible();\n    at /Users/nahid/Playwright/embedpress/tests/elementor/youtube.spec.js:107:61"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 12577,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:07.951Z",
-                      "attachments": [],
-                      "errorLocation": {
-                        "file": "/Users/nahid/Playwright/embedpress/tests/elementor/youtube.spec.js",
-                        "column": 61,
-                        "line": 107
-                      }
+                      "startTime": "2025-01-01T09:43:17.682Z",
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "1f68119aa93ac21fa23e-b3eca5752c29cfe47320",
@@ -1335,14 +1299,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 0,
                       "status": "passed",
-                      "duration": 11731,
+                      "duration": 13329,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:10.094Z",
+                      "startTime": "2025-01-01T09:43:19.693Z",
                       "attachments": []
                     }
                   ],
@@ -1356,7 +1320,7 @@
             },
             {
               "title": "Enable Custom Player and Thumbnail",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -1367,54 +1331,18 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "status": "failed",
-                      "duration": 14667,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#ep-elements-id-27221be').getByText('PausePlay')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#ep-elements-id-27221be').getByText('PausePlay')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#ep-elements-id-27221be').getByText('PausePlay')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#ep-elements-id-27221be').getByText('PausePlay')\u001b[22m\n\n    at /Users/nahid/Playwright/embedpress/tests/elementor/youtube.spec.js:135:86",
-                        "matcherResult": {
-                          "message": "\u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#ep-elements-id-27221be').getByText('PausePlay')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#ep-elements-id-27221be').getByText('PausePlay')\u001b[22m\n",
-                          "pass": false,
-                          "actual": "hidden",
-                          "name": "toBeVisible",
-                          "expected": "visible",
-                          "log": [
-                            "  - expect.toBeVisible with timeout 5000ms",
-                            "  - waiting for locator('#ep-elements-id-27221be').getByText('PausePlay')"
-                          ],
-                          "timeout": 5000
-                        },
-                        "location": {
-                          "file": "/Users/nahid/Playwright/embedpress/tests/elementor/youtube.spec.js",
-                          "column": 86,
-                          "line": 135
-                        },
-                        "snippet": "  133 |\n  134 |         await expect(page.getByText('Copy URL Form Embed Code')).toBeVisible();\n> 135 |         await expect(page.locator('#ep-elements-id-27221be').getByText('PausePlay')).toBeVisible();\n      |                                                                                      ^\n  136 |         await expect(page.locator('#ep-elements-id-27221be').getByRole('button', { name: 'Mute' })).toBeVisible();\n  137 |         await expect(page.locator('#ep-elements-id-27221be').getByRole('button', { name: 'Settings' })).toBeVisible();\n  138 |         await expect(page.locator('#ep-elements-id-27221be').getByRole('button', { name: 'Fullscreen' })).toBeVisible();"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/nahid/Playwright/embedpress/tests/elementor/youtube.spec.js",
-                            "column": 86,
-                            "line": 135
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#ep-elements-id-27221be').getByText('PausePlay')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#ep-elements-id-27221be').getByText('PausePlay')\u001b[22m\n\n\n  133 |\n  134 |         await expect(page.getByText('Copy URL Form Embed Code')).toBeVisible();\n> 135 |         await expect(page.locator('#ep-elements-id-27221be').getByText('PausePlay')).toBeVisible();\n      |                                                                                      ^\n  136 |         await expect(page.locator('#ep-elements-id-27221be').getByRole('button', { name: 'Mute' })).toBeVisible();\n  137 |         await expect(page.locator('#ep-elements-id-27221be').getByRole('button', { name: 'Settings' })).toBeVisible();\n  138 |         await expect(page.locator('#ep-elements-id-27221be').getByRole('button', { name: 'Fullscreen' })).toBeVisible();\n    at /Users/nahid/Playwright/embedpress/tests/elementor/youtube.spec.js:135:86"
-                        }
-                      ],
+                      "workerIndex": 3,
+                      "status": "passed",
+                      "duration": 13764,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:10.652Z",
-                      "attachments": [],
-                      "errorLocation": {
-                        "file": "/Users/nahid/Playwright/embedpress/tests/elementor/youtube.spec.js",
-                        "column": 86,
-                        "line": 135
-                      }
+                      "startTime": "2025-01-01T09:43:19.810Z",
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "1f68119aa93ac21fa23e-0fb9775186e998990b4d",
@@ -1454,12 +1382,12 @@
                     {
                       "workerIndex": 2,
                       "status": "passed",
-                      "duration": 1355,
+                      "duration": 1665,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:19.720Z",
+                      "startTime": "2025-01-01T09:43:23.802Z",
                       "attachments": []
                     }
                   ],
@@ -1503,12 +1431,12 @@
                     {
                       "workerIndex": 2,
                       "status": "passed",
-                      "duration": 4612,
+                      "duration": 4519,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:21.087Z",
+                      "startTime": "2025-01-01T09:43:25.479Z",
                       "attachments": []
                     }
                   ],
@@ -1533,14 +1461,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 2,
                       "status": "passed",
-                      "duration": 2525,
+                      "duration": 2170,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:21.837Z",
+                      "startTime": "2025-01-01T09:43:30.005Z",
                       "attachments": []
                     }
                   ],
@@ -1582,14 +1510,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 3242,
+                      "duration": 2637,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:24.917Z",
+                      "startTime": "2025-01-01T09:43:30.271Z",
                       "attachments": []
                     }
                   ],
@@ -1614,14 +1542,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 2,
                       "status": "passed",
-                      "duration": 3039,
+                      "duration": 1968,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:24.388Z",
+                      "startTime": "2025-01-01T09:43:32.184Z",
                       "attachments": []
                     }
                   ],
@@ -1663,14 +1591,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 5,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 4267,
+                      "duration": 3825,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:26.430Z",
+                      "startTime": "2025-01-01T09:43:32.924Z",
                       "attachments": []
                     }
                   ],
@@ -1695,14 +1623,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 0,
                       "status": "passed",
-                      "duration": 4225,
+                      "duration": 3485,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:25.715Z",
+                      "startTime": "2025-01-01T09:43:33.037Z",
                       "attachments": []
                     }
                   ],
@@ -1729,12 +1657,12 @@
                     {
                       "workerIndex": 3,
                       "status": "passed",
-                      "duration": 4287,
+                      "duration": 3932,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:27.437Z",
+                      "startTime": "2025-01-01T09:43:33.583Z",
                       "attachments": []
                     }
                   ],
@@ -1759,14 +1687,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 2,
                       "status": "passed",
-                      "duration": 4491,
+                      "duration": 4451,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:28.446Z",
+                      "startTime": "2025-01-01T09:43:34.160Z",
                       "attachments": []
                     }
                   ],
@@ -1808,14 +1736,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 0,
                       "status": "passed",
-                      "duration": 4710,
+                      "duration": 4105,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:29.952Z",
+                      "startTime": "2025-01-01T09:43:36.543Z",
                       "attachments": []
                     }
                   ],
@@ -1840,14 +1768,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 5,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 3893,
+                      "duration": 3356,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:30.976Z",
+                      "startTime": "2025-01-01T09:43:36.765Z",
                       "attachments": []
                     }
                   ],
@@ -1874,12 +1802,12 @@
                     {
                       "workerIndex": 3,
                       "status": "passed",
-                      "duration": 3435,
+                      "duration": 3287,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:31.739Z",
+                      "startTime": "2025-01-01T09:43:37.524Z",
                       "attachments": []
                     }
                   ],
@@ -1904,14 +1832,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 2,
                       "status": "passed",
-                      "duration": 3230,
+                      "duration": 3268,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:32.989Z",
+                      "startTime": "2025-01-01T09:43:38.625Z",
                       "attachments": []
                     }
                   ],
@@ -1936,14 +1864,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 2919,
+                      "duration": 2681,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:34.670Z",
+                      "startTime": "2025-01-01T09:43:40.136Z",
                       "attachments": []
                     }
                   ],
@@ -1974,7 +1902,7 @@
           "specs": [
             {
               "title": "YouTube Channel Gallery Layout",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -1985,56 +1913,18 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 5,
-                      "status": "failed",
-                      "duration": 24314,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('iframe[title=\"MrBeast\"]').contentFrame().getByLabel('Watch on www.youtube.com')\nExpected: visible\nReceived: hidden\nCall log:\n\u001b[2m  - expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[title=\"MrBeast\"]').contentFrame().getByLabel('Watch on www.youtube.com')\u001b[22m\n\u001b[2m    9 × locator resolved to <a data-layer=\"8\" target=\"_blank\" aria-label=\"Watch on www.youtube.com\" class=\"ytp-watermark yt-uix-sessionlink\" data-sessionlink=\"feature=player-watermark\" href=\"https://www.youtube.com/watch?v=3cWm9B_0_kI\">…</a>\u001b[22m\n\u001b[2m      - unexpected value \"hidden\"\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('iframe[title=\"MrBeast\"]').contentFrame().getByLabel('Watch on www.youtube.com')\nExpected: visible\nReceived: hidden\nCall log:\n\u001b[2m  - expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[title=\"MrBeast\"]').contentFrame().getByLabel('Watch on www.youtube.com')\u001b[22m\n\u001b[2m    9 × locator resolved to <a data-layer=\"8\" target=\"_blank\" aria-label=\"Watch on www.youtube.com\" class=\"ytp-watermark yt-uix-sessionlink\" data-sessionlink=\"feature=player-watermark\" href=\"https://www.youtube.com/watch?v=3cWm9B_0_kI\">…</a>\u001b[22m\n\u001b[2m      - unexpected value \"hidden\"\u001b[22m\n\n    at /Users/nahid/Playwright/embedpress/tests/gutenberg/youtube.spec.js:26:35",
-                        "matcherResult": {
-                          "message": "\u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('iframe[title=\"MrBeast\"]').contentFrame().getByLabel('Watch on www.youtube.com')\nExpected: visible\nReceived: hidden\nCall log:\n\u001b[2m  - expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[title=\"MrBeast\"]').contentFrame().getByLabel('Watch on www.youtube.com')\u001b[22m\n\u001b[2m    9 × locator resolved to <a data-layer=\"8\" target=\"_blank\" aria-label=\"Watch on www.youtube.com\" class=\"ytp-watermark yt-uix-sessionlink\" data-sessionlink=\"feature=player-watermark\" href=\"https://www.youtube.com/watch?v=3cWm9B_0_kI\">…</a>\u001b[22m\n\u001b[2m      - unexpected value \"hidden\"\u001b[22m\n",
-                          "pass": false,
-                          "actual": "hidden",
-                          "name": "toBeVisible",
-                          "expected": "visible",
-                          "log": [
-                            "  - expect.toBeVisible with timeout 5000ms",
-                            "  - waiting for locator('iframe[title=\"MrBeast\"]').contentFrame().getByLabel('Watch on www.youtube.com')",
-                            "    9 × locator resolved to <a data-layer=\"8\" target=\"_blank\" aria-label=\"Watch on www.youtube.com\" class=\"ytp-watermark yt-uix-sessionlink\" data-sessionlink=\"feature=player-watermark\" href=\"https://www.youtube.com/watch?v=3cWm9B_0_kI\">…</a>",
-                            "      - unexpected value \"hidden\""
-                          ],
-                          "timeout": 5000
-                        },
-                        "location": {
-                          "file": "/Users/nahid/Playwright/embedpress/tests/gutenberg/youtube.spec.js",
-                          "column": 35,
-                          "line": 26
-                        },
-                        "snippet": "  24 |\n  25 |         for (const { element } of expectations) {\n> 26 |             await expect(element).toBeVisible();\n     |                                   ^\n  27 |         }\n  28 |\n  29 |         const nextEpisodeButton = page.locator('.ep-next').first();"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/nahid/Playwright/embedpress/tests/gutenberg/youtube.spec.js",
-                            "column": 35,
-                            "line": 26
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('iframe[title=\"MrBeast\"]').contentFrame().getByLabel('Watch on www.youtube.com')\nExpected: visible\nReceived: hidden\nCall log:\n\u001b[2m  - expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[title=\"MrBeast\"]').contentFrame().getByLabel('Watch on www.youtube.com')\u001b[22m\n\u001b[2m    9 × locator resolved to <a data-layer=\"8\" target=\"_blank\" aria-label=\"Watch on www.youtube.com\" class=\"ytp-watermark yt-uix-sessionlink\" data-sessionlink=\"feature=player-watermark\" href=\"https://www.youtube.com/watch?v=3cWm9B_0_kI\">…</a>\u001b[22m\n\u001b[2m      - unexpected value \"hidden\"\u001b[22m\n\n\n  24 |\n  25 |         for (const { element } of expectations) {\n> 26 |             await expect(element).toBeVisible();\n     |                                   ^\n  27 |         }\n  28 |\n  29 |         const nextEpisodeButton = page.locator('.ep-next').first();\n    at /Users/nahid/Playwright/embedpress/tests/gutenberg/youtube.spec.js:26:35"
-                        }
-                      ],
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 18193,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:34.893Z",
-                      "attachments": [],
-                      "errorLocation": {
-                        "file": "/Users/nahid/Playwright/embedpress/tests/gutenberg/youtube.spec.js",
-                        "column": 35,
-                        "line": 26
-                      }
+                      "startTime": "2025-01-01T09:43:40.663Z",
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "6cab960dccc82d4803c7-36cce7522c8d5f215793",
@@ -2057,12 +1947,12 @@
                     {
                       "workerIndex": 3,
                       "status": "passed",
-                      "duration": 21218,
+                      "duration": 19731,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:35.192Z",
+                      "startTime": "2025-01-01T09:43:40.822Z",
                       "attachments": []
                     }
                   ],
@@ -2087,14 +1977,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 2,
                       "status": "passed",
-                      "duration": 17968,
+                      "duration": 15120,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:36.249Z",
+                      "startTime": "2025-01-01T09:43:41.908Z",
                       "attachments": []
                     }
                   ],
@@ -2119,14 +2009,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 16132,
+                      "duration": 14849,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:37.605Z",
+                      "startTime": "2025-01-01T09:43:42.825Z",
                       "attachments": []
                     }
                   ],
@@ -2153,12 +2043,12 @@
                     {
                       "workerIndex": 2,
                       "status": "passed",
-                      "duration": 7228,
+                      "duration": 6880,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:53.744Z",
+                      "startTime": "2025-01-01T09:43:57.033Z",
                       "attachments": []
                     }
                   ],
@@ -2183,14 +2073,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 6766,
+                      "duration": 6899,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:54.224Z",
+                      "startTime": "2025-01-01T09:43:57.680Z",
                       "attachments": []
                     }
                   ],
@@ -2215,14 +2105,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 0,
                       "status": "passed",
-                      "duration": 5686,
+                      "duration": 7419,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:56.416Z",
+                      "startTime": "2025-01-01T09:43:58.862Z",
                       "attachments": []
                     }
                   ],
@@ -2247,14 +2137,14 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 6,
+                      "workerIndex": 3,
                       "status": "passed",
-                      "duration": 4869,
+                      "duration": 6248,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-01-01T09:17:59.962Z",
+                      "startTime": "2025-01-01T09:44:00.564Z",
                       "attachments": []
                     }
                   ],
@@ -2273,11 +2163,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-01-01T09:15:34.561Z",
-    "duration": 150632.19,
-    "expected": 54,
+    "startTime": "2025-01-01T09:41:57.594Z",
+    "duration": 129310.84700000001,
+    "expected": 57,
     "skipped": 0,
-    "unexpected": 3,
+    "unexpected": 0,
     "flaky": 0
   }
 }
