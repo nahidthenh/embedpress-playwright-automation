@@ -27,8 +27,10 @@ jobs:
         run: npx playwright test --reporter=json
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        continue-on-error: true  # Ensures this step doesn't stop the workflow on failure
 
       - name: Send Slack Notification
         run: node send-slack-report.js
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        continue-on-error: true  # This step will always run, even if previous steps fail
