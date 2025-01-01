@@ -1,4 +1,4 @@
-name: Run Playwright Tests for Chromium and Publish Report to GitHub Pages
+name: Run Playwright Tests and Publish Report to GitHub Pages
 
 on:
   push:
@@ -25,24 +25,14 @@ jobs:
 
       - name: Run Playwright tests for Chromium
         run: npx playwright test --project=chromium --workers=4
-        continue-on-error: true
+        continue-on-error: true  # Ensures workflow continues even if tests fail
 
-      - name: Generate HTML Report
+      - name: Move HTML Report
         run: mv playwright-report /tmp/playwright-report
 
-      - name: Set up GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
-          folder: /tmp/playwright-report
-
-      - name: Commit HTML report to gh-pages
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git checkout -b gh-pages
-          cp -r /tmp/playwright-report/* ./
-          git add .
-          git commit -m "Publish Playwright HTML report"
-          git push --force origin gh-pages
+          publish_branch: gh-pages # Corrected parameter
+          publish_dir: /tmp/playwright-report # Corrected parameter
