@@ -7,7 +7,7 @@ module.exports = defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  reporter: 'html',
+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],
   use: {
     baseURL: 'https://embedpress.qa1.site/',
     trace: 'on-first-retry',
