@@ -1,27 +1,34 @@
 const { defineConfig, devices } = require('@playwright/test');
 require('dotenv').config();
 
+const isCI = !!process.env.CI; // Check if the CI environment variable is set
+
 module.exports = defineConfig({
   testDir: './tests',
   fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  forbidOnly: isCI,
+  retries: isCI ? 2 : 0,
+  workers: isCI ? 1 : undefined,
   reporter: [
-    [
-      './node_modules/playwright-slack-report/dist/src/SlackReporter.js',
-      {
-        slackWebHookUrl: process.env.SLACK_WEBHOOK_URL,
-        sendResults: 'always',
-        maxNumberOfFailuresToShow: 0,
-        meta: [
+    ...(isCI
+      ? [
+        [
+          './node_modules/playwright-slack-report/dist/src/SlackReporter.js',
           {
-            key: ":embedpress: EmbedPress Automation - Test Results",
-            value: "<https://nahidthenh.github.io/embedpress-playwright-automation/ | 📂 Click Here!>",
-          }
-        ]
-      },
-    ],
+            slackWebHookUrl: process.env.SLACK_WEBHOOK_URL,
+            sendResults: 'always',
+            maxNumberOfFailuresToShow: 0,
+            meta: [
+              {
+                key: ":embedpress: EmbedPress Automation - Test Results",
+                value:
+                  "<https://nahidthenh.github.io/embedpress-playwright-automation/ | :desktop_computer: Final Report!>",
+              },
+            ],
+          },
+        ],
+      ]
+      : []),
     ['html', { outputFolder: 'playwright-report', open: 'never' }], // Ensure you have the HTML reporter as well
     ['dot'], // Console output reporter
   ],
@@ -34,6 +41,6 @@ module.exports = defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    }
+    },
   ],
 });
