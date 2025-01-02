@@ -25,6 +25,7 @@ jobs:
 
       - name: Install Playwright browsers
         run: npx playwright install
+
       - name: Set up environment variables
         run: |
           echo "SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }}" >> .env
@@ -33,12 +34,12 @@ jobs:
         run: npx playwright test --project=chromium --workers=4
         continue-on-error: true # Ensures workflow continues even if tests fail
 
-      - name: Send Slack Notification
-        run: |
-          npx playwright-slack-report --webhook-url=$SLACK_WEBHOOK_URL
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          continue-on-error: true # Ensures workflow continues even if tests fail
+      # - name: Send Slack Notification
+      #   run: |
+      #     npx playwright-slack-report --webhook-url=$SLACK_WEBHOOK_URL
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #     continue-on-error: true # Ensures workflow continues even if tests fail
 
       - name: Move HTML Report
         run: mv playwright-report /tmp/playwright-report
