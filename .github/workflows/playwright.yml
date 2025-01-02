@@ -25,6 +25,9 @@ jobs:
 
       - name: Install Playwright browsers
         run: npx playwright install
+      - name: Set up environment variables
+        run: |
+          echo "SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }}" >> .env
 
       - name: Run Playwright tests for Chromium
         run: npx playwright test --project=chromium --workers=4
