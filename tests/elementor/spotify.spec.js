@@ -6,6 +6,7 @@ let slug = 'playwright-elementor/elementor-spotify';
 test.describe('Elementor Spotify', () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
+        await page.waitForLoadState('networkidle');
     });
 
     test('Spotify Single', async ({ page }) => {
@@ -71,8 +72,6 @@ test.describe('Elementor Spotify', () => {
         await expect(iframe.getByTestId('tracklist').locator('div').filter({ hasText: 'AlbaqarahMashary Rashid Al-' }).nth(1)).toBeVisible();
         await expect(iframe.getByTestId('tracklist-row-0')).toBeVisible();
         await expect(iframe.getByTestId('tracklist-row-1')).toBeVisible();
-        await iframe.getByTestId('play-pause-button').click();
-        await page.waitForTimeout(3000);
         await iframe.getByTestId('play-pause-button').click();
     });
 });
