@@ -6,6 +6,7 @@ let slug = 'playwright-elementor/elementor-google-photos';
 test.describe("Google Photos", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
+        await page.waitForLoadState('networkidle');
     });
 
     test('Google Photos Carousel', async ({ page }) => {
