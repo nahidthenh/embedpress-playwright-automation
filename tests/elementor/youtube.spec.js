@@ -6,6 +6,7 @@ let slug = 'elementor-youtube-2';
 test.describe("Elementor YouTube", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
+        await page.waitForLoadState('networkidle');
     });
 
     test('YouTube Chanel Gallery', async ({ page }) => {
