@@ -6,6 +6,7 @@ let slug = 'playwright-classic-editor/classic-youtube/';
 test.describe("Elementor YouTube", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
+        await page.waitForLoadState('networkidle');
     });
 
     test('Default YouTube', async ({ page }) => {

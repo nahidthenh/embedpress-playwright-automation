@@ -7,6 +7,7 @@ let heading = 'Gutenberg Modern pdf';
 test.describe("Gutenberg Modern PDF", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
+        await page.waitForLoadState('networkidle');
         await expect.soft(page.getByRole('heading', { name: heading, exact: true })).toBeVisible();
     });
 

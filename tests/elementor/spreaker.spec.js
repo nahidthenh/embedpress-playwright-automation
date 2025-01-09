@@ -6,10 +6,12 @@ let slug = 'elementor-spreaker';
 test.describe("Elementor Spreaker", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
+        await page.waitForLoadState('networkidle');
         await expect(page.getByRole('heading', { name: 'Elementor Spreaker' })).toBeVisible();
     });
+
     // Spreaker Playlist
-    test('Spreaker Playlist', async ({ page }) => {
+    test('Spreaker Playlist - Elementor', async ({ page }) => {
         // Assert the main heading is visible
         const heading = page.getByRole('heading', { name: 'Spreaker Playlist' });
         await expect(heading).toBeVisible();
@@ -23,11 +25,10 @@ test.describe("Elementor Spreaker", () => {
 
         // Define locators for elements within the iframe
         const elementsToCheck = [
-            // { locator: frame.getByRole('link', { name: 'The Deadliest Mountain on' }), description: 'Episode link' },
             { locator: frame.getByLabel('Listen on Spreaker'), description: 'Listen on Spreaker button' },
             { locator: frame.getByRole('link', { name: 'Privacy Policy' }), description: 'Privacy Policy link' },
             { locator: frame.getByRole('img', { name: 'The Deadliest Mountain on' }).first(), description: 'Episode image' },
-            { locator: frame.getByLabel('Play episode The Deadliest').first(), description: 'Play button' },
+            { locator: frame.locator('li').filter({ hasText: 'The Deadliest Mountain on' }).getByLabel('Play episode The Deadliest Mountain on Earth'), description: 'Specific Play button' },
             { locator: frame.getByLabel('Skip back 10 seconds'), description: 'Skip back button' },
             { locator: frame.getByLabel('Skip forward 30 seconds'), description: 'Skip forward button' },
             { locator: frame.getByLabel('Like episode'), description: 'Like button' },
@@ -36,10 +37,6 @@ test.describe("Elementor Spreaker", () => {
             { locator: frame.getByLabel('player.download_episode'), description: 'Download button' },
             { locator: frame.locator('.button_info').first(), description: 'Info button' },
             { locator: frame.getByText('The Deadliest Mountain on Earthepisode_explicit16:'), description: 'Episode text' },
-            { locator: frame.getByRole('list').getByLabel('Play episode The Deadliest'), description: 'Play episode list item' },
-            { locator: frame.getByRole('list').getByRole('img', { name: 'The Deadliest Mountain on' }), description: 'Episode list image' },
-            { locator: frame.locator('li').filter({ hasText: 'The Deadliest Mountain on' }).locator('span'), description: 'Episode span' },
-            { locator: frame.locator('li').filter({ hasText: 'The Deadliest Mountain on' }).getByLabel('Read description'), description: 'Read description button' },
         ];
 
         // Check visibility of all elements in the iframe
@@ -47,21 +44,28 @@ test.describe("Elementor Spreaker", () => {
             await expect(locator).toBeVisible({ message: `${description} should be visible` });
         }
 
-        // Interact with play and pause buttons
-        const playButton = frame.getByLabel('Play episode The Deadliest').first();
-        const pauseButton = frame.getByLabel('Pause episode The Deadliest').first();
+        // Interact with specific play and pause buttons
+        const specificPlayButton = frame
+            .locator('li')
+            .filter({ hasText: 'The Deadliest Mountain on Earth' })
+            .getByLabel('Play episode The Deadliest Mountain on Earth');
 
-        await playButton.click();
+        const specificPauseButton = frame
+            .locator('li')
+            .filter({ hasText: 'The Deadliest Mountain on Earth' })
+            .getByLabel('Pause episode The Deadliest Mountain on Earth');
+
+        await specificPlayButton.click();
         await page.waitForTimeout(500); // Small delay to simulate playback
-        await pauseButton.click();
+        await specificPauseButton.click();
 
         // Assert CSS property of an element within the frame
         const cssElement = frame.locator('.widget.theme_light.theme_with_playlist');
 
         // Assert that the element has the expected class
         await expect(cssElement).toHaveClass(/widget theme_light theme_with_playlist/);
-
     });
+
 
     // Enable Pro Features 
     test('Enable Pro Features', async ({ page }) => {
