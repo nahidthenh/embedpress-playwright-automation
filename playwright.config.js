@@ -7,8 +7,8 @@ module.exports = defineConfig({
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: isCI,
-  retries: isCI ? 2 : 1,
-  workers: isCI ? 1 : undefined,
+  retries: isCI ? 3 : 1,
+  workers: isCI ? 4 : 4,
   reporter: [
     ...(isCI
       ? [
