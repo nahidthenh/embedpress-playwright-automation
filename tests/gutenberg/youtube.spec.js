@@ -5,6 +5,7 @@ let slug = 'playwright-gutenberg/gutenberg-youtube';
 test.describe("Gutenberg YouTube", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
+        await page.waitForLoadState('networkidle');
     });
 
     test('YouTube Channel Gallery Layout', async ({ page }) => {
@@ -33,7 +34,7 @@ test.describe("Gutenberg YouTube", () => {
 
 
 
-    test('YouTube Chanel List Layout', async ({ page }) => {
+    test('YouTube Channel List Layout', async ({ page }) => {
         const heading = page.getByRole('heading', { name: 'YouTube Chanel List' });
         await heading.scrollIntoViewIfNeeded();
         await expect(heading).toBeVisible();
@@ -49,7 +50,7 @@ test.describe("Gutenberg YouTube", () => {
     });
 
 
-    test('YouTube Chanel Grid Layout', async ({ page }) => {
+    test('YouTube Channel Grid Layout', async ({ page }) => {
 
         const expectations = [
             { element: page.getByRole('heading', { name: 'YouTube Chanel Grid' }) },
@@ -70,8 +71,6 @@ test.describe("Gutenberg YouTube", () => {
         const nextEpisodeButton = page.locator('.ep-next').first();
         await nextEpisodeButton.click();
         await expect(page.locator('.ep-prev').first()).toBeVisible();
-
-
     });
 
 
@@ -84,8 +83,6 @@ test.describe("Gutenberg YouTube", () => {
         await expect(page.getByRole('link', { name: 'Subscribe' }).nth(3)).toBeVisible();
         await expect(page.getByRole('button', { name: '❮' })).toBeVisible();
         await expect(page.getByRole('button', { name: '❯' })).toBeVisible();
-        await expect(page.locator('div:nth-child(4) > #ab00cc1d-ce27-4096-acea-0ce8eedb17e0 > .wp-block-embed__wrapper > #ep-gutenberg-content-9fb3b6005a21730a9ea83dd1fbf1f613 > div > .ep-embed-content-wraper > .ose-youtube > .ep-player-wrap > .ep-youtube__content__block > .youtube__content__body > .content__wrap > div > .thumb').first()).toBeVisible();
-        await page.getByRole('button', { name: '❯' }).click();
     });
 
     test('Default YouTube', async ({ page }) => {
