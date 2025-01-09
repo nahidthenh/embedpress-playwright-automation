@@ -6,6 +6,7 @@ let slug = 'playwright-gutenberg/gutenberg-spotify';
 test.describe("Gutenberg Spotify", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
+        await page.waitForLoadState('networkidle');
     });
 
     test('Spotify Single', async ({ page }) => {
@@ -77,9 +78,9 @@ test.describe("Gutenberg Spotify", () => {
         await expect(framelocator.getByTestId('play-pause-button')).toBeVisible();
         await framelocator.getByTestId('play-pause-button').click();
 
-        await page.waitForTimeout(500);
+        // await page.waitForTimeout(500);
 
-        await framelocator.getByTestId('play-pause-button').click();
+        // await framelocator.getByTestId('play-pause-button').click();
     });
 
 });

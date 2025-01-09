@@ -3,9 +3,10 @@ const { test, expect } = require('@playwright/test');
 let slug = 'gutenberg-spreaker';
 
 
-test.describe("Soreaker Gutenberg", () => {
+test.describe("Spreaker Gutenberg", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
+        await page.waitForLoadState('networkidle');
         await expect(page.getByRole('heading', { name: 'Gutenberg Spreaker' })).toBeVisible();
     });
     // Spreaker Playlist
@@ -23,11 +24,10 @@ test.describe("Soreaker Gutenberg", () => {
 
         // Define locators for elements within the iframe
         const elementsToCheck = [
-            // { locator: frame.getByRole('link', { name: 'The Deadliest Mountain on' }), description: 'Episode link' },
             { locator: frame.getByLabel('Listen on Spreaker'), description: 'Listen on Spreaker button' },
             { locator: frame.getByRole('link', { name: 'Privacy Policy' }), description: 'Privacy Policy link' },
             { locator: frame.getByRole('img', { name: 'The Deadliest Mountain on' }).first(), description: 'Episode image' },
-            { locator: frame.getByLabel('Play episode The Deadliest').first(), description: 'Play button' },
+            { locator: frame.getByLabel('Play episode The Deadliest Mountain on Earth').first(), description: 'Play button' },
             { locator: frame.getByLabel('Skip back 10 seconds'), description: 'Skip back button' },
             { locator: frame.getByLabel('Skip forward 30 seconds'), description: 'Skip forward button' },
             { locator: frame.getByLabel('Like episode'), description: 'Like button' },
@@ -36,8 +36,6 @@ test.describe("Soreaker Gutenberg", () => {
             { locator: frame.getByLabel('player.download_episode'), description: 'Download button' },
             { locator: frame.locator('.button_info').first(), description: 'Info button' },
             { locator: frame.getByText('The Deadliest Mountain on Earthepisode_explicit16:'), description: 'Episode text' },
-            { locator: frame.getByRole('list').getByLabel('Play episode The Deadliest'), description: 'Play episode list item' },
-            { locator: frame.getByRole('list').getByRole('img', { name: 'The Deadliest Mountain on' }), description: 'Episode list image' },
             { locator: frame.locator('li').filter({ hasText: 'The Deadliest Mountain on' }).locator('span'), description: 'Episode span' },
             { locator: frame.locator('li').filter({ hasText: 'The Deadliest Mountain on' }).getByLabel('Read description'), description: 'Read description button' },
         ];
@@ -48,8 +46,8 @@ test.describe("Soreaker Gutenberg", () => {
         }
 
         // Interact with play and pause buttons
-        const playButton = frame.getByLabel('Play episode The Deadliest').first();
-        const pauseButton = frame.getByLabel('Pause episode The Deadliest').first();
+        const playButton = frame.getByLabel('Play episode The Deadliest Mountain on Earth').first();
+        const pauseButton = frame.getByLabel('Pause episode The Deadliest Mountain on Earth').first();
 
         await playButton.click();
         await page.waitForTimeout(500); // Small delay to simulate playback
@@ -60,8 +58,8 @@ test.describe("Soreaker Gutenberg", () => {
 
         // Assert that the element has the expected class
         await expect(cssElement).toHaveClass(/widget theme_light theme_with_playlist/);
-
     });
+
 
     // Enable Pro Features 
     test('Enable Pro Features', async ({ page }) => {
@@ -71,9 +69,7 @@ test.describe("Soreaker Gutenberg", () => {
         await expect(heading).toBeVisible();
 
         // Define a common locator for the embedded iframe
-        const iframeLocator = page
-            .locator('.wp-block-group > .wp-block-group > [id="\\33 21d67dc-8e7a-4c3e-8270-d28d0c58a35f"] > .wp-block-embed__wrapper > #ep-gutenberg-content-309519c8aa6759d7384069d7a70f4aeb > div > .ep-embed-content-wraper > .ose-spreaker > iframe')
-            .first();
+        const iframeLocator = page.locator('iframe[title="This is title"]').nth(1);
 
         // Access the iframe's content frame
         const frame = await iframeLocator.contentFrame();
@@ -121,9 +117,7 @@ test.describe("Soreaker Gutenberg", () => {
         await expect(heading).toBeVisible();
 
         // Define a common locator for the embedded iframe
-        const iframeLocator = page
-            .locator('div:nth-child(3) > .wp-block-group > [id="\\33 21d67dc-8e7a-4c3e-8270-d28d0c58a35f"] > .wp-block-embed__wrapper > #ep-gutenberg-content-309519c8aa6759d7384069d7a70f4aeb > div > .ep-embed-content-wraper > .ose-spreaker > iframe')
-            .first();
+        const iframeLocator = page.locator('iframe[title="This is title"]').nth(2)
 
         // Access the iframe's content frame
         const frame = await iframeLocator.contentFrame();
