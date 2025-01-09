@@ -6,6 +6,7 @@ let slug = 'flip-book-pdf';
 test.describe("Gutenberg Flip Book PDF", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
+        await page.waitForLoadState('networkidle');
         await expect(page.getByRole('heading', { name: 'Flip Book Pdf' })).toBeVisible();
     });
 
