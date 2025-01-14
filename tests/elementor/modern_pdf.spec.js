@@ -6,7 +6,7 @@ let slug = 'modern-pdf-elementor';
 test.describe("Elementor Modern PDF", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
-        await page.waitForLoadState('networkidle');
+        // await page.waitForLoadState('networkidle');
     });
 
     test('To Enable All Controls', async ({ page }) => {

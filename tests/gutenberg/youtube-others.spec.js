@@ -5,7 +5,7 @@ let slug = 'playwright-gutenberg/gutenberg-youtube';
 test.describe("Gutenberg YouTube Others", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
-        await page.waitForLoadState('networkidle');
+        // await page.waitForLoadState('networkidle');
     });
 
     test('Default YouTube', async ({ page }) => {

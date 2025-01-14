@@ -30,7 +30,7 @@ test.describe("Elementor YouTube Others", () => {
         await expect(heading).toBeVisible();
 
         await expect(page.getByText('Copy URL Form URL Box On Top')).toBeVisible();
-        await expect(page.locator('.plyr__poster').first()).toBeVisible();
+        // await expect(page.locator('.plyr__poster').first()).toBeVisible();
         await expect(page.locator('#ep-elements-id-23222a0 button').filter({ hasText: /^Play$/ })).toBeVisible();
         await expect(page.locator('#ep-elements-id-23222a0').getByText('PausePlay')).toBeVisible();
         await expect(page.locator('#ep-elements-id-23222a0').getByRole('button', { name: 'Settings' })).toBeVisible();

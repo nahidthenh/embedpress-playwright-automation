@@ -6,7 +6,7 @@ let slug = 'flip-book-pdf-elementor';
 test.describe("Elementor Flip Book PDF", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
-        await page.waitForLoadState('networkidle');
+        // await page.waitForLoadState('networkidle');
     });
 
     test('To Enable All Controls', async ({ page }) => {
