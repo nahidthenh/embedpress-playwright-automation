@@ -12,16 +12,19 @@ test.describe('Classic Spotify', () => {
         const heading = page.getByRole('heading', { name: 'Classic Spotify' });
         await heading.scrollIntoViewIfNeeded();
         await expect(heading).toBeVisible();
-        await expect(page.locator('iframe[title="Spotify Embed\\: Kids Quran playlist"]')).toBeVisible();
-        await expect(page.locator('iframe[title="Spotify Embed\\: Kids Quran playlist"]').contentFrame().locator('.CoverArtBase_coverArt__ne0XI')).toBeVisible();
-        await expect(page.locator('iframe[title="Spotify Embed\\: Kids Quran playlist"]').contentFrame().getByRole('link', { name: 'Kids Quran playlist' })).toBeVisible();
-        await expect(page.locator('iframe[title="Spotify Embed\\: Kids Quran playlist"]').contentFrame().getByTestId('spotify-logo')).toBeVisible();
-        await expect(page.locator('iframe[title="Spotify Embed\\: Kids Quran playlist"]').contentFrame().getByTestId('play-pause-button')).toBeVisible();
-        await expect(page.locator('iframe[title="Spotify Embed\\: Kids Quran playlist"]').contentFrame().getByLabel('More')).toBeVisible();
-        await expect(page.locator('iframe[title="Spotify Embed\\: Kids Quran playlist"]').contentFrame().getByTestId('tracklist-row-0')).toBeVisible();
-        await page.locator('iframe[title="Spotify Embed\\: Kids Quran playlist"]').contentFrame().getByTestId('play-pause-button').click();
+
+        const pageLocator = page.locator('iframe[title="Spotify Embed\\: Kids Quran playlist"]')
+
+        await expect(pageLocator).toBeVisible();
+        await expect(pageLocator.contentFrame().locator('.CoverArtBase_coverArt__ne0XI')).toBeVisible();
+        await expect(pageLocator.contentFrame().getByRole('link', { name: 'Kids Quran playlist' })).toBeVisible();
+        await expect(pageLocator.contentFrame().getByTestId('spotify-logo')).toBeVisible();
+        await expect(pageLocator.contentFrame().getByTestId('play-pause-button')).toBeVisible();
+        await expect(pageLocator.contentFrame().getByLabel('More')).toBeVisible();
+        await expect(pageLocator.contentFrame().getByTestId('tracklist-row-0')).toBeVisible();
+        await pageLocator.contentFrame().getByTestId('play-pause-button').click();
         await page.waitForTimeout(300)
-        await page.locator('iframe[title="Spotify Embed\\: Kids Quran playlist"]').contentFrame().getByTestId('play-pause-button').click();
+        await pageLocator.contentFrame().getByTestId('play-pause-button').click();
     });
 
     test('Classic Spotify Single', async ({ page }) => {
@@ -55,4 +58,23 @@ test.describe('Classic Spotify', () => {
         await page.waitForTimeout(300)
         await page.locator('iframe[title="Spotify Embed\\: Omar Hisham"]').contentFrame().getByTestId('play-pause-button').click();
     });
+
+
+    test('Classic Spotify Album', async ({ page }) => {
+        const heading = page.getByText('Spotify Artist');
+        await heading.scrollIntoViewIfNeeded();
+        await expect(heading).toBeVisible();
+
+       await expect(page.locator('iframe[title="Spotify Embed\\: Al Sabaê Al Mounjiate \\(Quran\\)"]').contentFrame().locator('.CoverArtBase_coverArt__ne0XI')).toBeVisible();
+       await expect(page.locator('iframe[title="Spotify Embed\\: Al Sabaê Al Mounjiate \\(Quran\\)"]').contentFrame().getByRole('link', { name: 'Al Sabaê Al Mounjiate (Quran)' })).toBeVisible();
+       await expect(page.locator('iframe[title="Spotify Embed\\: Al Sabaê Al Mounjiate \\(Quran\\)"]').contentFrame().getByRole('link', { name: 'Abd Al Rahman Al Soudaiss' })).toBeVisible();
+       await expect(page.locator('iframe[title="Spotify Embed\\: Al Sabaê Al Mounjiate \\(Quran\\)"]').contentFrame().getByTestId('spotify-logo')).toBeVisible();
+       await expect(page.locator('iframe[title="Spotify Embed\\: Al Sabaê Al Mounjiate \\(Quran\\)"]').contentFrame().getByLabel('More')).toBeVisible();
+       await expect(page.locator('iframe[title="Spotify Embed\\: Al Sabaê Al Mounjiate \\(Quran\\)"]').contentFrame().getByTestId('play-pause-button')).toBeVisible();
+       await expect(page.locator('iframe[title="Spotify Embed\\: Al Sabaê Al Mounjiate \\(Quran\\)"]').contentFrame().getByTestId('tracklist-row-0')).toBeVisible();
+       await page.locator('iframe[title="Spotify Embed\\: Al Sabaê Al Mounjiate \\(Quran\\)"]').contentFrame().getByTestId('play-pause-button').click();
+       await page.waitForTimeout(300)
+       await page.locator('iframe[title="Spotify Embed\\: Al Sabaê Al Mounjiate \\(Quran\\)"]').contentFrame().getByTestId('tracklist-row-0').getByTestId('playback-indicator').click();
+    });
+
 });
