@@ -9,8 +9,14 @@ test.describe('Classic Twitter', () => {
     });
 
     test('Default Twitter', async ({ page }) => {
-        const heading = page.getByRole('heading', { name: '' });
+        const heading = page.getByRole('heading', { name: 'Classic Twitter' });
         await heading.scrollIntoViewIfNeeded();
         await expect(heading).toBeVisible();
+
+        await page.waitForTimeout(1000);
+
+        const iframeLocator = page.locator('#post-9250 div');
+        await expect(iframeLocator.first()).toBeVisible();
     });
+
 });
