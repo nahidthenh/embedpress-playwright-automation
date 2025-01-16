@@ -8,7 +8,7 @@ test.describe('Classic Spotify', () => {
         await page.goto(slug);
     });
 
-    test('Spotify Playlist', async ({ page }) => {
+    test('Classic Spotify Playlist', async ({ page }) => {
         const heading = page.getByRole('heading', { name: 'Classic Spotify' });
         await heading.scrollIntoViewIfNeeded();
         await expect(heading).toBeVisible();
@@ -22,5 +22,21 @@ test.describe('Classic Spotify', () => {
         await page.locator('iframe[title="Spotify Embed\\: Kids Quran playlist"]').contentFrame().getByTestId('play-pause-button').click();
         await page.waitForTimeout(300)
         await page.locator('iframe[title="Spotify Embed\\: Kids Quran playlist"]').contentFrame().getByTestId('play-pause-button').click();
+    });
+
+    test('Classic Spotify Single', async ({ page }) => {
+        const heading = page.getByText('Spotify Single');
+        await heading.scrollIntoViewIfNeeded();
+        await expect(heading).toBeVisible();
+
+        await expect(page.locator('iframe[title="Spotify Embed\\: Surah Ar-Rahman \\(Be Heaven\\)"]').contentFrame().locator('.BackgroundColorContainer_backgroundColorContainer__YZSQ7')).toBeVisible();
+        await expect(page.locator('iframe[title="Spotify Embed\\: Surah Ar-Rahman \\(Be Heaven\\)"]').contentFrame().getByRole('link', { name: 'Surah Ar-Rahman (Be Heaven)' })).toBeVisible();
+        await expect(page.locator('iframe[title="Spotify Embed\\: Surah Ar-Rahman \\(Be Heaven\\)"]').contentFrame().locator('.CoverArtBase_coverArt__ne0XI')).toBeVisible();
+        await expect(page.locator('iframe[title="Spotify Embed\\: Surah Ar-Rahman \\(Be Heaven\\)"]').contentFrame().getByTestId('spotify-logo')).toBeVisible();
+        await expect(page.locator('iframe[title="Spotify Embed\\: Surah Ar-Rahman \\(Be Heaven\\)"]').contentFrame().getByLabel('More')).toBeVisible();
+        await expect(page.locator('iframe[title="Spotify Embed\\: Surah Ar-Rahman \\(Be Heaven\\)"]').contentFrame().getByTestId('play-pause-button')).toBeVisible();
+        await page.locator('iframe[title="Spotify Embed\\: Surah Ar-Rahman \\(Be Heaven\\)"]').contentFrame().getByTestId('play-pause-button').click();
+        await page.waitForTimeout(300)
+        await page.locator('iframe[title="Spotify Embed\\: Surah Ar-Rahman \\(Be Heaven\\)"]').contentFrame().getByTestId('play-pause-button').click();
     });
 });
