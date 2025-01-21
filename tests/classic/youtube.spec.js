@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 let slug = 'playwright-classic-editor/classic-youtube/';
 
 
-test.describe("Elementor YouTube", () => {
+test.describe("Classic YouTube", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
         await page.waitForLoadState('networkidle');

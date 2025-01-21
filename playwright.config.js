@@ -35,7 +35,7 @@ module.exports = defineConfig({
   outputDir: 'test-results',
   timeout: 60000, // Increase default timeout to 60 seconds
   use: {
-    baseURL: 'https://embedpress.qa1.site/',
+    baseURL: 'https://embedpress.wpqa.site/',
     trace: 'on-first-retry',
   },
   projects: [
