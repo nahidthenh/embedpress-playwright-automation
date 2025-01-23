@@ -12,7 +12,7 @@ test.describe('Content Protection Pro Feature - Classic Editor', () => {
         await expect(page.getByRole('heading', { name: 'Classic Content Protection' })).toBeVisible();
     });
 
-    test('should protect content in classic editor', async ({ page }) => {
+    test('Should protect content in classic editor', async ({ page }) => {
         await expect(page.getByRole('heading', { name: 'Content Protection Type : User Role – Subscriber', exact: true })).toBeVisible();
         await expect(page.getByText('Only editor will see the')).toBeVisible();
         await expect(page.getByRole('heading', { name: 'Content Protection Type : Password – Password is' })).toBeVisible();
@@ -21,7 +21,6 @@ test.describe('Content Protection Pro Feature - Classic Editor', () => {
         await expect(page.getByRole('heading', { name: 'Content Protection Type : User Role – Subscriber : PDF Support' })).toBeVisible();
         await expect(page.getByText('This content is protected.')).toBeVisible();
         await expect(page.locator('iframe[title="sample_pdf"]').contentFrame().locator('#viewer')).toBeHidden();
-
     });
 
     test('Content Protection Type : Password Should Visibile', async ({ page }) => {
