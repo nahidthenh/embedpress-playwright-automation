@@ -16,4 +16,14 @@ test.describe('Content Protection Pro Feature - Classic Editor', () => {
         await expect(page.getByRole('heading', { name: 'Content Protection Type : User Role – Editor : PDF Support' })).toBeVisible();
         await expect(page.getByText('This content is protected.')).toBeVisible();
     });
+
+    test('Content Protection Type : Password Should Visibile', async ({ page }) => {
+        await expect(page.getByRole('heading', { name: 'Content Protection Type : Password – Password is' })).toBeVisible();
+        await expect(page.getByText('Content Locked Content is')).toBeVisible();
+        await expect(page.locator('iframe[title="আপনাকে কেন ভালবাসি\\, ইয়া রাসুলাল্লাহ \\(সঃ\\)\\? \\[Baseera\\]"]').contentFrame().locator('.ytp-cued-thumbnail-overlay-image')).toBeHidden();
+        await page.getByPlaceholder('Password').click();
+        await page.getByPlaceholder('Password').fill('96796');
+        await page.getByRole('button', { name: 'Unlock' }).click();
+        await expect(page.locator('iframe[title="আপনাকে কেন ভালবাসি\\, ইয়া রাসুলাল্লাহ \\(সঃ\\)\\? \\[Baseera\\]"]').contentFrame().locator('.ytp-cued-thumbnail-overlay-image')).toBeVisible();
+    });
 });
