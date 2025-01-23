@@ -34,6 +34,9 @@ jobs:
           echo "SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }}" >> .env
 
       - name: Run Playwright tests for Chromium
+        env:
+          SUBSCRIBER_USER: ${{ secrets.SUBSCRIBER_USER }}
+          SUBSCRIBER_PASS: ${{ secrets.SUBSCRIBER_PASS }}
         run: npx playwright test --project=chromium --workers=8
         continue-on-error: true # Ensures workflow continues even if tests fail
 
