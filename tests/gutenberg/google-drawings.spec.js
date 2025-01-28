@@ -13,7 +13,7 @@ test.describe("Gutenberg Google Drawings", () => {
         await expect(page.getByRole('heading', { name: 'Gutenberg Google Drawings 1140×' })).toBeVisible();
 
         // Check iframe visibility
-        const iframe = page.getByRole('img')
+        const iframe = page.locator('#post-9010').getByRole('img')
 
         await expect(iframe).toBeVisible();
 

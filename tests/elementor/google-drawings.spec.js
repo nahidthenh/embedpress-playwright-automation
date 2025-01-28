@@ -13,7 +13,7 @@ test.describe("Elementor Google Drawings", () => {
         await expect(page.getByRole('heading', { name: 'Elementor Google Drawings 1140x800' })).toBeVisible();
 
         // Check iframe visibility
-        const iframe = page.getByRole('img')
+        const iframe = page.locator('#ep-elements-id-d506231').getByRole('img');
 
         await expect(iframe).toBeVisible();
 

@@ -6,7 +6,7 @@ let slug = 'elementor-spreaker';
 test.describe("Elementor Spreaker", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
-        await page.waitForLoadState('networkidle');
+        // await page.waitForLoadState('networkidle');
         await expect(page.getByRole('heading', { name: 'Elementor Spreaker' })).toBeVisible();
     });
 

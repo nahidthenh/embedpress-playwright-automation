@@ -5,7 +5,7 @@ const slug = 'playwright-elementor/elementor-google-map';
 test.describe("Elementor Google Map", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
-        await page.waitForLoadState('networkidle');
+        // await page.waitForLoadState('networkidle');
     });
 
     test('Default Google Map', async ({ page }) => {
