@@ -1,17 +1,14 @@
 const { test, expect } = require('@playwright/test');
 
-let slug = 'elementor-youtube-2';
-
+let slug = 'playwright-elementor/elementor-youtube-others/';
 
 test.describe("Elementor YouTube Others", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
-        // await page.waitForLoadState('networkidle');
     });
 
     test('Default YouTube', async ({ page }) => {
         const heading = page.getByRole('heading', { name: 'Default YouTube' });
-        await heading.scrollIntoViewIfNeeded();
         await expect(heading).toBeVisible();
 
         const framelocator = page.frameLocator('iframe[title="শ্রেষ্ঠ মানুষেরা - \\[পর্ব ৮\\] - ইবরাহিম \\(আঃ\\)"]');
@@ -30,7 +27,6 @@ test.describe("Elementor YouTube Others", () => {
         await expect(heading).toBeVisible();
 
         await expect(page.getByText('Copy URL Form URL Box On Top')).toBeVisible();
-        // await expect(page.locator('.plyr__poster').first()).toBeVisible();
         await expect(page.locator('#ep-elements-id-23222a0 button').filter({ hasText: /^Play$/ })).toBeVisible();
         await expect(page.locator('#ep-elements-id-23222a0').getByText('PausePlay')).toBeVisible();
         await expect(page.locator('#ep-elements-id-23222a0').getByRole('button', { name: 'Settings' })).toBeVisible();

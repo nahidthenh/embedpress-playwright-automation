@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-let slug = 'elementor-youtube-2';
+let slug = 'playwright-elementor/elementor-youtube-2';
 
 
 test.describe("Elementor YouTube Channel", () => {
