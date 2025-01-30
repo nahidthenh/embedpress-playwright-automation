@@ -32,6 +32,12 @@ jobs:
       - name: Set up environment variables
         run: |
           echo "SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }}" >> .env
+          echo "PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }}" >> .env
+          echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env
+          echo "USERNAME=${{ secrets.USERNAME }}" >> .env
+          mkdir -p playwright/.auth && touch playwright/.auth/user.json
+          echo "{}" >> playwright/.auth/user.json
+
 
       - name: Run Playwright tests for Chromium
         env:
