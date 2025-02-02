@@ -39,9 +39,14 @@ module.exports = defineConfig({
     trace: 'on-first-retry',
   },
   projects: [
+    // Setup project
+    { name: 'setup', testMatch: /.*\.setup\.js/ },
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome']
+      },
+      dependencies: ['setup'],
     },
   ],
 });
