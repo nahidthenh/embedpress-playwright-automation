@@ -37,7 +37,7 @@ test.describe('Dashboard General Tab', () => {
         await page.locator('.sponsored-link_bg').click();
     });
 
-    test('Should display general tab content', async ({ page }) => {
+    test('Should display and functional general tab', async ({ page }) => {
         await expect(page.locator('#wpbody-content').getByRole('link', { name: 'General' })).toBeVisible();
         await expect(page.getByRole('heading', { name: 'Global Embed iFrame' })).toBeVisible();
         await expect(page.getByText('Embed iFrame Width')).toBeVisible();
