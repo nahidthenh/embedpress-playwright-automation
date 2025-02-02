@@ -2,12 +2,12 @@ const { test, expect } = require('@playwright/test');
 
 test.use({ storageState: 'playwright/.auth/user.json' });
 
-test.describe('Dashboard Shortcode Tab', () => {
+test.describe('Dashboard Elements Tab', () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('https://embedpress.wpqa.site/wp-admin/admin.php?page=embedpress&page_type=elements');
     });
 
-    test('Should display EmbedPress Shortcode content and functionility Options', async ({ page }) => {
+    test('Should display EmbedPress Elements content and functionility Options', async ({ page }) => {
         // Gutenberg Editor
         await expect(page.getByRole('heading', { name: 'Gutenberg' })).toBeVisible();
         await expect(page.getByText('EmbedPress It supports 150+')).toBeVisible();
