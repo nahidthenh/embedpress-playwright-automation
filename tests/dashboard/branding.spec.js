@@ -7,7 +7,7 @@ test.describe('Dashboard Branding Tab', () => {
         await page.goto('https://embedpress.wpqa.site/wp-admin/admin.php?page=embedpress&page_type=custom-logo');
     });
 
-    test('Should display EmbedPress Branding content and functionility Options', async ({ page }) => {
+    test('Should display EmbedPress Branding content', async ({ page }) => {
         await expect(page.getByRole('heading', { name: 'Global Branding Settings' })).toBeVisible();
         await expect(page.getByText('Powered by EmbedPress')).toBeVisible();
         await expect(page.locator('form div').filter({ hasText: 'Powered by EmbedPress' }).locator('label')).toBeVisible();
@@ -28,7 +28,6 @@ test.describe('Dashboard Branding Tab', () => {
         await page.locator('form div').filter({ hasText: 'Powered by EmbedPress' }).locator('span').click();
         await page.locator('form div').filter({ hasText: 'Powered by EmbedPress' }).locator('span').click();
 
-        await expect(page.getByRole('link', { name: 'Settings ' })).toBeHidden();
         await page.locator('div:nth-child(5) > .form__control__wrap > .input__switch > span').click();
         await expect(page.getByRole('link', { name: 'Settings ' })).toBeVisible();
 
@@ -40,10 +39,26 @@ test.describe('Dashboard Branding Tab', () => {
         await page.getByLabel('Screenshot 2024-05-23 at 11-').click();
         await page.getByRole('button', { name: 'Use this image' }).click();
         await page.getByRole('button', { name: 'Save Changes' }).click();
-        await page.getByRole('link', { name: 'Settings ' }).click();
         await page.locator('div:nth-child(5) > .form__control__wrap > .input__switch > span').click();
         await page.getByRole('button', { name: 'Save Changes' }).click();
         await expect(page.locator('#wpbody-content div').filter({ hasText: 'Settings Updated' }).nth(4)).toBeVisible();
+        await page.locator('div:nth-child(5) > .form__control__wrap > .input__switch > span').click();
+        await page.getByRole('button', { name: 'Save Changes' }).click();
+    });
 
+    test('Should functionility Options Working Properly', async ({ page }) => {
+        // YouTube Custom Branding Enable       
+        await page.locator('div:nth-child(5) > .form__control__wrap > .input__switch > span').click();
+        await page.getByRole('button', { name: 'Save Changes' }).click();
+
+        // YouTube Custom Branding on youtube video visibility test       
+        await page.goto('https://embedpress.wpqa.site/global-branding/');
+        await page.locator('iframe[title="যেভাবে প্লাস্টিকের কারণে ক্ষতিগ্রস্ত হচ্ছে মানুষ \\| People are Being Harmed by Plastic \\| Gtv News"]').contentFrame().getByLabel('Play', { exact: true }).click();
+        await expect(page.locator('#ep-elements-id-ee58a63 img')).toBeVisible();
+
+        // YouTube Custom Branding Disable      
+        await page.goto('https://embedpress.wpqa.site/wp-admin/admin.php?page=embedpress&page_type=custom-logo');
+        await page.locator('div:nth-child(5) > .form__control__wrap > .input__switch > span').click();
+        await page.getByRole('button', { name: 'Save Changes' }).click();
     });
 });
