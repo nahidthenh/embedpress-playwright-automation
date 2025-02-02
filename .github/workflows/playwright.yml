@@ -43,7 +43,7 @@ jobs:
         env:
           SUBSCRIBER_USER: ${{ secrets.SUBSCRIBER_USER }}
           SUBSCRIBER_PASS: ${{ secrets.SUBSCRIBER_PASS }}
-        run: npx playwright test tests/dashboard --project=chromium
+        run: npx playwright test --project=chromium
         continue-on-error: true # Ensures workflow continues even if tests fail
 
       - name: Upload Playwright report
