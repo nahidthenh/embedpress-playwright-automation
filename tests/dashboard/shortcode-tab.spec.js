@@ -7,7 +7,7 @@ test.describe('Dashboard Shortcode Tab', () => {
         await page.goto('https://embedpress.wpqa.site/wp-admin/admin.php?page=embedpress&page_type=shortcode');
     });
 
-    test('Should display EmbedPress Shortcode content', async ({ page }) => {
+    test('Should display EmbedPress Shortcode content and functionility Options', async ({ page }) => {
         await expect(page.getByRole('heading', { name: 'Shortcode' })).toBeVisible();
         await expect(page.getByText('EmbedPress has direct')).toBeVisible();
         await expect(page.locator('.shortcode__form').first()).toBeVisible();
@@ -22,9 +22,5 @@ test.describe('Dashboard Shortcode Tab', () => {
         await expect(page.locator('#ep-shortcode')).toBeVisible();
         await page.getByRole('button', { name: ' Copy Link' }).click();
         await expect(page.getByText('Copied to your clipboard')).toBeVisible();
-    });
-
-    test('Should display general tab content', async ({ page }) => {
-       
     });
 });
