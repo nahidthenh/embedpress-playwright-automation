@@ -641,8 +641,6 @@ const data = [
         name: "PolariShare",
         doc: "https://embedpress.com/docs/how-to-embed-polarishare-videos-in-wordpress/",
     }
-
-
 ];
 
 test.describe("imgur embedding test", () => {
