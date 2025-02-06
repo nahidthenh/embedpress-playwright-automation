@@ -344,7 +344,7 @@ const data = [
     {
         img: `${image_path}/digiteka.png`,
         name: "Digiteka",
-        doc: "https://embedpress.wpqa.site/wp-admin/admin.php?page=embedpress&page_type=sources",
+        doc: "",
     },
     {
         img: `${image_path}/toornament.png`,
@@ -409,7 +409,7 @@ const data = [
     {
         img: `${image_path}/hippo-videos.png`,
         name: "Hippo Videos",
-        doc: "https://embedpress.wpqa.site/wp-admin/admin.php?page=embedpress&page_type=sources",
+        doc: "",
     },
     {
         img: `${image_path}/roomshare.png`,
