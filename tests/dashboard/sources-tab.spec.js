@@ -320,153 +320,327 @@ const data = [
         img: `${image_path}/flourish.png`,
         name: "Flourish",
         doc: "https://embedpress.com/docs/how-to-embed-flourish/",
+    },
+    {
+        img: `${image_path}/nrk-radio.png`,
+        name: "NRK Radio",
+        doc: "https://embedpress.com/docs/embed-nrk-radio-podcasts-in-wordpress/",
+    },
+    {
+        img: `${image_path}/infogram.png`,
+        name: "Infogram",
+        doc: "https://embedpress.com/docs/embed-infogram-charts-wordpress/",
+    },
+    {
+        img: `${image_path}/fite.png`,
+        name: "FITE",
+        doc: "https://embedpress.com/docs/how-to-embed-fite/",
+    },
+    {
+        img: `${image_path}/animoto.png`,
+        name: "Animoto",
+        doc: "https://embedpress.com/docs/embed-animoto-videos-wordpress/",
+    },
+    {
+        img: `${image_path}/digiteka.png`,
+        name: "Digiteka",
+        doc: "https://embedpress.wpqa.site/wp-admin/admin.php?page=embedpress&page_type=sources",
+    },
+    {
+        img: `${image_path}/toornament.png`,
+        name: "Toornament",
+        doc: "https://embedpress.com/docs/how-to-embed-toornament/",
+    },
+    {
+        img: `${image_path}/sapa.png`,
+        name: "SAPO Videos",
+        doc: "https://embedpress.com/docs/how-to-embed-sapo-videos-in-wordpress/",
+    },
+    {
+        img: `${image_path}/fader.png`,
+        name: "Fader",
+        doc: "https://embedpress.com/docs/how-to-embed-fader/",
+    },
+    {
+        img: `${image_path}/tvcf.png`,
+        name: "TVCF Advertisements",
+        doc: "https://embedpress.com/docs/how-to-embed-tvcf-advertisements-in-wordpress/",
+    },
+    {
+        img: `${image_path}/wizer.png`,
+        name: "Wizer",
+        doc: "https://embedpress.com/docs/how-to-embed-wizer/",
+    },
+    {
+        img: `${image_path}/cloudup.png`,
+        name: "Cloudup",
+        doc: "https://embedpress.com/docs/embed-cloudup-videos-images-or-audios-wordpress/",
+    },
+    {
+        img: `${image_path}/sudomemo.png`,
+        name: "Sudomemo",
+        doc: "https://embedpress.com/docs/how-to-embed-sudomemo/",
+    },
+    {
+        img: `${image_path}/circuitlab.png`,
+        name: "CircuitLab",
+        doc: "https://embedpress.com/docs/embed-circuitlab-circuit-wordpress/",
+    },
+    {
+        img: `${image_path}/edumedia.png`,
+        name: "Edumedia Science Files",
+        doc: "https://embedpress.com/docs/how-to-embed-edumedia-science-files-in-wordpress/",
+    },
+    {
+        img: `${image_path}/ludus.png`,
+        name: "Ludus",
+        doc: "https://embedpress.com/docs/embed-ludus-in-wordpress/",
+    },
+    {
+        img: `${image_path}/runkit.png`,
+        name: "RunKit",
+        doc: "https://embedpress.com/docs/embed-runkit-in-wordpress/",
+    },
+    {
+        img: `${image_path}/clyp-audio.png`,
+        name: "Clyp.it",
+        doc: "https://embedpress.com/docs/embed-clypit-audio-wordpress/",
+    },
+    {
+        img: `${image_path}/hippo-videos.png`,
+        name: "Hippo Videos",
+        doc: "https://embedpress.wpqa.site/wp-admin/admin.php?page=embedpress&page_type=sources",
+    },
+    {
+        img: `${image_path}/roomshare.png`,
+        name: "Roomshare Listings",
+        doc: "https://embedpress.com/docs/embed-roomshare-listings-wordpress/",
+    },
+    {
+        img: `${image_path}/didacte.png`,
+        name: "Didacte Courses",
+        doc: "https://embedpress.com/docs/how-to-embed-didacte-courses-in-wordpress/",
+    },
+    {
+        img: `${image_path}/lumiere.png`,
+        name: "Lumiere",
+        doc: "https://embedpress.com/docs/how-to-embed-lumiere/",
+    },
+    {
+        img: `${image_path}/huffduffer.png`,
+        name: "Huffduffer",
+        doc: "https://embedpress.com/docs/how-to-embed-huffduffer-podcasts-in-wordpress/",
+    },
+    {
+        img: `${image_path}/onsizzle.png`,
+        name: "OnSizzle Content",
+        doc: "https://embedpress.com/docs/embed-onsizzle-content-in-wordpress/",
+    },
+    {
+        img: `${image_path}/socialexplorer.png`,
+        name: "Social Explorer Maps",
+        doc: "https://embedpress.com/docs/how-to-embed-social-explorer-maps-in-wordpress/",
+    },
+    {
+        img: `${image_path}/chartblocks.png`,
+        name: "Chartblocks",
+        doc: "https://embedpress.com/docs/embed-chartblocks-charts-wordpress/",
+    },
+    {
+        img: `${image_path}/orbitvu.png`,
+        name: "Orbitvu 360 Images",
+        doc: "https://embedpress.com/docs/how-to-embed-orbitvu-360-images-in-wordpress/",
+    },
+    {
+        img: `${image_path}/getshow.png`,
+        name: "GetShow",
+        doc: "https://embedpress.com/docs/how-to-embed-getshow-social-posts-in-wordpress/",
+    },
+    {
+        img: `${image_path}/wave.png`,
+        name: "Wave",
+        doc: "https://embedpress.com/docs/how-to-embed-wave-videos-in-wordpress/",
+    },
+    {
+        img: `${image_path}/shortnote.png`,
+        name: "Shortnote",
+        doc: "https://embedpress.com/docs/embed-shortnote-notes-wordpress/",
+    },
+    {
+        img: `${image_path}/dotsub.png`,
+        name: "Dotsub",
+        doc: "https://embedpress.com/docs/embed-dotsub-videos-wordpress/",
+    },
+    {
+        img: `${image_path}/chirbit-audio.png`,
+        name: "Chirbit",
+        doc: "https://embedpress.com/docs/embed-chirbit-audio-wordpress/",
+    },
+    {
+        img: `${image_path}/songlink.png`,
+        name: "Songlink Odesli Page",
+        doc: "https://embedpress.com/docs/embed-songlink-odesli-page/",
+    },
+    {
+        img: `${image_path}/nytimes.png`,
+        name: "The New York Times",
+        doc: "https://embedpress.com/docs/embed-the-new-york-times-news-in-wordpress/",
+    },
+    {
+        img: `${image_path}/smashnotes.png`,
+        name: "Smash Notes Podcasts",
+        doc: "https://embedpress.com/docs/how-to-embed-smash-notes-podcasts-in-wordpress/",
+    },
+    {
+        img: `${image_path}/commaful.png`,
+        name: "Commaful",
+        doc: "https://embedpress.com/docs/how-to-embed-commaful-in-wordpress/",
+    },
+    {
+        img: `${image_path}/showtheway.png`,
+        name: "ShowTheWay",
+        doc: "https://embedpress.com/docs/how-to-embed-showtheway-maps-in-wordpress/",
+    },
+    {
+        img: `${image_path}/blogcast.png`,
+        name: "Blogcast",
+        doc: "https://embedpress.com/docs/how-to-embed-blogcast-podcasts-in-wordpress/",
+    },
+    {
+        img: `${image_path}/videopress.png`,
+        name: "VideoPress",
+        doc: "https://embedpress.com/docs/embed-videopress-videos-wordpress/",
+    },
+    {
+        img: `${image_path}/kakaotv.png`,
+        name: "KaKao TV",
+        doc: "https://embedpress.com/docs/how-to-embed-kakao-tv-videos-in-wordpress/",
+    },
+    {
+        img: `${image_path}/crowdsignal.png`,
+        name: "Crowdsignal",
+        doc: "https://embedpress.com/docs/how-to-embed-crowdsignal-surveys-in-wordpress/",
+    },
+    {
+        img: `${image_path}/medienarchiv.png`,
+        name: "Medienarchiv",
+        doc: "https://embedpress.com/docs/how-to-embed-medienarchiv-of-zurich-university/",
+    },
+    {
+        img: `${image_path}/zingsoft.png`,
+        name: "ZingSoft Charts & Grids",
+        doc: "https://embedpress.com/docs/how-to-embed-zingsoft-charts-grids-in-wordpress/",
+    },
+    {
+        img: `${image_path}/ethfiddle.png`,
+        name: "EthFiddle",
+        doc: "https://embedpress.com/docs/how-to-embed-ethfiddle/",
+    },
+    {
+        img: `${image_path}/namchey.png`,
+        name: "Namchey",
+        doc: "https://embedpress.com/docs/how-to-embed-namchey/",
+    },
+    {
+        img: `${image_path}/polldaddy.png`,
+        name: "Polldaddy",
+        doc: "https://embedpress.com/docs/polldaddy-embed-wordpress/",
+    },
+    {
+        img: `${image_path}/sway.png`,
+        name: "Sway",
+        doc: "https://embedpress.com/docs/how-to-embed-sway/",
+    },
+    {
+        img: `${image_path}/voxsnap.png`,
+        name: "VoxSnap",
+        doc: "https://embedpress.com/docs/how-to-embed-voxsnap/",
+    },
+    {
+        img: `${image_path}/overflow.png`,
+        name: "Overflow",
+        doc: "https://embedpress.com/docs/how-to-embed-overflow-in-wordpress-with-embedpress/",
+    },
+    {
+        img: `${image_path}/sproutvideo.png`,
+        name: "SproutVideo",
+        doc: "https://embedpress.com/docs/how-to-embed-sproutvideo/",
+    },
+    {
+        img: `${image_path}/songlink.png`,
+        name: "SongLink",
+        doc: "https://embedpress.com/docs/how-to-embed-sproutvideo/",
+    },
+    {
+        img: `${image_path}/23hq.png`,
+        name: "23hq Photos",
+        doc: "https://embedpress.com/docs/embed-23hq-photos-wordpress/",
+    },
+    {
+        img: `${image_path}/geograph-uk.png`,
+        name: "Geograph UK",
+        doc: "https://embedpress.com/docs/how-to-embed-geograph/",
+    },
+    {
+        img: `${image_path}/issuu.png`,
+        name: "ISSUU",
+        doc: "https://embedpress.com/docs/embed-issuu-documents-wordpress/",
+    },
+    {
+        img: `${image_path}/roosterteeth.png`,
+        name: "Roosterteeth",
+        doc: "https://embedpress.com/docs/embed-roosterteeth-videos-wordpress/",
+    },
+    {
+        img: `${image_path}/dailymile.png`,
+        name: "Daily Mile",
+        doc: "https://embedpress.com/docs/embed-dailymile-activity-wordpress/",
+    },
+    {
+        img: `${image_path}/sketchfab.png`,
+        name: "Sketchfab",
+        doc: "https://embedpress.com/docs/embed-sketchfab-drawings-wordpress/",
+    },
+    {
+        img: `${image_path}/matterport.png`,
+        name: "Matterport",
+        doc: "https://embedpress.com/docs/how-to-embed-matterport-3d-scans/",
+    },
+    {
+        img: `${image_path}/codepoint.png`,
+        name: "Code point",
+        doc: "https://embedpress.com/docs/how-to-embed-codepoints-codes-in-wordpress/",
+    },
+    {
+        img: `${image_path}/mbm.png`,
+        name: "MBM",
+        doc: "https://embedpress.com/docs/how-to-embed-mbm-audio-in-wordpress/",
+    },
+    {
+        img: `${image_path}/datawrapper.png`,
+        name: "Datawrapper",
+        doc: "https://embedpress.com/docs/how-to-embed-datawrapper-data-charts-in-wordpress/",
+    },
+    {
+        img: `${image_path}/eyrie.png`,
+        name: "Eyrie",
+        doc: "https://embedpress.com/docs/how-to-embed-eyrie-photo-albums-in-wordpress/",
+    },
+    {
+        img: `${image_path}/cambridge-map.png`,
+        name: "Cambridge Map",
+        doc: "https://embedpress.com/docs/how-to-embed-university-cambridge-map/",
+    },
+    {
+        img: `${image_path}/mermaid.png`,
+        name: "Mermaid",
+        doc: "https://embedpress.com/docs/embed-mermaid-in-wordpress/",
+    },
+    {
+        img: `${image_path}/polarishare.png`,
+        name: "PolariShare",
+        doc: "https://embedpress.com/docs/how-to-embed-polarishare-videos-in-wordpress/",
     }
-    // ,
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // },
-    // {
-    //     img: ``,
-    //     name: "",
-    //     doc: "",
-    // }
 
 
 ];
