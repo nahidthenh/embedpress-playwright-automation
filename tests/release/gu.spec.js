@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 test.use({ storageState: 'playwright/.auth/user.json' });
 
 
-test.describe('Dashboard Branding Tab', () => {
+test.describe('Gutenberg source embed TestCases', () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('https://embedpress.wpqa.site/wp-admin/post.php?post=9507&action=edit');
     });
