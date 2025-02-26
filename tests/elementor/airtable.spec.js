@@ -1,0 +1,6 @@
+const { test, expect } = require('@playwright/test');
+
+test('Embed Elementor Airtable source', async ({ page }) => {
+    await page.goto('https://embedpress.wpqa.site/playwright-elementor/elementor-airtable/');
+    await expect(page.locator('iframe').contentFrame().locator('.dataRightPane')).toBeVisible();
+});
