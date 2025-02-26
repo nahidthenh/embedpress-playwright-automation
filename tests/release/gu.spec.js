@@ -2,12 +2,30 @@ const { test, expect } = require('@playwright/test');
 
 test.use({ storageState: 'playwright/.auth/user.json' });
 
-
 test.describe('Gutenberg source embed TestCases', () => {
-    test.beforeEach(async ({ page }) => {
-        await page.goto('https://embedpress.wpqa.site/wp-admin/post.php?post=9507&action=edit');
+    test.beforeEach(async ({ browser }) => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+
+        // Navigate to the WordPress plugins page
+        await page.goto('https://embedpress.wpqa.site/wp-admin/plugins.php?plugin_status=all&paged=1&s');
+
+        // Locator for the Classic Editor plugin row
+        const pluginRow = page.locator('tr[data-slug="classic-editor"]');
+
+        // Check if the "Deactivate" button is visible (meaning the plugin is active)
+        const isActive = await pluginRow.locator('a:has-text("Deactivate")').isVisible();
+
+        if (isActive) {
+            // If Classic Editor is active, deactivate it
+            await pluginRow.locator('a:has-text("Deactivate")').click();
+            await expect(pluginRow.locator('a:has-text("Activate")')).toBeVisible();
+        }
+
+        await page.close(); // Close to prevent session interference
     });
     test('Gutenberg source embed', async ({ page }) => {
+        await page.goto('https://embedpress.wpqa.site/wp-admin/post.php?post=9507&action=edit');
         // Wait for the editor to load
         await page.waitForSelector('.edit-post-layout');
 
@@ -37,6 +55,7 @@ test.describe('Gutenberg source embed TestCases', () => {
     // Gutenberg PDF source embed
 
     test('Gutenberg PDF source embed', async ({ page }) => {
+        await page.goto('https://embedpress.wpqa.site/wp-admin/post.php?post=9507&action=edit');
         await page.getByLabel('Add default block').click();
         await page.getByLabel('Empty block; start writing or').fill('/embedpress pdf');
         await page.keyboard.press('Backspace');
@@ -60,5 +79,3 @@ test.describe('Gutenberg source embed TestCases', () => {
         await expect(page.locator('iframe[title="university-life-impact-report_196he6m"]').contentFrame().getByText('Toggle Sidebar Find Previous Next of ⁨17⁩ Highlight Text Draw Add or edit')).toBeHidden();
     });
 });
-
-
