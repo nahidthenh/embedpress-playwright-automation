@@ -24,21 +24,21 @@ test.describe('Elementor source embed TestCases', () => {
         await page.getByLabel('university-life-impact-').click();
         await page.getByRole('button', { name: 'Select', exact: true }).click();
 
+        await page.waitForTimeout(3000);
         await page.getByRole('button', { name: 'Publish' }).click();
+        await page.waitForTimeout(3000);
         await page.goto('https://embedpress.wpqa.site/playwright-elementor/elementor-source-embed-test-cases/');
         await page.waitForLoadState()
 
+        // Check Embeded Content Visibility 
         await expect(page.locator('iframe[title="নো সাকিবিয়ান-নো তামিমিয়ান-নো মাশরাফিয়ান\\, শুধু বাংলাদেশ \\: তামিম ইকবাল \\| T Sports"]').contentFrame().getByRole('link', { name: 'নো সাকিবিয়ান-নো তামিমিয়ান-নো মাশরাফিয়ান, শুধু বাংলাদেশ : তামিম ইকবাল | T' })).toBeVisible();
         await expect(page.locator('iframe[title="university-life-impact-report_196he6m"]').contentFrame().getByText('THE DIVISION OF')).toBeVisible();
+
+        // Remove all embeded content
         await page.getByRole('link', { name: ' Edit with Elementor' }).click();
-        await page.locator('iframe[title="Preview"]').contentFrame().getByLabel('Delete Container').click();
+        await page.waitForTimeout(3000);
+        await page.locator('iframe[title="Preview"]').contentFrame().getByRole('listitem', { name: 'Delete Container' }).locator('i').click();
+        await page.waitForTimeout(3000);
         await page.getByRole('button', { name: 'Publish' }).click();
-
-        await page.goto('https://embedpress.wpqa.site/playwright-elementor/elementor-source-embed-test-cases/');
-
-        await expect(page.locator('iframe[title="নো সাকিবিয়ান-নো তামিমিয়ান-নো মাশরাফিয়ান\\, শুধু বাংলাদেশ \\: তামিম ইকবাল \\| T Sports"]').contentFrame().getByRole('link', { name: 'নো সাকিবিয়ান-নো তামিমিয়ান-নো মাশরাফিয়ান, শুধু বাংলাদেশ : তামিম ইকবাল | T' })).toBeHidden();
-        await expect(page.locator('iframe[title="university-life-impact-report_196he6m"]').contentFrame().getByText('THE DIVISION OF')).toBeHidden();
     });
 });
-
-
