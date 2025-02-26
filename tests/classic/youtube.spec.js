@@ -1,6 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 let slug = 'playwright-classic-editor/classic-youtube/';
+test.use({ storageState: 'playwright/.auth/user.json' });
 
 
 test.describe("Classic YouTube", () => {
@@ -33,6 +34,26 @@ test.describe("Classic YouTube", () => {
     });
 
     test('Copy URL Form Embed Code', async ({ page }) => {
+
+        // Navigate to the WordPress plugins page
+        await page.goto('https://embedpress.wpqa.site/wp-admin/plugins.php?plugin_status=all&paged=1&s');
+
+        // Locator for the Classic Editor plugin row
+        const pluginRow = page.locator('tr[data-slug="classic-editor"]');
+
+        // Check if the "Deactivate" button is visible (meaning the plugin is already active)
+        const isActive = await pluginRow.locator('a', { hasText: 'Deactivate' }).isVisible();
+
+        if (!isActive) {
+            // If inactive, activate the Classic Editor plugin
+            const activateButton = pluginRow.locator('a', { hasText: 'Activate' });
+            await activateButton.click();
+
+            // Ensure the plugin is activated
+            await expect(pluginRow.locator('a', { hasText: 'Deactivate' })).toBeVisible();
+        }
+
+        await page.goto('https://embedpress.wpqa.site/playwright-classic-editor/classic-youtube/');
         await expect(page.getByText('Copy URL Form Embed Code')).toBeVisible();
         await expect(page.frameLocator('iframe[title="Full Restoration 40 Years Old ruined Classic Motorcycle"] >> nth=3').locator('.ytp-cued-thumbnail-overlay-image')).toBeVisible();
         await expect(page.frameLocator('iframe[title="Full Restoration 40 Years Old ruined Classic Motorcycle"] >> nth=3').getByLabel('Play', { exact: true })).toBeVisible();
