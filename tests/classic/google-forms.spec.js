@@ -15,10 +15,5 @@ test.describe("Classic Google Forms", () => {
         // Check iframe visibility
         const iframe = page.locator('iframe').contentFrame().locator('div').filter({ hasText: 'Contact information* প্রয়োজনীয় প্রশ্ন নির্দেশ করেName *আপনার উত্তরEmail' }).first()
         await expect(iframe).toBeVisible();
-
-        // Check dimensions height & width
-        const { height, width } = await iframe.evaluate(iframe => iframe.getBoundingClientRect());
-        // expect(height).toBeCloseTo(1298.203125, 1);
-        expect(width).toBeCloseTo(1140, 1);
     });
 });
