@@ -17,7 +17,7 @@ const data = [
     {
         img: `${image_path}/airtable.png`,
         name: "Airtable",
-        doc: "https://embedpress.com/docs/how-to-embed-airtable-in-wordpress/",
+        doc: "https://embedpress.com/docs/embed-airtable-workspace-with-embedpress/",
     },
     {
         img: `${image_path}/canva.webp`,
@@ -647,8 +647,8 @@ const data = [
     }
 ];
 
-test.describe("imgur embedding test", () => {
-    test("elementor widget", async ({ browser }) => {
+test.describe("Sources Name , Icon, Docs Verify", () => {
+    test("Dashboard Sources Tab", async ({ browser }) => {
         const context = await browser.newContext({ storageState: "playwright/.auth/user.json" });
         const page = await context.newPage();
         await page.goto("/wp-admin/admin.php?page=embedpress&page_type=sources");
