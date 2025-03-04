@@ -20,6 +20,11 @@ const data = [
         doc: "https://embedpress.com/docs/how-to-embed-airtable-in-wordpress/",
     },
     {
+        img: `${image_path}/canva.webp`,
+        name: "Canva",
+        doc: "https://embedpress.com/docs/how-to-embed-canva-in-wordpressc/",
+    },
+    {
         img: `${image_path}/youtube.png`,
         name: "YouTube",
         doc: "https://embedpress.com/docs/embed-youtube-wordpress/",
