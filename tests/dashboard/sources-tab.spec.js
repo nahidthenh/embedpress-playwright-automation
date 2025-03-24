@@ -22,7 +22,7 @@ const data = [
     {
         img: `${image_path}/canva.webp`,
         name: "Canva",
-        doc: "https://embedpress.com/docs/how-to-embed-canva-in-wordpressc/",
+        doc: "https://embedpress.com/docs/embed-canva-in-wordpress/",
     },
     {
         img: `${image_path}/youtube.png`,
