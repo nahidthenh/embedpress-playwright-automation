@@ -42,10 +42,20 @@ jobs:
         env:
           SUBSCRIBER_USER: ${{ secrets.SUBSCRIBER_USER }}
           SUBSCRIBER_PASS: ${{ secrets.SUBSCRIBER_PASS }}
-        run: npx playwright test --project=chromium
+        run: npx playwright test --project=chromium --reporter=json > result.json
         continue-on-error: true
 
-      - name: Upload Playwright report
+      - name: Parse test summary
+        id: summary
+        run: |
+          PASSED=$(jq '[.suites[].specs[].tests[] | select(.results[].status=="passed")] | length' result.json)
+          FAILED=$(jq '[.suites[].specs[].tests[] | select(.results[].status=="failed")] | length' result.json)
+          SKIPPED=$(jq '[.suites[].specs[].tests[] | select(.results[].status=="skipped")] | length' result.json)
+          echo "PASSED=$PASSED" >> $GITHUB_ENV
+          echo "FAILED=$FAILED" >> $GITHUB_ENV
+          echo "SKIPPED=$SKIPPED" >> $GITHUB_ENV
+
+      - name: Upload Playwright HTML report
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
@@ -64,24 +74,13 @@ jobs:
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
 
-      - name: Extract test summary
-        id: summary
-        run: |
-          REPORT_FILE="playwright-report/results.json"
-          PASSED=$(jq '[.suites[].specs[].tests[] | select(.status=="passed")] | length' $REPORT_FILE)
-          FAILED=$(jq '[.suites[].specs[].tests[] | select(.status=="failed")] | length' $REPORT_FILE)
-          SKIPPED=$(jq '[.suites[].specs[].tests[] | select(.status=="skipped")] | length' $REPORT_FILE)
-          echo "PASSED=$PASSED" >> $GITHUB_ENV
-          echo "FAILED=$FAILED" >> $GITHUB_ENV
-          echo "SKIPPED=$SKIPPED" >> $GITHUB_ENV
-
       - name: Send Telegram Notification
         if: always()
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          MESSAGE="🧪 *Playwright Test Summary ✅ Passed: $PASSED ❌ Failed: $FAILED ⏭️ Skipped: $SKIPPED 📄 [View Report](https://nahidthenh.github.io/embedpress-playwright-automation/)"
+          MESSAGE="🧪 *Playwright Test Summary*\n\n✅ Passed: $PASSED\n❌ Failed: $FAILED\n⏭️ Skipped: $SKIPPED\n\n📄 [View Report](https://nahidthenh.github.io/embedpress-playwright-automation/)"
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
             -d chat_id="${TELEGRAM_CHAT_ID}" \
             -d parse_mode="Markdown" \
