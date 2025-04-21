@@ -80,7 +80,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          MESSAGE="🧪 *Playwright Test Summary*\n\n✅ Passed: $PASSED\n❌ Failed: $FAILED\n⏭️ Skipped: $SKIPPED\n\n📄 [View Report](https://nahidthenh.github.io/embedpress-playwright-automation/)"
+          MESSAGE="🧪 *Playwright Test Summary* ✅ Passed: $PASSED ❌ Failed: $FAILED ⏭️ Skipped: $SKIPPED 📄 [View Report](https://nahidthenh.github.io/embedpress-playwright-automation/)"
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
             -d chat_id="${TELEGRAM_CHAT_ID}" \
             -d parse_mode="Markdown" \
