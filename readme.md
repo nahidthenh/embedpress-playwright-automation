@@ -1,5 +1,7 @@
 # EmbedPress Test Automation
-Testing the EmbedPress Plugin Using Playwright
+Testing the EmbedPress Plugin Using Playwright.
+
+![EmbedPress Banner](https://ps.w.org/embedpress/assets/banner-1544x500.gif?rev=3149183)
 
 # About EmbedPress
 
