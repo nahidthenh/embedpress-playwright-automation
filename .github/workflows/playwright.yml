@@ -2,7 +2,7 @@ name: Playwright Tests
 
 on:
   push:
-    branches: [main, master, nahid]
+    branches: [main, master]
   schedule:
     - cron: '0 2 * * *'  # 8 AM GMT+6
 
@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
@@ -48,9 +48,10 @@ jobs:
       - name: Parse test summary
         id: summary
         run: |
-          PASSED=$(jq '[.suites[].specs[].tests[] | select(.results[].status=="passed")] | length' result.json)
-          FAILED=$(jq '[.suites[].specs[].tests[] | select(.results[].status=="failed")] | length' result.json)
-          SKIPPED=$(jq '[.suites[].specs[].tests[] | select(.results[].status=="skipped")] | length' result.json)
+          PASSED=$(jq '[.suites[] | .. | objects | select(has("status")) | select(.status=="passed")] | length' result.json)
+          FAILED=$(jq '[.suites[] | .. | objects | select(has("status")) | select(.status=="failed")] | length' result.json)
+          SKIPPED=$(jq '[.suites[] | .. | objects | select(has("status")) | select(.status=="skipped")] | length' result.json)
+
           echo "PASSED=$PASSED" >> $GITHUB_ENV
           echo "FAILED=$FAILED" >> $GITHUB_ENV
           echo "SKIPPED=$SKIPPED" >> $GITHUB_ENV
