@@ -13,7 +13,7 @@ test.describe("Elementor Google Slides", () => {
         await expect(page.getByRole('heading', { name: 'Default Google Slides 1140x800' })).toBeVisible();
 
         // Check iframe visibility
-        const iframe = page.locator('iframe').contentFrame().locator('.punch-viewer-container');
+        const iframe = page.locator('iframe').contentFrame().locator('.sketchyViewerContainer');
         await expect(iframe).toBeVisible();
 
         // Check dimensions height & width

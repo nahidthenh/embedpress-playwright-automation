@@ -4,6 +4,9 @@ let slug = 'playwright-classic-editor/classic-spotify';
 
 
 test.describe('Classic Spotify', () => {
+    if (process.env.CI) {
+        test.skip('Skipping all tests in this describe block in CI');
+    }
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
     });

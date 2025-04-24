@@ -13,8 +13,7 @@ test.describe("Classic Google Slides", () => {
         await expect(page.getByRole('heading', { name: 'Classic Google Slides' })).toBeVisible();
 
         // Check iframe visibility
-        const iframe = page.locator('iframe').contentFrame().locator('.punch-viewer-container');
-
+        const iframe = page.locator('iframe').contentFrame().locator('.sketchyViewerContainer');
         await expect(iframe).toBeVisible();
 
         // Check dimensions height & width

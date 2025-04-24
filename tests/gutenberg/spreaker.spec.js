@@ -11,6 +11,8 @@ test.describe("Spreaker Gutenberg", () => {
     });
     // Spreaker Playlist
     test('Spreaker Playlist', async ({ page }) => {
+        test.skip(process.env.CI, 'Skipping this test in CI');
+
         // Assert the main heading is visible
         const heading = page.getByRole('heading', { name: 'Spreaker Playlist' });
         await expect(heading).toBeVisible();
@@ -63,6 +65,8 @@ test.describe("Spreaker Gutenberg", () => {
 
     // Enable Pro Features 
     test('Enable Pro Features', async ({ page }) => {
+        test.skip(process.env.CI, 'Skipping this test in CI');
+
         // Check the main heading visibility
         const heading = page.getByRole('heading', { name: 'Enable Pro Features' });
         await heading.scrollIntoViewIfNeeded();

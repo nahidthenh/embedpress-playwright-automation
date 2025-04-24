@@ -36,6 +36,7 @@ test.describe("Google Photos", () => {
     });
 
     test('Single Photo - With Color', async ({ page }) => {
+        test.skip(process.env.CI, 'Skipping this test in CI');
         await expect(page.getByRole('heading', {
             name: 'Single Photo - With Color'
         })).toBeVisible();

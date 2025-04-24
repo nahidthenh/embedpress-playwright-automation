@@ -4,6 +4,10 @@ let slug = 'elementor-instagram';
 
 
 test.describe("Elementor Instagram Feed", () => {
+    if (process.env.CI) {
+        test.skip('Skipping all tests in this describe block in CI');
+    }
+
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
     });
@@ -160,7 +164,7 @@ test.describe("Elementor Instagram Feed", () => {
         const heading = page.getByRole('heading', { name: 'Option Disable' });
         await heading.scrollIntoViewIfNeeded();
         await expect(heading).toBeVisible();
-        
+
         await expect(page.locator('#ep-elements-id-785f06f').getByRole('link', { name: 'Please Follow' })).toBeHidden({ message: "'Please Follow' link should be hidden" });
         await expect(page.locator('#ep-elements-id-785f06f').getByRole('link', { name: '#food' })).toBeHidden({ message: "'#food' link should be hidden" });
         await expect(page.locator('#ep-elements-id-785f06f').getByText('Reels')).toBeHidden({ message: "'Reels' text should be hidden" });

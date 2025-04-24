@@ -12,6 +12,7 @@ test.describe("Gutenberg Google Forms", () => {
         // Check iframe visibility        
         await expect(page.getByRole('heading', { name: 'Google Forms 800' })).toBeVisible();
         // Check iframe visibility
+        await expect(page.locator('iframe').contentFrame().getByRole('button', { name: 'প্রবেশ করুন' })).toBeVisible();
         const iframe = page.locator('iframe').contentFrame().locator('div').filter({ hasText: 'Contact information* প্রয়োজনীয় প্রশ্ন নির্দেশ করেName *আপনার উত্তরEmail' }).first()
         await expect(iframe).toBeVisible();
 
