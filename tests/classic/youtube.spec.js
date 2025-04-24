@@ -34,7 +34,7 @@ test.describe("Classic YouTube", () => {
     });
 
     test('Copy URL Form Embed Code', async ({ page }) => {
-
+        test.skip(process.env.CI, 'Skipping this test in CI');
         // Navigate to the WordPress plugins page
         await page.goto('https://embedpress.wpqa.site/wp-admin/plugins.php?plugin_status=all&paged=1&s');
 

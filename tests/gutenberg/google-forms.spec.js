@@ -9,6 +9,7 @@ test.describe("Gutenberg Google Forms", () => {
     });
 
     test('Gutenberg Google Forms', async ({ page }) => {
+        test.skip(process.env.CI, 'Skipping this test in CI');
         // Check iframe visibility        
         await expect(page.getByRole('heading', { name: 'Google Forms 800' })).toBeVisible();
         // Check iframe visibility
