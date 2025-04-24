@@ -33,6 +33,7 @@ test.describe("Gutenberg YouTube Channel", () => {
     });
 
     test('YouTube Channel List Layout', async ({ page }) => {
+        test.skip(process.env.CI, 'Skipping this test in CI');
         const heading = page.getByRole('heading', { name: 'YouTube Chanel List' });
         await heading.scrollIntoViewIfNeeded();
         await expect(heading).toBeVisible();

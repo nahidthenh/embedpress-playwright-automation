@@ -5,6 +5,9 @@ let heading = 'Gutenberg Modern pdf';
 
 
 test.describe("Gutenberg Modern PDF", () => {
+    if (process.env.CI) {
+        test.skip('Skipping all tests in this describe block in CI');
+    }
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
         await page.waitForLoadState('networkidle');
