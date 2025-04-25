@@ -8,3 +8,5 @@ test('Gutenberg Giphy', async ({ page }) => {
 
     await expect(page.locator('.ose-giphy')).toBeVisible();
 });
+
+// As Of now only one test case is available for giphy.
