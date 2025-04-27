@@ -30,6 +30,7 @@ module.exports = defineConfig({
       ]
       : []),
     ['html', { outputFolder: 'playwright-report', open: 'never' }], // Ensure you have the HTML reporter as well
+    ['json', { outputFile: 'result.json' }], 
     ['dot'], // Console output reporter
   ],
   outputDir: 'test-results',

@@ -42,7 +42,7 @@ jobs:
         env:
           SUBSCRIBER_USER: ${{ secrets.SUBSCRIBER_USER }}
           SUBSCRIBER_PASS: ${{ secrets.SUBSCRIBER_PASS }}
-        run: npx playwright test --project=chromium --reporter=json > result.json
+        run: npx playwright test --project=chromium
         continue-on-error: true
 
       - name: Parse test summary
