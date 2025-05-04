@@ -6,4 +6,3 @@ test('Embed Classic smugmug source', async ({ page }) => {
 });
 
 // As now we only have embed support for this Source
-
