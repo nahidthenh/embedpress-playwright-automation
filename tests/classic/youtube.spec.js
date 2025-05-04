@@ -7,7 +7,6 @@ test.use({ storageState: 'playwright/.auth/user.json' });
 test.describe("Classic YouTube", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
-        await page.waitForLoadState('networkidle');
     });
 
     test('Default YouTube', async ({ page }) => {
