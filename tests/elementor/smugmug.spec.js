@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-test('Embed Classic smugmug source', async ({ page }) => {
+test('Embed Elementor smugmug source', async ({ page }) => {
     await page.goto('https://embedpress.wpqa.site/playwright-elementor/smugmug-elementor/');
     await expect(page.getByRole('link').filter({ hasText: /^$/ })).toBeVisible();
 });
