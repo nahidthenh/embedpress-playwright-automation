@@ -8,8 +8,8 @@ test('Visibility of Google Photos Grid Layout in Gutenberg', async ({ page }) =>
     await expect(page.getByRole('heading', { name: 'Gu Google Photos – Grid Layout' })).toBeVisible();
 
     // Grid layout visibility 
-    const masonry = page.locator('.google-photos-gallery-grid-widget');
-    await expect(masonry).toBeVisible();
+    const grid = page.locator('.google-photos-gallery-grid-widget');
+    await expect(grid).toBeVisible();
 
     await expect(page.getByRole('heading', { name: 'Startise Pitha Utshob 5.0 –' })).toBeVisible();
     await expect(page.locator('#photo-c4c389e29d69c63787aba1e1fb448a5d > img')).toBeVisible();
