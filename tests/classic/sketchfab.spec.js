@@ -1,9 +1,9 @@
 const { test, expect } = require('@playwright/test');
 
-test('Embed Gutenberg Sketchfab source', async ({ page }) => {
-    await page.goto('https://embedpress.wpqa.site/playwright-gutenberg/gu-sketchfab/');
+test('Embed Classic sketchfab source', async ({ page }) => {
+    await page.goto('https://embedpress.wpqa.site/playwright-classic-editor/cl-sketchfab/');
     await expect(page.locator('body')).toBeVisible();
-   
 });
 
 // As now we only have embed support for this Source
+
