@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-test('Embed Classic vidyard source', async ({ page }) => {
+test('Embed Gutenberg vidyard source', async ({ page }) => {
     await page.goto('https://embedpress.wpqa.site/gu-vidyard/');
     await expect(page.locator('iframe[title="Vidyard Recording"]').contentFrame().getByTestId('splashScreen')).toBeVisible();
 });
