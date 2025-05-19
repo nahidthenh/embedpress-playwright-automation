@@ -1,7 +1,8 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect, chromium } = require('@playwright/test');
 
 test('Embed Classic VideoPress source', async ({ page }) => {
     await page.goto('http://embedpress.wpqa.site/playwright-classic-editor/cl-videopress/');
+    // We Have Problem with chromium browser we will fix it later
 });
 
 // As now we only have embed support for this Source
