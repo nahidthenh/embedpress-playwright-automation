@@ -1,0 +1,45 @@
+# Test info
+
+- Name: Elementor Google Sheets >> Elementor Google Sheets
+- Location: /home/runner/work/embedpress-playwright-automation/embedpress-playwright-automation/tests/elementor/google-sheets.spec.js:11:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_TIMED_OUT at https://embedpress.wpqa.site/playwright-elementor/elementor-google-sheets
+Call log:
+  - navigating to "https://embedpress.wpqa.site/playwright-elementor/elementor-google-sheets", waiting until "load"
+
+    at /home/runner/work/embedpress-playwright-automation/embedpress-playwright-automation/tests/elementor/google-sheets.spec.js:7:20
+```
+
+# Test source
+
+```ts
+   1 | const { test, expect } = require('@playwright/test');
+   2 |
+   3 | const slug = 'playwright-elementor/elementor-google-sheets';
+   4 |
+   5 | test.describe("Elementor Google Sheets", () => {
+   6 |     test.beforeEach(async ({ page }) => {
+>  7 |         await page.goto(slug);
+     |                    ^ Error: page.goto: net::ERR_TIMED_OUT at https://embedpress.wpqa.site/playwright-elementor/elementor-google-sheets
+   8 |         // await page.waitForLoadState('networkidle');
+   9 |     });
+  10 |
+  11 |     test('Elementor Google Sheets', async ({ page }) => {
+  12 |         // Check iframe visibility        
+  13 |         await expect(page.getByRole('heading', { name: 'Google Sheets 1140x800' })).toBeVisible();
+  14 |
+  15 |         // Check iframe visibility
+  16 |         const iframe = page.locator('iframe');
+  17 |         await expect(iframe).toBeVisible();
+  18 |
+  19 |         // Check dimensions height & width
+  20 |         const { height, width } = await iframe.evaluate(iframe => iframe.getBoundingClientRect());
+  21 |         expect(height).toBeCloseTo(800, 1);
+  22 |         expect(width).toBeCloseTo(1140, 1);
+  23 |     });
+  24 | });
+  25 |
+```
