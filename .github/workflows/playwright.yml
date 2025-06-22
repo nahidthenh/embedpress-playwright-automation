@@ -4,7 +4,7 @@ on:
   push:
     branches: [main, master]
   schedule:
-    - cron: '0 2 * * *'  # 8 AM GMT+6
+    - cron: '0 23 * * *'  # 5 AM GMT+6
 
 permissions:
   contents: write
