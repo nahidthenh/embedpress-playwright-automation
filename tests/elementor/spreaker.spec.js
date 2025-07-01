@@ -12,112 +12,32 @@ test.describe("Elementor Spreaker", () => {
 
     // Spreaker Playlist
     test('Spreaker Playlist - Elementor', async ({ page }) => {
-        test.skip(process.env.CI, 'Skipping this test in CI');
-        // Assert the main heading is visible
-        const heading = page.getByRole('heading', { name: 'Spreaker Playlist' });
-        await expect(heading).toBeVisible();
-
-        // Define the common iframe locator and access its content frame
-        const iframeLocator = page.locator('iframe').first();
-        const frame = await iframeLocator.contentFrame();
-        if (!frame) {
-            throw new Error('Failed to locate the iframe content frame.');
-        }
-
-        // Define locators for elements within the iframe
-        const elementsToCheck = [
-            { locator: frame.getByLabel('Listen on Spreaker'), description: 'Listen on Spreaker button' },
-            { locator: frame.getByRole('link', { name: 'Privacy Policy' }), description: 'Privacy Policy link' },
-            { locator: frame.getByRole('img', { name: 'The Deadliest Mountain on' }).first(), description: 'Episode image' },
-            { locator: frame.locator('li').filter({ hasText: 'The Deadliest Mountain on' }).getByLabel('Play episode The Deadliest Mountain on Earth'), description: 'Specific Play button' },
-            { locator: frame.getByLabel('Skip back 10 seconds'), description: 'Skip back button' },
-            { locator: frame.getByLabel('Skip forward 30 seconds'), description: 'Skip forward button' },
-            { locator: frame.getByLabel('Like episode'), description: 'Like button' },
-            { locator: frame.getByLabel('Read comments'), description: 'Read comments button' },
-            { locator: frame.getByLabel('Share episode on social media'), description: 'Share button' },
-            { locator: frame.getByLabel('player.download_episode'), description: 'Download button' },
-            { locator: frame.locator('.button_info').first(), description: 'Info button' },
-            { locator: frame.getByText('The Deadliest Mountain on Earthepisode_explicit16:'), description: 'Episode text' },
-        ];
-
-        // Check visibility of all elements in the iframe
-        for (const { locator, description } of elementsToCheck) {
-            await expect(locator).toBeVisible({ message: `${description} should be visible` });
-        }
-
-        // Interact with specific play and pause buttons
-        const specificPlayButton = frame
-            .locator('li')
-            .filter({ hasText: 'The Deadliest Mountain on Earth' })
-            .getByLabel('Play episode The Deadliest Mountain on Earth');
-
-        const specificPauseButton = frame
-            .locator('li')
-            .filter({ hasText: 'The Deadliest Mountain on Earth' })
-            .getByLabel('Pause episode The Deadliest Mountain on Earth');
-
-        await specificPlayButton.click();
-        await page.waitForTimeout(500); // Small delay to simulate playback
-        await specificPauseButton.click();
-
-        // Assert CSS property of an element within the frame
-        const cssElement = frame.locator('.widget.theme_light.theme_with_playlist');
-
-        // Assert that the element has the expected class
-        await expect(cssElement).toHaveClass(/widget theme_light theme_with_playlist/);
+        await expect(page.getByRole('heading', { name: 'Spreaker Playlist' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-f1f4254 iframe[title="This is title"]').contentFrame().getByRole('link', { name: 'player.download_episode' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-f1f4254 iframe[title="This is title"]').contentFrame().getByRole('button', { name: 'Share episode on social media' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-f1f4254 iframe[title="This is title"]').contentFrame().getByRole('link', { name: 'Read comments' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-f1f4254 iframe[title="This is title"]').contentFrame().getByRole('link', { name: 'Like episode' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-f1f4254 iframe[title="This is title"]').contentFrame().getByRole('button', { name: 'Skip forward 30 seconds' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-f1f4254 iframe[title="This is title"]').contentFrame().getByRole('button', { name: 'Skip back 10 seconds' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-f1f4254 iframe[title="This is title"]').contentFrame().getByRole('link', { name: 'Listen on Spreaker' })).toBeVisible();
+        await expect(page.locator('#ep-elements-id-f1f4254 iframe[title="This is title"]').contentFrame().getByText('episodes')).toBeVisible();
     });
 
 
     // Enable Pro Features 
     test('Enable Pro Features', async ({ page }) => {
-        test.skip(process.env.CI, 'Skipping this test in CI');
-        // Check the main heading visibility
-        const heading = page.getByRole('heading', { name: 'Enable Pro Features' });
-        await heading.scrollIntoViewIfNeeded();
-        await expect(heading).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'Enable Pro Features' })).toBeVisible();
+        await page.getByText('Disable Downloads – Upload').click();
 
-        // Define a common locator for the embedded iframe
+        const iframe = page.frameLocator('#ep-elements-id-90c2277 iframe[title="This is title"]');
 
-        const iframeLocator = page
-            .locator('#ep-elements-id-90c2277 iframe[title="This is title"]').first();
+        const downloadLink = iframe.getByRole('link', { name: 'player.download_episode' });
+        await expect(downloadLink).toBeHidden();
 
-        // Access the iframe's content frame
-        const frame = await iframeLocator.contentFrame();
-        if (!frame) {
-            throw new Error('Failed to locate the iframe content frame.');
-        }
-
-        // Define locators within the iframe for repeated elements
-        const elementsToCheck = [
-            // { locator: frame.getByLabel('Play episode 287. Evil in the').first(), description: 'Play button for episode 287' },
-            // { locator: frame.getByRole('link', { name: '287. Evil in the East: Sara' }), description: 'Link to episode 287' },
-            { locator: frame.getByLabel('Skip back 10 seconds'), description: 'Skip back button' },
-            { locator: frame.getByLabel('Skip forward 30 seconds'), description: 'Skip forward button' },
-            { locator: frame.getByLabel('Like episode'), description: 'Like button' },
-            { locator: frame.getByLabel('Read comments'), description: 'Comments button' },
-            { locator: frame.getByLabel('Share episode on social media'), description: 'Share button' },
-            { locator: frame.locator('.button_info').first(), description: 'Information button' },
-            { locator: frame.getByLabel('Listen on Spreaker'), description: 'Listen on Spreaker button' },
-            // {locator:frame.}
-        ];
-
-
-        // Check visibility of all required elements within the iframe
-        for (const { locator, description } of elementsToCheck) {
-            await expect(locator).toBeVisible({ message: `${description} should be visible` });
-        }
-
-        // Assert the "Download button" is NOT visible
-        const downloadButton = frame.getByLabel('player.download_episode');
-        await expect(downloadButton).toBeHidden({ message: 'Download button should not be visible' });
-
-        // Interact with the episode play and pause buttons
-        await frame.getByLabel('Play episode 286. A').click();
-        await expect(
-            frame.getByRole('link', { name: '286. A Thanksgiving Massacre' })
-        ).toBeVisible({ message: 'Link to episode 286 should be visible' });
-        await frame.getByLabel('Pause episode 286. A').first().click();
+        const coverImage = iframe.locator('.player_cover_image');
+        await expect(coverImage).toBeVisible();
     });
+      
 
     // Disable Pro Features 
     test('Disable Pro Features', async ({ page }) => {

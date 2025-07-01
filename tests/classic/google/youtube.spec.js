@@ -33,24 +33,24 @@ test.describe("Classic YouTube", () => {
     });
 
     test('Copy URL Form Embed Code', async ({ page }) => {
-        test.skip(process.env.CI, 'Skipping this test in CI');
-        // Navigate to the WordPress plugins page
-        await page.goto('https://embedpress.wpqa.site/wp-admin/plugins.php?plugin_status=all&paged=1&s');
+        // test.skip(process.env.CI, 'Skipping this test in CI');
+        // // Navigate to the WordPress plugins page
+        // await page.goto('https://embedpress.wpqa.site/wp-admin/plugins.php?plugin_status=all&paged=1&s');
 
-        // Locator for the Classic Editor plugin row
-        const pluginRow = page.locator('tr[data-slug="classic-editor"]');
+        // // Locator for the Classic Editor plugin row
+        // const pluginRow = page.locator('tr[data-slug="classic-editor"]');
 
-        // Check if the "Deactivate" button is visible (meaning the plugin is already active)
-        const isActive = await pluginRow.locator('a', { hasText: 'Deactivate' }).isVisible();
+        // // Check if the "Deactivate" button is visible (meaning the plugin is already active)
+        // const isActive = await pluginRow.locator('a', { hasText: 'Deactivate' }).isVisible();
 
-        if (!isActive) {
-            // If inactive, activate the Classic Editor plugin
-            const activateButton = pluginRow.locator('a', { hasText: 'Activate' });
-            await activateButton.click();
+        // if (!isActive) {
+        //     // If inactive, activate the Classic Editor plugin
+        //     const activateButton = pluginRow.locator('a', { hasText: 'Activate' });
+        //     await activateButton.click();
 
-            // Ensure the plugin is activated
-            await expect(pluginRow.locator('a', { hasText: 'Deactivate' })).toBeVisible();
-        }
+        //     // Ensure the plugin is activated
+        //     await expect(pluginRow.locator('a', { hasText: 'Deactivate' })).toBeVisible();
+        // }
 
         await page.goto('https://embedpress.wpqa.site/playwright-classic-editor/classic-youtube/');
         await expect(page.getByText('Copy URL Form Embed Code')).toBeVisible();

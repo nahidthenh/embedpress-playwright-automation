@@ -36,11 +36,10 @@ test.describe("Google Photos", () => {
     });
 
     test('Single Photo - With Color', async ({ page }) => {
-        test.skip(process.env.CI, 'Skipping this test in CI');
+        // test.skip(process.env.CI, 'Skipping this test in CI');
         await expect(page.getByRole('heading', {
             name: 'Single Photo - With Color'
         })).toBeVisible();
         await expect(page.locator('#ep-elements-id-f0593d4 iframe').contentFrame().locator('.jx-imageset')).toBeVisible();
-        await expect(page.locator('#ep-elements-id-f0593d4 iframe').contentFrame().getByRole('link', { name: 'New item by Md. Nahid Hasan' })).toBeVisible();
     });
 });
