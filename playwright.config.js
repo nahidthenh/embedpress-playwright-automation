@@ -3,6 +3,9 @@ require('dotenv').config();
 
 const isCI = !!process.env.CI; // Check if the CI environment variable is set
 
+// Centralized URL configuration
+const BASE_URL = 'https://embedpress.wpqa.site/';
+
 module.exports = defineConfig({
   testDir: './tests',
   fullyParallel: true,
@@ -30,13 +33,13 @@ module.exports = defineConfig({
       ]
       : []),
     ['html', { outputFolder: 'playwright-report', open: 'never' }], // Ensure you have the HTML reporter as well
-    ['json', { outputFile: 'result.json' }], 
+    ['json', { outputFile: 'result.json' }],
     ['dot'], // Console output reporter
   ],
   outputDir: 'test-results',
   timeout: 60000, // Increase default timeout to 60 seconds
   use: {
-    baseURL: 'https://embedpress.wpqa.site/',
+    baseURL: BASE_URL,
     trace: 'on-first-retry',
   },
   projects: [

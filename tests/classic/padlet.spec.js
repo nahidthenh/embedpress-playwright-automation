@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Classic Padlet source', async ({ page }) => {
-    await page.goto('https://embedpress.wpqa.site/playwright-classic-editor/classic-padlet/');
+    await page.goto('playwright-classic-editor/classic-padlet/');
     await expect(page.locator('iframe').contentFrame().getByRole('heading', { name: 'Canvas' })).toBeVisible();
     await expect(page.locator('iframe').contentFrame().getByText('Hello World !How are you all ?')).toBeVisible();
 });

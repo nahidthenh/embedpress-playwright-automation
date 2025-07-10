@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Gutenberg Learning Apps source', async ({ page }) => {
-    await page.goto('https://embedpress.wpqa.site/playwright-gutenberg/gu-learning-apps/');
+    await page.goto('playwright-gutenberg/gu-learning-apps/');
     await expect(page.locator('iframe[title="Periodic classification"]').contentFrame().locator('#frame').contentFrame().getByRole('link', { name: 'Show app in fullscreen' })).toBeVisible();
 });
 
