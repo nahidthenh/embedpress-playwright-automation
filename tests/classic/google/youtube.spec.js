@@ -52,7 +52,7 @@ test.describe("Classic YouTube", () => {
         //     await expect(pluginRow.locator('a', { hasText: 'Deactivate' })).toBeVisible();
         // }
 
-        await page.goto('https://embedpress.wpqa.site/playwright-classic-editor/classic-youtube/');
+        await page.goto('playwright-classic-editor/classic-youtube/');
         await expect(page.getByText('Copy URL Form Embed Code')).toBeVisible();
         await expect(page.frameLocator('iframe[title="Full Restoration 40 Years Old ruined Classic Motorcycle"] >> nth=3').locator('.ytp-cued-thumbnail-overlay-image')).toBeVisible();
         await expect(page.frameLocator('iframe[title="Full Restoration 40 Years Old ruined Classic Motorcycle"] >> nth=3').getByLabel('Play', { exact: true })).toBeVisible();

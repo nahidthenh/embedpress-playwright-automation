@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 
 test('Visibility of Google Photos justify Layout in Elementor', async ({ page }) => {
 
-    await page.goto('https://embedpress.wpqa.site/playwright-elementor/el-google-photos-justify-layout/');
+    await page.goto('playwright-elementor/el-google-photos-justify-layout/');
 
     // justify layout visibility 
     const justify = page.locator('.google-photos-gallery-justify-widget');

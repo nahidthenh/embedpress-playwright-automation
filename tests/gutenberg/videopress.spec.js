@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Gutenberg VideoPress source', async ({ page }) => {
-    await page.goto('https://embedpress.wpqa.site/playwright-gutenberg/gu-videopress/');
+    await page.goto('playwright-gutenberg/gu-videopress/');
     // We have problem on chromium browser we will fix it later
 });
 

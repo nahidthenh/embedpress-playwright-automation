@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Gutenberg Songlink source', async ({ page }) => {
-    await page.goto('https://embedpress.wpqa.site/playwright-gutenberg/gu-songlink/');
+    await page.goto('playwright-gutenberg/gu-songlink/');
     await expect(page.locator('iframe').contentFrame().getByRole('img', { name: 'Album artwork' })).toBeVisible();
 });
 

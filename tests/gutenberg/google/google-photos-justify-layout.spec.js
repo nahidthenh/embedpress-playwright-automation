@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 
 test('Visibility of Google Photos justify Layout in Gutenberg', async ({ page }) => {
 
-    await page.goto('https://embedpress.wpqa.site/gu-google-photos-justify-layout/');
+    await page.goto('gu-google-photos-justify-layout/');
 
     await expect(page.getByRole('heading', { name: 'GU Google Photos Justify' })).toBeVisible();
 

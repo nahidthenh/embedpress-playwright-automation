@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-let slug = 'https://embedpress.wpqa.site/gutenberg-document-blocks/';
+let slug = 'gutenberg-document-blocks/';
 
 
 test.describe("Gutenberg Document Blocks", () => {

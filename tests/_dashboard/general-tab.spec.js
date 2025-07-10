@@ -4,7 +4,7 @@ test.use({ storageState: 'playwright/.auth/user.json' });
 
 test.describe('Dashboard General Tab', () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto('https://embedpress.wpqa.site/wp-admin/admin.php?page=embedpress');
+        await page.goto('wp-admin/admin.php?page=embedpress');
     });
 
     test('Should display EmbedPress Dashboard content', async ({ page }) => {
