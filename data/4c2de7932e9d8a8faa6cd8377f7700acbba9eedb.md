@@ -1,0 +1,38 @@
+# Test info
+
+- Name: Embed Classic Instagram Reels Support
+- Location: /home/runner/work/embedpress-playwright-automation/embedpress-playwright-automation/tests/classic/instagram-reel.spec.js:3:1
+
+# Error details
+
+```
+Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+
+Locator: getByText('Fetching content').contentFrame().getByText('me_tester23Original audioView')
+Expected: visible
+Received: <element(s) not found>
+Call log:
+  - expect.toBeVisible with timeout 5000ms
+  - waiting for getByText('Fetching content').contentFrame().getByText('me_tester23Original audioView')
+
+    at /home/runner/work/embedpress-playwright-automation/embedpress-playwright-automation/tests/classic/instagram-reel.spec.js:5:112
+```
+
+# Page snapshot
+
+```yaml
+- heading "Error establishing a database connection" [level=1]
+```
+
+# Test source
+
+```ts
+  1 | const { test, expect } = require('@playwright/test');
+  2 |
+  3 | test('Embed Classic Instagram Reels Support', async ({ page }) => {
+  4 |     await page.goto('https://embedpress.wpqa.site/playwright-classic-editor/classic-instagram-reels-support/');
+> 5 |     await expect(page.getByText('Fetching content').contentFrame().getByText('me_tester23Original audioView')).toBeVisible();
+    |                                                                                                                ^ Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+  6 | });
+  7 | // As now we only have embed support for Instagram reels
+```
