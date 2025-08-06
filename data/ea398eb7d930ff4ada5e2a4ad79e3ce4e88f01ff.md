@@ -1,0 +1,91 @@
+# Test info
+
+- Name: Elementor Google Drawings >> Default Elementor Google Drawings
+- Location: /home/runner/work/embedpress-playwright-automation/embedpress-playwright-automation/tests/elementor/google/google-drawings.spec.js:11:5
+
+# Error details
+
+```
+Error: expect.toBeVisible: Error: strict mode violation: locator('#ep-elements-id-d506231').getByRole('img') resolved to 2 elements:
+    1) <img width="1140" height="800" loading="lazy" decoding="async" src="https://docs.google.com/drawings/d/e/2PACX-1vSlcFvwMSTMup-Zep26SNugijQiv59ELFpg9eBWTRfJkDntgFL6c0zS1m6GYawLb5HH2TtT2E5zGFQL/pub?w=960&h=720"/> aka getByRole('img').nth(1)
+    2) <img decoding="async" class="watermark" src="https://embedpress.wpqa.site/wp-content/uploads/2024/03/1.jpg"/> aka getByRole('img').nth(2)
+
+Call log:
+  - expect.toBeVisible with timeout 5000ms
+  - waiting for locator('#ep-elements-id-d506231').getByRole('img')
+
+    at /home/runner/work/embedpress-playwright-automation/embedpress-playwright-automation/tests/elementor/google/google-drawings.spec.js:18:30
+```
+
+# Page snapshot
+
+```yaml
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - navigation "Primary Navigation":
+    - list:
+      - listitem:
+        - link "Home":
+          - /url: https://embedpress.wpqa.site/
+      - listitem:
+        - link "Random Gutenberg":
+          - /url: https://embedpress.wpqa.site/random-gutenberg/
+      - listitem:
+        - link "Random Elementor":
+          - /url: https://embedpress.wpqa.site/random-elementor/
+      - listitem:
+        - link "Random Classic":
+          - /url: https://embedpress.wpqa.site/random-classic/
+      - listitem:
+        - link "Automation Report":
+          - /url: https://nahidthenh.github.io/embedpress-playwright-automation/
+      - listitem:
+        - link "Md. Nahid Hasan (Admin)":
+          - /url: https://embedpress.wpqa.site/wp-admin
+  - paragraph
+  - search "Search form":
+    - searchbox "Search input"
+    - textbox "Search autocomplete" [disabled]
+  - button "Search magnifier":
+    - img
+  - paragraph
+- heading "Elementor Google Drawings 1140x800" [level=2]
+- img
+- img
+- contentinfo:
+  - paragraph: © 2025 EmbedPress Automation Testing WPDeveloper SQA Team
+- text: desktop
+```
+
+# Test source
+
+```ts
+   1 | const { test, expect } = require('@playwright/test');
+   2 |
+   3 | const slug = 'playwright-elementor/elementor-google-drawings/';
+   4 |
+   5 | test.describe("Elementor Google Drawings", () => {
+   6 |     test.beforeEach(async ({ page }) => {
+   7 |         await page.goto(slug);
+   8 |         await page.waitForLoadState('networkidle');
+   9 |     });
+  10 |
+  11 |     test('Default Elementor Google Drawings', async ({ page }) => {
+  12 |         // Check iframe visibility        
+  13 |         await expect(page.getByRole('heading', { name: 'Elementor Google Drawings 1140x800' })).toBeVisible();
+  14 |
+  15 |         // Check iframe visibility
+  16 |         const iframe = page.locator('#ep-elements-id-d506231').getByRole('img');
+  17 |
+> 18 |         await expect(iframe).toBeVisible();
+     |                              ^ Error: expect.toBeVisible: Error: strict mode violation: locator('#ep-elements-id-d506231').getByRole('img') resolved to 2 elements:
+  19 |
+  20 |         // Check dimensions height & width
+  21 |         const { height, width } = await iframe.evaluate(iframe => iframe.getBoundingClientRect());
+  22 |         expect(height).toBeCloseTo(855, 1);
+  23 |         expect(width).toBeCloseTo(1140, 1);
+  24 |     });
+  25 | });
+  26 |
+```
