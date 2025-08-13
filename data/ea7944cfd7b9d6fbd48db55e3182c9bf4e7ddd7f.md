@@ -1,0 +1,72 @@
+# Test info
+
+- Name: Embed Classic Flickr source
+- Location: /home/runner/work/embedpress-playwright-automation/embedpress-playwright-automation/tests/classic/flickr.spec.js:3:1
+
+# Error details
+
+```
+Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+
+Locator: getByRole('link', { name: 'The Sledge' })
+Expected: visible
+Received: <element(s) not found>
+Call log:
+  - expect.toBeVisible with timeout 5000ms
+  - waiting for getByRole('link', { name: 'The Sledge' })
+
+    at /home/runner/work/embedpress-playwright-automation/embedpress-playwright-automation/tests/classic/flickr.spec.js:5:66
+```
+
+# Page snapshot
+
+```yaml
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - navigation "Primary Navigation":
+    - list:
+      - listitem:
+        - link "Home":
+          - /url: https://embedpress.wpqa.site/
+      - listitem:
+        - link "Random Gutenberg":
+          - /url: https://embedpress.wpqa.site/random-gutenberg/
+      - listitem:
+        - link "Random Elementor":
+          - /url: https://embedpress.wpqa.site/random-elementor/
+      - listitem:
+        - link "Random Classic":
+          - /url: https://embedpress.wpqa.site/random-classic/
+      - listitem:
+        - link "Automation Report":
+          - /url: https://nahidthenh.github.io/embedpress-playwright-automation/
+      - listitem:
+        - link "Md. Nahid Hasan (Admin)":
+          - /url: https://embedpress.wpqa.site/wp-admin
+  - paragraph
+  - search "Search form":
+    - searchbox "Search input"
+    - textbox "Search autocomplete" [disabled]
+  - button "Search magnifier":
+    - img
+  - paragraph
+- heading "Classic Flickr" [level=1]
+- main:
+  - article
+```
+
+# Test source
+
+```ts
+  1 | const { test, expect } = require('@playwright/test');
+  2 |
+  3 | test('Embed Classic Flickr source', async ({ page }) => {
+  4 |     await page.goto('https://embedpress.wpqa.site/playwright-classic-editor/classic-flickr/');
+> 5 |     await expect(page.getByRole('link', { name: 'The Sledge' })).toBeVisible();
+    |                                                                  ^ Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+  6 | });
+  7 | // As now we only have embed support for Flickr
+  8 |
+  9 |
+```

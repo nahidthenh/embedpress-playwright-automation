@@ -1,0 +1,72 @@
+# Test info
+
+- Name: Embed Elementor Polldaddy source
+- Location: /home/runner/work/embedpress-playwright-automation/embedpress-playwright-automation/tests/elementor/polldaddy.spec.js:3:1
+
+# Error details
+
+```
+Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+
+Locator: getByRole('button', { name: 'Vote' })
+Expected: visible
+Received: <element(s) not found>
+Call log:
+  - expect.toBeVisible with timeout 5000ms
+  - waiting for getByRole('button', { name: 'Vote' })
+
+    at /home/runner/work/embedpress-playwright-automation/embedpress-playwright-automation/tests/elementor/polldaddy.spec.js:5:61
+```
+
+# Page snapshot
+
+```yaml
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - navigation "Primary Navigation":
+    - list:
+      - listitem:
+        - link "Home":
+          - /url: https://embedpress.wpqa.site/
+      - listitem:
+        - link "Random Gutenberg":
+          - /url: https://embedpress.wpqa.site/random-gutenberg/
+      - listitem:
+        - link "Random Elementor":
+          - /url: https://embedpress.wpqa.site/random-elementor/
+      - listitem:
+        - link "Random Classic":
+          - /url: https://embedpress.wpqa.site/random-classic/
+      - listitem:
+        - link "Automation Report":
+          - /url: https://nahidthenh.github.io/embedpress-playwright-automation/
+      - listitem:
+        - link "Md. Nahid Hasan (Admin)":
+          - /url: https://embedpress.wpqa.site/wp-admin
+  - paragraph
+  - search "Search form":
+    - searchbox "Search input"
+    - textbox "Search autocomplete" [disabled]
+  - button "Search magnifier":
+    - img
+  - paragraph
+- main:
+  - article
+```
+
+# Test source
+
+```ts
+   1 | const { test, expect } = require('@playwright/test');
+   2 |
+   3 | test('Embed Elementor Polldaddy source', async ({ page }) => {
+   4 |     await page.goto('https://embedpress.wpqa.site/el-polldaddy/');
+>  5 |    await expect(page.getByRole('button', { name: 'Vote' })).toBeVisible();
+     |                                                             ^ Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+   6 |     
+   7 | });
+   8 | // As now we only have embed support for Polldaddy
+   9 |
+  10 |
+```
