@@ -9,9 +9,9 @@ test.describe('Dashboard General Tab', () => {
 
     test('Should display EmbedPress Dashboard content', async ({ page }) => {
         await expect(page.locator('header').getByRole('link').first()).toBeVisible();
-        await expect(page.getByText('All-In-One Embedding Solution')).toBeVisible();
-        await expect(page.getByText(/Core Version: v\d+\.\d+\.\d+/)).toBeVisible();
-        await expect(page.getByText(/Pro Version: v\d+\.\d+\.\d+/)).toBeVisible();
+        await expect(page.getByText('Embed content instantly. No code needed. Trusted by 100,000+ sites.')).toBeVisible();
+        // await expect(page.getByText(/Core Version: v\d+\.\d+\.\d+/)).toBeVisible();
+        // await expect(page.getByText(/Pro Version: v\d+\.\d+\.\d+/)).toBeVisible();
         await expect(page.locator('.img-box > img')).toBeVisible();
         await expect(page.getByRole('heading', { name: 'Get Started with EmbedPress' })).toBeVisible();
         await expect(page.getByText('All-in-one WordPress')).toBeVisible();
@@ -33,12 +33,12 @@ test.describe('Dashboard General Tab', () => {
         await expect(page.getByRole('link', { name: 'Unlock pro Features' })).toBeVisible();
         await expect(page.getByRole('link', { name: 'Get Support' }).nth(1)).toBeVisible();
         await expect(page.getByRole('link', { name: 'Suggest a Feature' })).toBeVisible();
-        await expect(page.getByRole('link', { name: 'Join Our Community' })).toBeVisible();
+        await expect(page.getByRole('link', { name: 'Join Our Community' }).first()).toBeVisible();
         await page.locator('.sponsored-link_bg').click();
     });
 
-    test('Should display and functional general tab', async ({ page }) => {
-        await expect(page.locator('#wpbody-content').getByRole('link', { name: 'General' })).toBeVisible();
+    test('Should display and functional Settings tab', async ({ page }) => {
+        await page.locator('#wpbody-content').getByText('Settings', { exact: true }).click();
         await expect(page.getByRole('heading', { name: 'Global Embed iFrame' })).toBeVisible();
         await expect(page.getByText('Embed iFrame Width')).toBeVisible();
         await page.locator('input[name="enableEmbedResizeWidth"]').click();

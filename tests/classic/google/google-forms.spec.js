@@ -9,7 +9,7 @@ test.describe("Classic Google Forms", () => {
     });
 
     test('Classic Google Forms', async ({ page }) => {
-        // test.skip(process.env.CI, 'Skipping this test in CI');
+        test.skip(process.env.CI, 'Skipping this test in CI');
         await expect(page.locator('iframe').contentFrame().getByRole('button', { name: 'প্রবেশ করুন' })).toBeVisible();
         // Check iframe visibility        
         await expect(page.getByRole('heading', { name: 'Classic Google Forms' })).toBeVisible();

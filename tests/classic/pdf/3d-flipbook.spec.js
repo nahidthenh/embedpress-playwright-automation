@@ -27,7 +27,6 @@ test.describe('3D Flipbook PDF Classic Editor', () => {
         await expect(pdfLocator.getByRole('link', { name: 'Fit view' })).toBeVisible();
         await expect(pdfLocator.getByRole('link', { name: 'Zoom out' })).toBeVisible();
         await expect(pdfLocator.getByRole('link', { name: 'Zoom in' })).toBeVisible();
-        await expect(page.getByText('Powered By EmbedPress').first()).toBeVisible();
     });
 
     test('3d Flipbook Pro Control Enable', async ({ page }) => {

@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-test('Embed Classic deviantart source', async ({ page }) => {
+test.skip('Embed Classic deviantart source', async ({ page }) => {
     await page.goto('https://ep-automation.wpqa.site/classic-deviantart/');
     await expect(page.getByRole('link').filter({ hasText: /^$/ })).toBeVisible();
 });

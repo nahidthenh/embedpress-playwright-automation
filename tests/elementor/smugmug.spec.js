@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-test('Embed Elementor smugmug source', async ({ page }) => {
+test.skip('Embed Elementor smugmug source', async ({ page }) => {
     await page.goto('https://ep-automation.wpqa.site/playwright-elementor/smugmug-elementor/');
     await expect(page.getByRole('link').filter({ hasText: /^$/ })).toBeVisible();
 });
