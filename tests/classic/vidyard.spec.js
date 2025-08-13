@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Classic vidyard source', async ({ page }) => {
-    await page.goto('https://embedpress.wpqa.site/playwright-classic-editor/classic-vidyard/');
+    await page.goto('https://ep-automation.wpqa.site/playwright-classic-editor/classic-vidyard/');
     await expect(page.locator('iframe[title="Vidyard Recording"]').contentFrame().getByTestId('splashScreen')).toBeVisible();
 });
 

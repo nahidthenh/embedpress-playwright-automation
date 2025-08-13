@@ -4,7 +4,7 @@ test.use({ storageState: 'playwright/.auth/user.json' });
 
 test.describe('Dashboard Branding Tab', () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto('https://embedpress.wpqa.site/wp-admin/admin.php?page=embedpress&page_type=custom-logo');
+        await page.goto('https://ep-automation.wpqa.site/wp-admin/admin.php?page=embedpress&page_type=custom-logo');
     });
 
     test('Should display EmbedPress Branding content', async ({ page }) => {
@@ -52,12 +52,12 @@ test.describe('Dashboard Branding Tab', () => {
         await page.getByRole('button', { name: 'Save Changes' }).click();
 
         // YouTube Custom Branding on youtube video visibility test       
-        await page.goto('https://embedpress.wpqa.site/global-branding/');
+        await page.goto('https://ep-automation.wpqa.site/global-branding/');
         await page.locator('iframe[title="যেভাবে প্লাস্টিকের কারণে ক্ষতিগ্রস্ত হচ্ছে মানুষ \\| People are Being Harmed by Plastic \\| Gtv News"]').contentFrame().getByLabel('Play', { exact: true }).click();
         await expect(page.locator('#ep-elements-id-ee58a63 img')).toBeVisible();
 
         // YouTube Custom Branding Disable      
-        await page.goto('https://embedpress.wpqa.site/wp-admin/admin.php?page=embedpress&page_type=custom-logo');
+        await page.goto('https://ep-automation.wpqa.site/wp-admin/admin.php?page=embedpress&page_type=custom-logo');
         await page.locator('div:nth-child(5) > .form__control__wrap > .input__switch > span').click();
         await page.getByRole('button', { name: 'Save Changes' }).click();
     });

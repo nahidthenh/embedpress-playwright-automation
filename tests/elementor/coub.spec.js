@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Elementor Coubs source', async ({ page }) => {
-    await page.goto('https://embedpress.wpqa.site/playwright-elementor/el-coub/');
+    await page.goto('https://ep-automation.wpqa.site/playwright-elementor/el-coub/');
     await expect(page.locator('iframe[title="je suis mosiychuk"]').contentFrame().locator('.viewer__controls__container > .viewer__hand')).toBeVisible();
 });
 

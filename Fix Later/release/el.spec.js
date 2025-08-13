@@ -5,7 +5,7 @@ test.use({ storageState: 'playwright/.auth/user.json' });
 
 test.describe('Elementor source embed TestCases', () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto('https://embedpress.wpqa.site/wp-admin/post.php?post=9540&action=elementor');
+        await page.goto('https://ep-automation.wpqa.site/wp-admin/post.php?post=9540&action=elementor');
     });
 
     test('Elementor source embed', async ({ page }) => {
@@ -27,7 +27,7 @@ test.describe('Elementor source embed TestCases', () => {
         await page.waitForTimeout(3000);
         await page.getByRole('button', { name: 'Publish' }).click();
         await page.waitForTimeout(3000);
-        await page.goto('https://embedpress.wpqa.site/playwright-elementor/elementor-source-embed-test-cases/');
+        await page.goto('https://ep-automation.wpqa.site/playwright-elementor/elementor-source-embed-test-cases/');
         await page.waitForLoadState()
 
         // Check Embeded Content Visibility 

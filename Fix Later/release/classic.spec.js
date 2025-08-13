@@ -7,7 +7,7 @@ test.beforeEach(async ({ browser }) => {
     const page = await context.newPage();
 
     // Navigate to the WordPress plugins page
-    await page.goto('https://embedpress.wpqa.site/wp-admin/plugins.php?plugin_status=all&paged=1&s');
+    await page.goto('https://ep-automation.wpqa.site/wp-admin/plugins.php?plugin_status=all&paged=1&s');
 
     // Locator for the Classic Editor plugin row
     const pluginRow = page.locator('tr[data-slug="classic-editor"]');
@@ -28,10 +28,10 @@ test.beforeEach(async ({ browser }) => {
 
 // Test case 1: Open Classic Editor and Check YT Video Embed
 test('Open Classic Editor and Check YT Video Embed', async ({ page }) => {
-    await page.goto('https://embedpress.wpqa.site/wp-admin/post.php?post=9610&action=edit&classic-editor');
+    await page.goto('https://ep-automation.wpqa.site/wp-admin/post.php?post=9610&action=edit&classic-editor');
 
     // Fill YouTube embed code with a new line in between
-    await page.locator('#content').fill('[embedpress]https://youtu.be/x-hxSgtO_Zw[/embedpress]\n[embedpress_pdf]https://embedpress.wpqa.site/wp-content/uploads/2024/07/sample_pdf.pdf[/embedpress_pdf]');
+    await page.locator('#content').fill('[embedpress]https://youtu.be/x-hxSgtO_Zw[/embedpress]\n[embedpress_pdf]https://ep-automation.wpqa.site/wp-content/uploads/2024/07/sample_pdf.pdf[/embedpress_pdf]');
 
     await page.getByRole('button', { name: 'Update' }).click();
     await page.getByRole('link', { name: 'View page' }).click();
@@ -51,10 +51,10 @@ test('Open Classic Editor and Check YT Video Embed', async ({ page }) => {
 
 // Test case 2: Open Classic Editor and Check Modern PDF Embed
 test('Open Classic Editor and Check Modern PDF Embed', async ({ page }) => {
-    await page.goto('https://embedpress.wpqa.site/wp-admin/post.php?post=9610&action=edit&classic-editor');
+    await page.goto('https://ep-automation.wpqa.site/wp-admin/post.php?post=9610&action=edit&classic-editor');
 
     // Fill PDF embed code
-    await page.locator('#content').fill('[embedpress_pdf]https://embedpress.wpqa.site/wp-content/uploads/2024/07/sample_pdf.pdf[/embedpress_pdf]');
+    await page.locator('#content').fill('[embedpress_pdf]https://ep-automation.wpqa.site/wp-content/uploads/2024/07/sample_pdf.pdf[/embedpress_pdf]');
 
     await page.getByRole('button', { name: 'Update' }).click();
     await page.getByRole('link', { name: 'View page' }).click();
