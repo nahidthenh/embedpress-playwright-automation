@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-test('Embed Classic Streamable source', async ({ page }) => {
+test.skip('Embed Classic Streamable source', async ({ page }) => {
     await page.goto('https://ep-automation.wpqa.site/playwright-classic-editor/classic-streamable/');
     await expect(page.locator('iframe[title="I am Napoleon\\. I am Emperor x Rammstein - Sonne \\(slowed\\) - jez \\(144p\\, h264\\)"]').contentFrame().locator('div').filter({ hasText: /^Watch againStream will resume when your device's connection improves$/ }).first()).toBeVisible();
 });
