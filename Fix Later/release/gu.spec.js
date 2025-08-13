@@ -8,7 +8,7 @@ test.describe('Gutenberg source embed TestCases', () => {
         const page = await context.newPage();
 
         // Navigate to the WordPress plugins page
-        await page.goto('https://embedpress.wpqa.site/wp-admin/plugins.php?plugin_status=all&paged=1&s');
+        await page.goto('https://ep-automation.wpqa.site/wp-admin/plugins.php?plugin_status=all&paged=1&s');
 
         // Locator for the Classic Editor plugin row
         const pluginRow = page.locator('tr[data-slug="classic-editor"]');
@@ -25,7 +25,7 @@ test.describe('Gutenberg source embed TestCases', () => {
         await page.close(); // Close to prevent session interference
     });
     test('Gutenberg source embed', async ({ page }) => {
-        await page.goto('https://embedpress.wpqa.site/wp-admin/post.php?post=9507&action=edit');
+        await page.goto('https://ep-automation.wpqa.site/wp-admin/post.php?post=9507&action=edit');
         // Wait for the editor to load
         await page.waitForSelector('.edit-post-layout');
 
@@ -55,7 +55,7 @@ test.describe('Gutenberg source embed TestCases', () => {
     // Gutenberg PDF source embed
 
     test('Gutenberg PDF source embed', async ({ page }) => {
-        await page.goto('https://embedpress.wpqa.site/wp-admin/post.php?post=9507&action=edit');
+        await page.goto('https://ep-automation.wpqa.site/wp-admin/post.php?post=9507&action=edit');
         await page.getByLabel('Add default block').click();
         await page.getByLabel('Empty block; start writing or').fill('/embedpress pdf');
         await page.keyboard.press('Backspace');

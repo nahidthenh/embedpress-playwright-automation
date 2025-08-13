@@ -10,7 +10,7 @@ Successfully standardized URL usage across the entire EmbedPress Playwright test
 - **Changes**: 
   - Added centralized `BASE_URL` constant
   - Updated `baseURL` configuration to use the constant
-  - Maintained existing configuration: `https://embedpress.wpqa.site/`
+  - Maintained existing configuration: `https://ep-automation.wpqa.site/`
 
 ### 2. Created URL Configuration Utility
 - **File**: `tests/config/urls.js`
@@ -49,7 +49,7 @@ Successfully standardized URL usage across the entire EmbedPress Playwright test
 
 ### Before:
 ```javascript
-await page.goto('https://embedpress.wpqa.site/playwright-classic-editor/classic-learningapps/');
+await page.goto('https://ep-automation.wpqa.site/playwright-classic-editor/classic-learningapps/');
 ```
 
 ### After:

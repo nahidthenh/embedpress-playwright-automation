@@ -4,10 +4,18 @@ on:
   push:
     branches: [main, master]
   schedule:
-    - cron: '0 23 * * *'  # 5 AM GMT+6
+    - cron: '0 2 * * 1'  # Every Monday at 8:00 AM Bangladesh time (UTC+6)
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   test:
@@ -16,10 +24,10 @@ jobs:
       CI: true
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
 
@@ -64,25 +72,72 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: Deploy HTML report to GitHub Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./playwright-report
-          keep_files: true
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+  # Separate deployment job for GitHub Pages
+  deploy:
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
 
-      - name: Send Telegram Notification
-        if: always()
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: |
-          MESSAGE="🧪 *Playwright Test Summary* ✅ Passed: $PASSED ❌ Failed: $FAILED ⏭️ Skipped: $SKIPPED 📄 [View Report](https://nahidthenh.github.io/embedpress-playwright-automation/)"
-          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
-            -d chat_id="${TELEGRAM_CHAT_ID}" \
-            -d parse_mode="Markdown" \
-            -d text="$MESSAGE"
+      - name: Download test artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright-report
+          path: ./playwright-report
+
+      - name: Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./playwright-report
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # Telegram Notification (commented out for now)
+      # Uncomment the following steps when Telegram notifications are needed
+      # - name: Send Telegram Notification
+      #   if: always()
+      #   env:
+      #     TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      #     TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      #   run: |
+      #     # Get the deployment URL from the previous step
+      #     REPORT_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+      #
+      #     # Create status emoji based on test results
+      #     if [ "$FAILED" -eq 0 ]; then
+      #       STATUS_EMOJI="✅"
+      #       STATUS_TEXT="All tests passed!"
+      #     else
+      #       STATUS_EMOJI="❌"
+      #       STATUS_TEXT="Some tests failed!"
+      #     fi
+      #
+      #     # Format the message
+      #     MESSAGE="🧪 *EmbedPress Playwright Test Results* $STATUS_EMOJI
+      #
+      #     $STATUS_TEXT
+      #
+      #     📊 *Test Summary:*
+      #     ✅ Passed: $PASSED
+      #     ❌ Failed: $FAILED
+      #     ⏭️ Skipped: $SKIPPED
+      #
+      #     📄 [View Detailed Report]($REPORT_URL)
+      #     🕒 Executed: $(date -u +'%Y-%m-%d %H:%M:%S UTC')
+      #     🌿 Branch: ${{ github.ref_name }}
+      #     📝 Commit: ${{ github.sha }}
+      #     "
+      #
+      #     # Send the notification
+      #     curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+      #       -d chat_id="${TELEGRAM_CHAT_ID}" \
+      #       -d parse_mode="Markdown" \
+      #       -d text="$MESSAGE" \
+      #       -d disable_web_page_preview=false

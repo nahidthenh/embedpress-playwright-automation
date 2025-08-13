@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test.skip('Embed Elementor MeetUp source', async ({ page }) => {
-    await page.goto('https://embedpress.wpqa.site/playwright-elementor/elementor-meetup/');
+    await page.goto('https://ep-automation.wpqa.site/playwright-elementor/elementor-meetup/');
     await expect(page.getByRole('heading', { name: 'Details' })).toBeVisible();
 });
 

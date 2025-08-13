@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Elementor iheart source', async ({ page }) => {
-    await page.goto('https://embedpress.wpqa.site/playwright-elementor/el-iheart/');
+    await page.goto('https://ep-automation.wpqa.site/playwright-elementor/el-iheart/');
     await expect(page.locator('iframe[title="Bad Luck\\, Mary - Murder on the Towpath with Soledad O’Brien"]').contentFrame().locator('div').filter({ hasText: 'Murder on the Towpath with Soledad O’Brien •iHeartBad Luck, Mary - Murder on' }).nth(1)).toBeVisible();
 });
 

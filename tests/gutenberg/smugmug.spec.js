@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Gutenberg smugmug source', async ({ page }) => {
-    await page.goto('https://embedpress.wpqa.site/smugmug-gutenberg/');
+    await page.goto('https://ep-automation.wpqa.site/smugmug-gutenberg/');
     await expect(page.getByRole('link').filter({ hasText: /^$/ })).toBeVisible();
 });
 

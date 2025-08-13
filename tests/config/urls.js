@@ -6,7 +6,7 @@
  */
 
 // Base URL for the EmbedPress test site
-const BASE_URL = 'https://embedpress.wpqa.site/';
+const BASE_URL = 'https://ep-automation.wpqa.site/';
 
 /**
  * URL helper functions
@@ -14,7 +14,7 @@ const BASE_URL = 'https://embedpress.wpqa.site/';
 const urls = {
   // Base URL
   base: BASE_URL,
-  
+
   // WordPress admin URLs
   admin: {
     login: 'wp-login.php',
@@ -25,7 +25,7 @@ const urls = {
     embedpressAds: 'wp-admin/admin.php?page=embedpress&page_type=ads',
     postEdit: (postId) => `wp-admin/post.php?post=${postId}&action=edit&classic-editor`,
   },
-  
+
   // Classic editor test pages
   classic: {
     learningApps: 'playwright-classic-editor/classic-learningapps/',
@@ -44,7 +44,7 @@ const urls = {
     googlePhotos: 'playwright-classic-editor/classic-google-photos/',
     youtube: 'playwright-classic-editor/classic-youtube/',
   },
-  
+
   // Gutenberg test pages
   gutenberg: {
     circuitlab: 'gutenberg-circuitlab/',
@@ -71,7 +71,7 @@ const urls = {
     github: 'playwright-gutenberg/gutenberg-github-gist/',
     googlePhotos: 'playwright-elementor/gutenberg-google-photos',
   },
-  
+
   // Elementor test pages
   elementor: {
     learningApps: 'playwright-elementor/el-learningapps/',

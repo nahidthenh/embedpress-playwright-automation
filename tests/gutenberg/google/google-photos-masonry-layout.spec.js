@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 
 test('Visibility of Google Photos Masonry Layout in Gutenberg', async ({ page }) => {
 
-    await page.goto('https://embedpress.wpqa.site/playwright-gutenberg/gu-google-photos-masonry-layout/');
+    await page.goto('https://ep-automation.wpqa.site/playwright-gutenberg/gu-google-photos-masonry-layout/');
 
     await expect(page.getByRole('heading', { name: 'GU Google Photos Masonry' })).toBeVisible();
 

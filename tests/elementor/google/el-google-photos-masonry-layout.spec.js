@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 
 test('Visibility of Google Photos Masonry Layout in Elementor', async ({ page }) => {
 
-    await page.goto('https://embedpress.wpqa.site/playwright-elementor/el-google-photos-masonry-layout/');
+    await page.goto('https://ep-automation.wpqa.site/playwright-elementor/el-google-photos-masonry-layout/');
 
     // masonry layout visibility 
     const masonry = page.locator('.google-photos-gallery-masonary-widget');

@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Gutenberg iheart source', async ({ page }) => {
-    await page.goto('https://embedpress.wpqa.site/gu-iheart/');
+    await page.goto('https://ep-automation.wpqa.site/gu-iheart/');
     await expect(page.locator('iframe[title="Bad Luck\\, Mary - Murder on the Towpath with Soledad O’Brien"]').contentFrame().locator('div').filter({ hasText: 'Murder on the Towpath with Soledad O’Brien •iHeartBad Luck, Mary - Murder on' }).nth(1)).toBeVisible();
 });
 
