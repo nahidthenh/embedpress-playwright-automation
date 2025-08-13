@@ -75,6 +75,16 @@ const data = [
         doc: "https://embedpress.com/docs/how-to-embed-spreaker-podcasts-in-wordpress/",
     },
     {
+        img: `${image_path}/word.svg`,
+        name: "MS Word",
+        doc: "https://embedpress.com/docs/embed-word-document-in-wordpress/",
+    },
+    {
+        img: `${image_path}/xlsx.svg`,
+        name: "MS XLSX",
+        doc: "https://embedpress.com/docs/embed-excel-workbook-in-wordpress/",
+    },
+    {
         img: `${image_path}/opensea.png`,
         name: "OpenSea NFT",
         doc: "https://embedpress.com/docs/embed-opensea-nft-collections-wordpress/",
