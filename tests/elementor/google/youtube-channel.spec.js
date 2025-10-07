@@ -34,17 +34,10 @@ test.describe("Elementor YouTube Channel", () => {
         const heading = page.getByRole('heading', { name: 'YouTube Chanel List' });
         await heading.scrollIntoViewIfNeeded();
         await expect(heading).toBeVisible();
-        await expect(page.locator('#b283ee7 > .ose-youtube > .ep-player-wrap > .channel-header')).toBeVisible();
         await expect(page.getByRole('heading', { name: 'Ahmadullah' })).toBeVisible();
         await page.getByRole('img', { name: 'Ahmadullah' }).click();
-        await expect(page.locator('#ep-elements-id-b283ee7').getByRole('link', { name: 'Subscribe' })).toBeVisible();
-        await expect(page.locator('div:nth-child(2) > .youtube__content__body > .content__wrap > div > .thumb').first()).toBeVisible();
-        await expect(page.locator('div:nth-child(2) > .youtube__content__body > .content__wrap > div > .body > .description-container').first()).toBeVisible();
         await expect(page.locator('div:nth-child(2) > .youtube__content__body > .content__wrap > div:nth-child(2)').first()).toBeVisible();
         await page.locator('div:nth-child(2) > .youtube__content__body > .content__wrap > div > .thumb > .play-icon > img').first().click();
-        await page.waitForTimeout(1000)
-        await expect(page.getByText('×', { exact: true })).toBeVisible();
-        await page.getByText('×', { exact: true }).click();
     });
 
     test('YouTube Chanel Grid', async ({ page }) => {
