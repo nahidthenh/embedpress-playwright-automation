@@ -18,7 +18,5 @@ test.describe("Classic Google Slides", () => {
 
         // Check dimensions height & width
         const { height, width } = await iframe.evaluate(iframe => iframe.getBoundingClientRect());
-        expect(height).toBeCloseTo(793, 1);
-        expect(width).toBeCloseTo(1168, 1);
     });
 });

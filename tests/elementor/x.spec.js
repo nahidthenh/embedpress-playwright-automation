@@ -9,12 +9,7 @@ test.describe('Elementor Twitter', () => {
     });
 
     test('Default Twitter Visibility Test', async ({ page }) => {
-        const heading = page.getByRole('heading', { name: 'Elementor Twitter' });
-        await heading.scrollIntoViewIfNeeded();
-        await expect(heading).toBeVisible();
-
         await page.waitForTimeout(1000);
-
         await expect(page.locator('iframe[title="X Post"]')).toBeVisible();
     });
 

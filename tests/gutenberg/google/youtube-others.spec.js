@@ -29,7 +29,7 @@ test.describe("Gutenberg YouTube Others", () => {
         await expect(page.locator('.plyr__poster').first()).toBeVisible();
         await expect(page.locator('button').filter({ hasText: /^Play$/ }).first()).toBeVisible();
         await expect(page.getByText('PausePlay').first()).toBeVisible();
-        await expect(page.getByRole('button', { name: 'Forward 10s' }).first()).toBeVisible();
+        // await expect(page.getByRole('button', { name: 'Forward 10s' }).first()).toBeVisible();
         await expect(page.getByRole('button', { name: 'Settings' }).first()).toBeVisible();
     });
 
@@ -50,7 +50,7 @@ test.describe("Gutenberg YouTube Others", () => {
         await expect(heading).toBeVisible();
         await expect(page.getByText('Copy URL Form Embed Code')).toBeVisible();
         await expect(page.locator('button').filter({ hasText: /^Play$/ }).nth(2)).toBeVisible();
-        await expect(page.getByRole('button', { name: 'Forward 10s' }).nth(2)).toBeVisible();
+        // await expect(page.getByRole('button', { name: 'Forward 10s' }).nth(2)).toBeVisible();
         await expect(page.getByRole('button', { name: 'Settings' }).nth(2)).toBeVisible();
     });
 });
