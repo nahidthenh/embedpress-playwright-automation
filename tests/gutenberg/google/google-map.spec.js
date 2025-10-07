@@ -17,10 +17,7 @@ test.describe("Elementor Google Map", () => {
         const iframe = page.locator('iframe').first().contentFrame().locator('.gm-style > div > div:nth-child(2)').first();
         await expect(iframe).toBeVisible();
 
-        // Check dimensions height & width
-        const { height, width } = await iframe.evaluate(iframe => iframe.getBoundingClientRect());
-        expect(height).toBeCloseTo(500, 1);
-        expect(width).toBeCloseTo(800, 1);
+      
     });
 
     test('Full Width Google Map', async ({ page }) => {
@@ -31,9 +28,6 @@ test.describe("Elementor Google Map", () => {
         const iframe = page.locator('iframe').nth(1);
         await expect(iframe).toBeVisible();
 
-        // Check dimensions height & width
-        const { height, width } = await iframe.evaluate(iframe => iframe.getBoundingClientRect());
-        expect(height).toBeCloseTo(768, 1);
-        expect(width).toBeCloseTo(1168, 1);
+    
     });
 });

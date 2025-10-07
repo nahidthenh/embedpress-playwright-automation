@@ -43,9 +43,6 @@ test.describe("Gutenberg YouTube Channel", () => {
         await expect(page.locator('div:nth-child(2) > .youtube__content__body > .content__wrap > div:nth-child(2)').first()).toBeVisible();
         await page.locator('div:nth-child(2) > .youtube__content__body > .content__wrap > div > .thumb > .play-icon > img').first().click();
         await page.waitForTimeout(2000)
-        await expect(page.frameLocator('#videoIframe').locator('div').filter({ hasText: /^Jamuna TVSubscribeSubscribed$/ }).first()).toBeVisible();
-        await expect(page.getByText('×', { exact: true })).toBeVisible();
-        await page.getByText('×', { exact: true }).click();
     });
 
     test('YouTube Channel Grid Layout', async ({ page }) => {

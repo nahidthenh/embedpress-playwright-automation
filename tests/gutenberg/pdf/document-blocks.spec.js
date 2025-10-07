@@ -6,7 +6,6 @@ let slug = 'gutenberg-document-blocks/';
 test.describe("Gutenberg Document Blocks", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
-        await page.waitForLoadState('networkidle');
     });
 
     test('Gu Document Custom Viewer', async ({ page }) => {

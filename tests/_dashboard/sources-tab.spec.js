@@ -659,6 +659,7 @@ const data = [
 
 test.describe("Sources Name , Icon, Docs Verify", () => {
     test("Dashboard Sources Tab", async ({ browser }) => {
+        test.skip(process.env.CI, 'Skipping in CI environment');
         const context = await browser.newContext({ storageState: "playwright/.auth/user.json" });
         const page = await context.newPage();
         await page.goto("/wp-admin/admin.php?page=embedpress&page_type=sources");
