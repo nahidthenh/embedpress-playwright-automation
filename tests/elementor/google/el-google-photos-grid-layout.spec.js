@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 
 test('Visibility of Google Photos Grid Layout in Elementor', async ({ page }) => {
 
-    await page.goto('https://ep-automation.wpqa.site/playwright-elementor/el-google-photos-grid-layout/');
+    await page.goto('https://ep-automation.obayedmamur.com/playwright-elementor/el-google-photos-grid-layout/');
 
     // Grid layout visibility 
     const grid = page.locator('.google-photos-gallery-grid-widget');

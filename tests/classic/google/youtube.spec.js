@@ -35,7 +35,7 @@ test.describe("Classic YouTube", () => {
     test('Copy URL Form Embed Code', async ({ page }) => {
         // test.skip(process.env.CI, 'Skipping this test in CI');
         // // Navigate to the WordPress plugins page
-        // await page.goto('https://ep-automation.wpqa.site/wp-admin/plugins.php?plugin_status=all&paged=1&s');
+        // await page.goto('https://ep-automation.obayedmamur.com/wp-admin/plugins.php?plugin_status=all&paged=1&s');
 
         // // Locator for the Classic Editor plugin row
         // const pluginRow = page.locator('tr[data-slug="classic-editor"]');

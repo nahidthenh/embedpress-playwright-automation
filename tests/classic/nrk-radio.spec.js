@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Classic NRK Radio source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/playwright-classic-editor/classic-nrk-radio/');
+    await page.goto('https://ep-automation.obayedmamur.com/playwright-classic-editor/classic-nrk-radio/');
     await expect(page.locator('iframe')).toBeVisible();
 });
 

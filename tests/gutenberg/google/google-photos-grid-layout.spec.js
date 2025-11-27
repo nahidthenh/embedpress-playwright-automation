@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 
 test('Visibility of Google Photos Grid Layout in Gutenberg', async ({ page }) => {
 
-    await page.goto('https://ep-automation.wpqa.site/gu-google-photos-grid-layout/');
+    await page.goto('https://ep-automation.obayedmamur.com/gu-google-photos-grid-layout/');
 
     await expect(page.getByRole('heading', { name: 'Gu Google Photos – Grid Layout' })).toBeVisible();
 

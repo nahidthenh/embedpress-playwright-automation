@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Elementor Gloria TV source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/playwright-elementor/el-gloria-tv/');
+    await page.goto('https://ep-automation.obayedmamur.com/playwright-elementor/el-gloria-tv/');
 
     // Gloria TV source embedding problem, so we are not able to test it
 

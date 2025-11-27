@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Gutenberg Canva source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/gu-codesandbox/');
+    await page.goto('https://ep-automation.obayedmamur.com/gu-codesandbox/');
     await expect(page.locator('iframe')).toBeVisible();
 });
 

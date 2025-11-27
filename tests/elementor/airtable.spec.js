@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Elementor Airtable source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/playwright-elementor/elementor-airtable/');
+    await page.goto('https://ep-automation.obayedmamur.com/playwright-elementor/elementor-airtable/');
     await expect(page.locator('iframe').contentFrame().locator('.dataRightPane')).toBeVisible();
 });
 

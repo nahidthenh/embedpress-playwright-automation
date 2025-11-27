@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Gutenberg Infogram source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/elementor-infogram/');
+    await page.goto('https://ep-automation.obayedmamur.com/elementor-infogram/');
     await expect(page.locator('iframe[title="EmbedPress test"]').contentFrame().locator('div').filter({ hasText: /^Sharemade with$/ }).nth(1)).toBeVisible();
 });
 

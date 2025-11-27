@@ -44,7 +44,7 @@ test.describe('Content Protection Pro Feature - Elementor Editor', () => {
         if (!subscriberUser || !subscriberPass) {
             throw new Error('Environment variables SUBSCRIBER_USER and SUBSCRIBER_PASS are not set.');
         }
-        await page.goto('https://ep-automation.wpqa.site/wp-admin');
+        await page.goto('https://ep-automation.obayedmamur.com/wp-admin');
         await page.getByLabel('Username or Email Address').click();
         await page.getByLabel('Username or Email Address').fill(subscriberUser);
         await page.getByLabel('Password', { exact: true }).click();

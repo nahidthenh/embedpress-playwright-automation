@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Classic mixcloud source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/playwright-classic-editor/classic-mixcloud/');
+    await page.goto('https://ep-automation.obayedmamur.com/playwright-classic-editor/classic-mixcloud/');
     await expect(page.locator('#post-10680 div').nth(1)).toBeVisible();
 });
 

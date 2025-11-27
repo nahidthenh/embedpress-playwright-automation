@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Elementor BoomPlay source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/playwright-elementor/el-boomplay/');
+    await page.goto('https://ep-automation.obayedmamur.com/playwright-elementor/el-boomplay/');
     await expect(page.locator('iframe').contentFrame().locator('.header_bg > div')).toBeVisible();
     await expect(page.locator('iframe').contentFrame().getByRole('link', { name: 'Bolte Bolte Cholte Cholte' })).toBeVisible();
 });
