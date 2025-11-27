@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Gutenberg WordWall source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/playwright-gutenberg/gutenberg-wordwall/');
+    await page.goto('https://ep-automation.obayedmamur.com/playwright-gutenberg/gutenberg-wordwall/');
     await expect(page.locator('iframe[title="K3 match the words wk36"]').contentFrame().locator('canvas')).toBeVisible();
 });
 

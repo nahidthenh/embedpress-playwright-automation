@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Elementor IfixIt source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/playwright-elementor/el-ifixit/');
+    await page.goto('https://ep-automation.obayedmamur.com/playwright-elementor/el-ifixit/');
     await expect(page.locator('iframe').contentFrame().getByText('iPad Pro 10.5" Screen Replacement Author: Dominik Schnabelrauch')).toBeVisible();
 });
 

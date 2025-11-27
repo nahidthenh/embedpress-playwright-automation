@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Elementor Polldaddy source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/el-polldaddy/');
+    await page.goto('https://ep-automation.obayedmamur.com/el-polldaddy/');
     await expect(page.getByRole('button', { name: 'Vote' })).toBeVisible();
 
 });

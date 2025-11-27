@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Elementor Edumedia source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/elementor-edumedia/');
+    await page.goto('https://ep-automation.obayedmamur.com/elementor-edumedia/');
     await expect(page.locator('iframe')).toBeVisible();
 });
 

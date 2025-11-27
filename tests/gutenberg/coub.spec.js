@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Gutenberg Coubs source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/playwright-gutenberg/gu-coub/');
+    await page.goto('https://ep-automation.obayedmamur.com/playwright-gutenberg/gu-coub/');
     await expect(page.locator('iframe[title="je suis mosiychuk"]').contentFrame().locator('.viewer__controls__container > .viewer__hand')).toBeVisible();
 });
 

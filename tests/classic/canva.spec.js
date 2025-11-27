@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Classic Canva source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/gu-canva/');
+    await page.goto('https://ep-automation.obayedmamur.com/gu-canva/');
     await expect(page.locator('iframe[title="Accounting Service Website in Black and White Photographic Style"]').contentFrame().locator('div:nth-child(2) > .uk_25A > .Izwocg')).toBeVisible();
     await expect(page.locator('iframe[title="Accounting Service Website in Black and White Photographic Style"]').contentFrame().getByText('EmbedPress')).toBeVisible();
 });

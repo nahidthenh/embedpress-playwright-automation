@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Classic Coubs source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/playwright-classic-editor/classic-coubs/');
+    await page.goto('https://ep-automation.obayedmamur.com/playwright-classic-editor/classic-coubs/');
     await expect(page.locator('iframe[title="je suis mosiychuk"]').contentFrame().locator('.viewer__controls__container > .viewer__hand')).toBeVisible();
 });
 

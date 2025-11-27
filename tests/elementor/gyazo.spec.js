@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Gutenberg Gyazo source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/el-gyazo/');
+    await page.goto('https://ep-automation.obayedmamur.com/el-gyazo/');
     await expect(page.locator('#ep-elements-id-4f2dec2 img')).toBeVisible();
 });
 

@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test.skip('Embed Gutenberg Streamable source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/gu-streamable/');
+    await page.goto('https://ep-automation.obayedmamur.com/gu-streamable/');
     await expect(page.locator('iframe[title="I am Napoleon\\. I am Emperor x Rammstein - Sonne \\(slowed\\) - jez \\(144p\\, h264\\)"]').contentFrame().locator('div').filter({ hasText: /^Watch againStream will resume when your device's connection improves$/ }).first()).toBeVisible();
 });
 

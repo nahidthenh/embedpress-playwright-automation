@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Classic Speaker Deck source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/playwright-classic-editor/classic-speaker-deck/');
+    await page.goto('https://ep-automation.obayedmamur.com/playwright-classic-editor/classic-speaker-deck/');
     await expect(page.locator('iframe[title="The Invisible Side of Design"]').contentFrame().getByRole('button', { name: 'Next slide' })).toBeVisible();
 });
 

@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Classic Flickr source', async ({ page }) => {
-    await page.goto('https://ep-automation.wpqa.site/playwright-classic-editor/classic-flickr/');
+    await page.goto('https://ep-automation.obayedmamur.com/playwright-classic-editor/classic-flickr/');
     await expect(page.getByRole('link', { name: 'The Sledge' })).toBeVisible();
 });
 // As now we only have embed support for Flickr

@@ -4,7 +4,7 @@ test.use({ storageState: 'playwright/.auth/user.json' });
 
 test.describe('Dashboard Shortcode Tab', () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto('https://ep-automation.wpqa.site/wp-admin/admin.php?page=embedpress&page_type=shortcode');
+        await page.goto('https://ep-automation.obayedmamur.com/wp-admin/admin.php?page=embedpress&page_type=shortcode');
     });
 
     test('Should display EmbedPress Shortcode content and functionility Options', async ({ page }) => {
