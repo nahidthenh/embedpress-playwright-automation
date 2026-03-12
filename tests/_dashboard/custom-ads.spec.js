@@ -9,7 +9,7 @@ test.describe('Dashboard Custom Ads Tab', () => {
 
     test('Should display EmbedPress Custom Ads', async ({ page }) => {
         await expect(page.locator('.sponsored-settings-top')).toBeVisible();
-        await expect(page.getByRole('heading', { name: 'Advertise Across 150+' })).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'Advertise Across 250+' })).toBeVisible();
         await expect(page.getByText('Now, you can showcase your')).toBeVisible();
         await expect(page.locator('.btn-video')).toBeVisible();
         await expect(page.getByText('Live Preview for Video')).toBeVisible();

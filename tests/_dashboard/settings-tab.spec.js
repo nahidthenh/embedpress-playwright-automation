@@ -62,7 +62,7 @@ test.describe('Dashboard General Tab', () => {
         await page.getByRole('link', { name: 'Settings ' }).click();
         await expect(page.locator('#embedpress_pdf_global_custom_color')).toBeVisible();
         await expect(page.getByText('Loading Animation (Coming')).toBeVisible();
-        await expect(page.getByText('Rating & Help')).toBeVisible();
+        await expect(page.getByText('Help', { exact: true })).toBeVisible();
         await page.getByRole('button', { name: 'Save Changes' }).click();
     });
 });
