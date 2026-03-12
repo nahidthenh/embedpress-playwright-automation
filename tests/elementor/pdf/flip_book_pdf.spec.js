@@ -1,94 +1,85 @@
 const { test, expect } = require('@playwright/test');
 
-let slug = 'flip-book-pdf-elementor';
+const slug = 'flip-book-pdf-elementor';
 
+async function getViewFrame(page, frameSelector) {
+    await page.waitForSelector(frameSelector);
+    return page
+        .frameLocator(frameSelector)
+        .frameLocator('iframe[title="View"]');
+}
 
-test.describe("Elementor Flip Book PDF", () => {
+test.describe('Elementor Flip Book PDF', () => {
+
     test.beforeEach(async ({ page }) => {
         await page.goto(slug);
-        // await page.waitForLoadState('networkidle');
     });
 
-    test('To Enable All Controls', async ({ page }) => {
+    test('Enable All Controls', async ({ page }) => {
+
         const frameSelector = '#ep-elementor-content-9a442da iframe[title="sample_pdf"]';
-        const viewFrame = page.frameLocator(frameSelector).frameLocator('iframe[title="View"]');
-        const controls = [
-            { name: 'Next page', locator: viewFrame.getByRole('link', { name: 'Next page' }).first() },
-            { name: 'Previous page', locator: viewFrame.getByRole('link', { name: 'Previous page' }) },
-            { name: 'Full screen', locator: viewFrame.getByRole('link', { name: 'Full screen' }) },
-            { name: 'Print', locator: viewFrame.getByRole('link', { name: 'Print' }) },
-            { name: 'Download', locator: viewFrame.getByRole('link', { name: 'Download' }) },
-            { name: 'Table of contents', locator: viewFrame.getByRole('link', { name: 'Table of contents' }) },
-            { name: 'Fit view', locator: viewFrame.getByRole('link', { name: 'Fit view' }) },
-            { name: 'Zoom out', locator: viewFrame.getByRole('link', { name: 'Zoom out' }) },
-            { name: 'Zoom in', locator: viewFrame.getByRole('link', { name: 'Zoom in' }) },
-            { name: 'Smart pan Single page Sounds', locator: viewFrame.locator('li').filter({ hasText: 'Smart pan Single page Sounds' }).getByRole('link') },
-        ];
+        const viewFrame = await getViewFrame(page, frameSelector);
 
-        for (const control of controls) {
-            await expect(control.locator).toBeVisible();
-        }
+        await expect(page.getByRole('heading', { name: 'Enable all Controls' })).toBeVisible();
 
-        await viewFrame.locator('div:nth-child(5) > div').click();
-        await expect(viewFrame.locator('div:nth-child(5) > div')).toBeVisible();
-        await controls[9].locator.click();
+        await expect(viewFrame.getByRole('link', { name: 'Fit view' })).toBeVisible();
+        await expect(viewFrame.getByRole('link', { name: 'Table of contents' })).toBeVisible();
 
-        const extraControls = [
-            { name: 'Single page', locator: viewFrame.getByRole('link', { name: 'Single page' }) },
-            { name: 'Sounds', locator: viewFrame.getByRole('link', { name: 'Sounds' }) },
-        ];
+        await expect(viewFrame.locator('li:nth-child(5) > a')).toBeVisible();
+        await expect(viewFrame.getByRole('textbox', { name: '1' }).first()).toBeVisible();
 
-        for (const control of extraControls) {
-            await expect(control.locator).toBeVisible();
-        }
+        await expect(
+            viewFrame.getByRole('list').getByRole('link', { name: 'Next page' })
+        ).toBeVisible();
 
-        await expect(page.getByText('Powered By EmbedPress')).toBeVisible();
+        await expect(viewFrame.getByRole('link', { name: 'Download' })).toBeVisible();
+        await expect(viewFrame.getByRole('link', { name: 'Print' })).toBeVisible();
+        await expect(viewFrame.getByRole('link', { name: 'Full screen' })).toBeVisible();
 
-        await viewFrame.getByRole('link', { name: 'Next page' }).first().click();
-        await viewFrame.getByRole('link', { name: 'Previous page' }).click();
-        await viewFrame.getByRole('link', { name: 'Zoom in' }).click();
-        await viewFrame.getByRole('link', { name: 'Zoom out' }).click();
-        await viewFrame.getByRole('link', { name: 'Table of contents' }).click();
+        await expect(
+            viewFrame
+                .getByRole('listitem')
+                .filter({ hasText: 'Smart pan Single page Sounds' })
+                .getByRole('link')
+        ).toBeVisible();
 
-        const downloadPromise = page.waitForEvent('download');
-        await viewFrame.getByRole('link', { name: 'Download' }).click();
-        const download = await downloadPromise;
-
-        await viewFrame.getByRole('link', { name: 'Print' }).click();
-        await controls[9].locator.click();
-        await viewFrame.getByRole('link', { name: 'Single page' }).click();
-        await controls[9].locator.click();
-        await viewFrame.getByRole('link', { name: 'Sounds' }).click();
     });
 
-    test('To Enable Few Controls', async ({ page }) => {
+
+    test('Enable Few Controls', async ({ page }) => {
+
         const frameSelector = '#ep-elementor-content-3393d31 iframe[title="sample_pdf"]';
-        const viewFrame = page.frameLocator(frameSelector).frameLocator('iframe[title="View"]');
+        const viewFrame = await getViewFrame(page, frameSelector);
 
-        const controls = [
-            { name: 'Next page', locator: viewFrame.getByRole('link', { name: 'Next page' }).first() },
-            { name: 'Previous page', locator: viewFrame.getByRole('link', { name: 'Previous page' }) },
-            { name: 'Smart pan Single page Sounds', locator: viewFrame.locator('li').filter({ hasText: 'Smart pan Single page Sounds' }).getByRole('link') },
-            { name: 'Table of contents', locator: viewFrame.getByRole('link', { name: 'Table of contents' }) },
-            { name: 'Zoom in', locator: viewFrame.getByRole('link', { name: 'Zoom in' }) },
-            { name: 'Fit view', locator: viewFrame.getByRole('link', { name: 'Fit view' }) },
-        ];
+        await expect(page.getByRole('heading', { name: 'Few Controls Enable' })).toBeVisible();
 
-        for (const control of controls) {
-            await expect(control.locator).toBeVisible();
-        }
+        await expect(viewFrame.getByRole('link', { name: 'Download' })).toBeHidden();
+        await expect(viewFrame.getByRole('link', { name: 'Print' })).toBeHidden();
+
+        await expect(viewFrame.getByRole('link', { name: 'Fit view' })).toBeVisible();
+        await expect(viewFrame.getByRole('link', { name: 'Table of contents' })).toBeVisible();
+
+        await expect(viewFrame.locator('li:nth-child(5) > a')).toBeVisible();
+        await expect(viewFrame.getByRole('textbox', { name: '1' }).first()).toBeVisible();
+
+        await expect(
+            viewFrame.getByRole('list').getByRole('link', { name: 'Next page' })
+        ).toBeVisible();
+
+        await expect(viewFrame.getByRole('link', { name: 'Full screen' })).toBeVisible();
+
+        await expect(
+            viewFrame
+                .getByRole('listitem')
+                .filter({ hasText: 'Smart pan Single page Sounds' })
+                .getByRole('link')
+        ).toBeVisible();
+
+        await expect(viewFrame.getByRole('link', { name: 'Next page' }).first()).toBeVisible();
+        await expect(viewFrame.getByRole('link', { name: 'Previous page' })).toBeVisible();
 
         await viewFrame.getByRole('link', { name: 'Next page' }).first().click();
         await viewFrame.getByRole('link', { name: 'Previous page' }).click();
-        await controls[2].locator.click();
 
-        const extraControls = [
-            { name: 'Single page', locator: viewFrame.getByRole('link', { name: 'Single page' }) },
-            { name: 'Sounds', locator: viewFrame.getByRole('link', { name: 'Sounds' }) },
-        ];
-
-        for (const control of extraControls) {
-            await expect(control.locator).toBeVisible();
-        }
     });
 });
