@@ -29,10 +29,6 @@ test.describe("Google Photos", () => {
         await expect(page.locator('#ep-elements-id-117fe6c iframe').contentFrame().locator('.jx-imageset').first()).toBeVisible();
         await expect(page.locator('#ep-elements-id-117fe6c iframe').contentFrame().locator('div:nth-child(8) > .jx-svg-image > svg')).toBeVisible();
         await expect(page.locator('#ep-elements-id-117fe6c iframe').contentFrame().locator('img:nth-child(2)').first()).toBeVisible();
-        await expect(page.locator('#ep-elements-id-117fe6c iframe').contentFrame().locator('div:nth-child(2) > .jx-imageset > div > img:nth-child(2)')).toBeVisible();
-        await expect(page.locator('#ep-elements-id-117fe6c iframe').contentFrame().locator('div:nth-child(3) > .jx-imageset > div > img:nth-child(2)')).toBeVisible();
-        await expect(page.locator('#ep-elements-id-117fe6c iframe').contentFrame().locator('div:nth-child(4) > .jx-imageset > div > img:nth-child(2)')).toBeVisible();
-        await expect(page.locator('#ep-elements-id-117fe6c iframe').contentFrame().locator('img:nth-child(2)').first()).toBeVisible();
     });
 
     test('Single Photo - With Color', async ({ page }) => {

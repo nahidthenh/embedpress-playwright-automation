@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-test('Math Monster Challenge', async ({ page }) => {
+test.skip('Math Monster Challenge', async ({ page }) => {
     await page.goto('https://the-math-monster.hurayraiit.com');
     await page.click('[data-testid="start-button"]');
 

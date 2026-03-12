@@ -6,9 +6,12 @@ let heading = 'Gutenberg Modern pdf';
 
 test.describe("Gutenberg Modern PDF", () => {
 
+    test.beforeEach(async ({ page }) => {
+        await page.goto(slug);
+    });
+    
     // PDF Blocks Embed
     test('PDF Blocks Embed', async ({ page }) => {
-        await page.goto(slug);
         await expect(page.getByRole('heading', { name: heading })).toBeVisible();
 
         const iframe = page.locator('#embedpress-pdf-1721988006079 iframe[title="sample_pdf"]');
@@ -23,7 +26,6 @@ test.describe("Gutenberg Modern PDF", () => {
 
     // Enable Pro Controls PDF Blocks
     test('Enable Pro Controls PDF Blocks', async ({ page }) => {
-        await page.goto(slug);
         await expect(page.getByRole('heading', { name: 'Enable Pro Controls PDF Blocks' })).toBeVisible();
 
         const iframe = page.locator('#embedpress-pdf-1721994414562 iframe[title="sample_pdf"]');

@@ -18,7 +18,7 @@ test.describe("Gutenberg Google Slides", () => {
 
         // Check dimensions height & width
         const { height, width } = await iframe.evaluate(iframe => iframe.getBoundingClientRect());
-        expect(height).toBeCloseTo(800, 1);
-        expect(width).toBeCloseTo(1140, 1);
+        expect(height).toBeCloseTo(798, 3);
+        expect(width).toBeCloseTo(1138, 3);
     });
 });

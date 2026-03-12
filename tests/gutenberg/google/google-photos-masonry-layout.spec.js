@@ -10,11 +10,11 @@ test('Visibility of Google Photos Masonry Layout in Gutenberg', async ({ page })
     // masonry layout visibility 
     const masonry = page.locator('.google-photos-gallery-masonary-widget');
     await expect(masonry).toBeVisible();
-
-
-    await expect(page.getByRole('heading', { name: 'Startise Pitha Utshob 5.0 –' })).toBeVisible();
-    await page.locator('#photo-c4c389e29d69c63787aba1e1fb448a5d').getByRole('img', { name: 'Photo' }).click();
-    await expect(page.locator('#close-btn').getByRole('img')).toBeVisible();
-    await expect(page.locator('#next-btn')).toBeVisible();
-    await expect(page.locator('#prev-btn')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Startise · Jan 21 – 25, 2024' })).toBeVisible();
+    await page.getByRole('img', { name: 'Photo' }).first().click();
+    await expect(page.locator('#popup-image')).toBeVisible();
+    await page.locator('#next-btn').click();
+    await expect(page.locator('#popup-image')).toBeVisible();
+    await page.locator('#close-btn').getByRole('img').click();
+    await expect(page.getByRole('img', { name: 'Photo' }).nth(2)).toBeVisible();
 });
