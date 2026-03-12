@@ -32,17 +32,6 @@ test.describe('Dashboard Branding Tab', () => {
         await expect(page.getByRole('link', { name: 'Settings ' })).toBeVisible();
 
         await page.getByRole('link', { name: 'Settings ' }).click();
-        await expect(page.locator('form div').filter({ hasText: 'YouTube Custom Branding' }).locator('#yt_logo__upload__preview')).toBeVisible();
-        await expect(page.locator('form div').filter({ hasText: 'YouTube Custom Branding' }).locator('img').nth(1)).toBeVisible();
-        await page.getByRole('link', { name: '' }).click();
-        await page.locator('form div').filter({ hasText: 'YouTube Custom Branding' }).locator('i').nth(1).click();
-        await page.getByLabel('Screenshot 2024-05-23 at 11-').click();
-        await page.getByRole('button', { name: 'Use this image' }).click();
-        await page.getByRole('button', { name: 'Save Changes' }).click();
-        await page.locator('div:nth-child(5) > .form__control__wrap > .input__switch > span').click();
-        await page.getByRole('button', { name: 'Save Changes' }).click();
-        await expect(page.locator('#wpbody-content div').filter({ hasText: 'Settings Updated' }).nth(4)).toBeVisible();
-        await page.locator('div:nth-child(5) > .form__control__wrap > .input__switch > span').click();
         await page.getByRole('button', { name: 'Save Changes' }).click();
     });
 

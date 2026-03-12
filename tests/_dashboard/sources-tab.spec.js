@@ -1,7 +1,8 @@
 
 const { test, expect } = require('@playwright/test');
 
-const image_path = "https://ep-automation.obayedmamur.com/wp-content/plugins/embedpress/EmbedPress/Ends/Back/Settings/assets/img/sources/icons";
+const image_path = "https://ep-automation.obayedmamur.com/wp-content/plugins/embedpress/assets/images/sources/icons";
+
 
 const data = [
     {
