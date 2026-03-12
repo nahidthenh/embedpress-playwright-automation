@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-let slug = 'https://ep-automation.obayedmamur.com/elementor-document-widget/';
+let slug = 'https://ep-automation.mdnahidhasan.com/elementor-document-widget/';
 
 
 test.describe("Elementor Document Widget", () => {

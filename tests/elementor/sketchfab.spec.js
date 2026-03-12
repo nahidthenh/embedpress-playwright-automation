@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Elementor sketchfab source', async ({ page }) => {
-    await page.goto('https://ep-automation.obayedmamur.com/el-sketchfab/');
+    await page.goto('https://ep-automation.mdnahidhasan.com/el-sketchfab/');
     await expect(page.locator('iframe[title="Short-beaked Common Dolphin"]').contentFrame().locator('img').nth(1)).toBeVisible();
 });
 
