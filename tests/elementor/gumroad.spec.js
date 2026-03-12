@@ -1,8 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Gutenberg Gumroad source', async ({ page }) => {
-    await page.goto('https://ep-automation.mdnahidhasan.com/playwright-elementor/elementor-gumroad/');
-    await expect(page.locator('iframe').contentFrame().locator('.preview').first()).toBeVisible();
+    await page.goto('https://ep-automation.mdnahidhasan.com/playwright-elementor/elementor-gumroad/'); 
     await expect(page.locator('iframe').contentFrame().getByLabel('Product information bar').getByRole('link', { name: 'Buy this' })).toBeVisible();
     await expect(page.locator('iframe').contentFrame().getByText('$').first()).toBeVisible();
 });

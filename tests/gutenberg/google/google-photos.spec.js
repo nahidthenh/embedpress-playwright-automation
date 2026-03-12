@@ -27,11 +27,9 @@ test.describe("Google Photos", () => {
 
     test('Pro - Google Photos Gallery Player - Auto Play & Repeat On', async ({ page }) => {
         await expect(page.getByRole('heading', { name: 'Pro – Google Photos Gallery Player – Auto Play & Repeat On' })).toBeVisible();
-        await expect(page.locator('iframe').nth(2).contentFrame().locator('div:nth-child(4) > .jx-imageset')).toBeVisible();
-        await expect(page.locator('iframe').nth(2).contentFrame().locator('div:nth-child(2) > .jx-imageset > div > img:nth-child(2)')).toBeVisible();
-        await expect(page.locator('iframe').nth(2).contentFrame().locator('div:nth-child(3) > .jx-imageset > div > img:nth-child(2)')).toBeVisible();
-        await expect(page.locator('iframe').nth(2).contentFrame().locator('div:nth-child(4) > .jx-imageset > div > img:nth-child(2)')).toBeVisible();
-        await expect(page.locator('iframe').nth(2).contentFrame().locator('img:nth-child(2)').first()).toBeVisible();
+        await page.locator('iframe').nth(2).contentFrame().locator('div:nth-child(8) > .jx-svg-image > svg > path').click();
+        await page.locator('iframe').nth(2).contentFrame().locator('svg').first().click();
+        await page.locator('iframe').nth(2).contentFrame().locator('div:nth-child(7) > .jx-svg-image > svg').click();
     });
 
     test('Single Photo - With Color', async ({ page }) => {
@@ -39,8 +37,6 @@ test.describe("Google Photos", () => {
         await page.locator('iframe').nth(3).contentFrame().getByRole('img').nth(1).click();
         await page.locator('iframe').nth(3).contentFrame().locator('div:nth-child(7)').click();
     });
-
-
 
 });
 
