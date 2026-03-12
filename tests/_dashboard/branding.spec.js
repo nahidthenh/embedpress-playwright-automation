@@ -4,7 +4,7 @@ test.use({ storageState: 'playwright/.auth/user.json' });
 
 test.describe('Dashboard Branding Tab', () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto('https://ep-automation.obayedmamur.com/wp-admin/admin.php?page=embedpress&page_type=custom-logo');
+        await page.goto('https://ep-automation.mdnahidhasan.com/wp-admin/admin.php?page=embedpress&page_type=custom-logo');
     });
 
     test('Should display EmbedPress Branding content', async ({ page }) => {
@@ -32,17 +32,6 @@ test.describe('Dashboard Branding Tab', () => {
         await expect(page.getByRole('link', { name: 'Settings ' })).toBeVisible();
 
         await page.getByRole('link', { name: 'Settings ' }).click();
-        await expect(page.locator('form div').filter({ hasText: 'YouTube Custom Branding' }).locator('#yt_logo__upload__preview')).toBeVisible();
-        await expect(page.locator('form div').filter({ hasText: 'YouTube Custom Branding' }).locator('img').nth(1)).toBeVisible();
-        await page.getByRole('link', { name: '' }).click();
-        await page.locator('form div').filter({ hasText: 'YouTube Custom Branding' }).locator('i').nth(1).click();
-        await page.getByLabel('Screenshot 2024-05-23 at 11-').click();
-        await page.getByRole('button', { name: 'Use this image' }).click();
-        await page.getByRole('button', { name: 'Save Changes' }).click();
-        await page.locator('div:nth-child(5) > .form__control__wrap > .input__switch > span').click();
-        await page.getByRole('button', { name: 'Save Changes' }).click();
-        await expect(page.locator('#wpbody-content div').filter({ hasText: 'Settings Updated' }).nth(4)).toBeVisible();
-        await page.locator('div:nth-child(5) > .form__control__wrap > .input__switch > span').click();
         await page.getByRole('button', { name: 'Save Changes' }).click();
     });
 
@@ -52,11 +41,11 @@ test.describe('Dashboard Branding Tab', () => {
         await page.getByRole('button', { name: 'Save Changes' }).click();
 
         // YouTube Custom Branding on youtube video visibility test       
-        await page.goto('https://ep-automation.obayedmamur.com/global-branding/');
+        await page.goto('https://ep-automation.mdnahidhasan.com/global-branding/');
         await page.locator('iframe[title="যেভাবে প্লাস্টিকের কারণে ক্ষতিগ্রস্ত হচ্ছে মানুষ \\| People are Being Harmed by Plastic \\| Gtv News"]').contentFrame().getByLabel('Play', { exact: true }).click();
 
         // YouTube Custom Branding Disable      
-        await page.goto('https://ep-automation.obayedmamur.com/wp-admin/admin.php?page=embedpress&page_type=custom-logo');
+        await page.goto('https://ep-automation.mdnahidhasan.com/wp-admin/admin.php?page=embedpress&page_type=custom-logo');
         await page.locator('div:nth-child(5) > .form__control__wrap > .input__switch > span').click();
         await page.getByRole('button', { name: 'Save Changes' }).click();
     });

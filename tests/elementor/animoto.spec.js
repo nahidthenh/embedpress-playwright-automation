@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('Embed Gutenberg Animoto source', async ({ page }) => {
-    await page.goto('https://ep-automation.obayedmamur.com/animoto-elementor/');
+    await page.goto('https://ep-automation.mdnahidhasan.com/animoto-elementor/');
     await expect(page.locator('iframe').contentFrame().locator('.vjs-poster')).toBeVisible();
 });
 

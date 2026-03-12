@@ -4,7 +4,7 @@ require('dotenv').config();
 const isCI = !!process.env.CI; // Check if the CI environment variable is set
 
 // Centralized URL configuration
-const BASE_URL = 'https://ep-automation.obayedmamur.com/';
+const BASE_URL = 'https://ep-automation.mdnahidhasan.com/';
 
 module.exports = defineConfig({
   testDir: './tests',

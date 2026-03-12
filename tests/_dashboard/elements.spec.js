@@ -10,7 +10,7 @@ test.describe('Dashboard Elements Tab', () => {
     test('Should display EmbedPress Elements content and functionility Options', async ({ page }) => {
         // Gutenberg Editor
         await expect(page.getByRole('heading', { name: 'Gutenberg' })).toBeVisible();
-        await expect(page.getByText('EmbedPress It supports 150+')).toBeVisible();
+        await expect(page.getByText('EmbedPress It supports 250+')).toBeVisible();
         await expect(page.getByText('Document Documentation', { exact: true })).toBeVisible();
         await expect(page.getByText('EmbedPress PDF Documentation').first()).toBeVisible();
         await expect(page.getByText('EmbedPress Calendar Documentation').first()).toBeVisible();

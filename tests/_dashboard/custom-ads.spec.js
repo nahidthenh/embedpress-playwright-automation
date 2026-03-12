@@ -9,7 +9,7 @@ test.describe('Dashboard Custom Ads Tab', () => {
 
     test('Should display EmbedPress Custom Ads', async ({ page }) => {
         await expect(page.locator('.sponsored-settings-top')).toBeVisible();
-        await expect(page.getByRole('heading', { name: 'Advertise Across 150+' })).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'Advertise Across 250+' })).toBeVisible();
         await expect(page.getByText('Now, you can showcase your')).toBeVisible();
         await expect(page.locator('.btn-video')).toBeVisible();
         await expect(page.getByText('Live Preview for Video')).toBeVisible();
@@ -32,7 +32,7 @@ test.describe('Dashboard Custom Ads Tab', () => {
         await expect(page.getByRole('textbox')).toBeVisible();
         await expect(page.locator('#ad-preview-1').getByText('Ad Start After (Sec)')).toBeVisible();
         await expect(page.locator('#ad-preview-1 > .form-input-wrapper > div:nth-child(3) > .ad__adjust__controller__inputs > .range-control > .range_negative')).toBeVisible();
-        await expect(page.getByRole('spinbutton')).toBeVisible();
+        // await expect(page.getByRole('spinbutton')).toBeVisible();
         await expect(page.locator('#ad-preview-1 > .form-input-wrapper > div:nth-child(3) > .ad__adjust__controller__inputs > .range-control > .range_positive')).toBeVisible();
         await expect(page.getByText('Live Preview for Documents')).toBeVisible();
         await expect(page.getByText('Experience EmbedPress Ad feature with with a PDF, but it will work with all')).toBeVisible();

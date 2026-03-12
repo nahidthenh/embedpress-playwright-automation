@@ -6,7 +6,7 @@
  */
 
 // Base URL for the EmbedPress test site
-const BASE_URL = 'https://ep-automation.obayedmamur.com/';
+const BASE_URL = 'https://ep-automation.mdnahidhasan.com/';
 
 /**
  * URL helper functions
