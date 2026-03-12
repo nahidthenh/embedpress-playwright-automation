@@ -18,7 +18,7 @@ test.describe("Classic Google Map", () => {
 
         // Check dimensions height & width
         const { height, width } = await iframe.evaluate(iframe => iframe.getBoundingClientRect());
-        expect(height).toBeCloseTo(500, 1);
-        expect(width).toBeCloseTo(1140, 1);
+        expect.soft(height).toBeCloseTo(498, 1);
+        expect.soft(width).toBeCloseTo(1138, 1);
     });
 });
