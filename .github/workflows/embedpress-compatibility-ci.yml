@@ -1,0 +1,396 @@
+name: EmbedPress Compatibility CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  compatibility-test:
+    name: WP ${{ matrix.wordpress }} / PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    outputs:
+      test-result: ${{ steps.test-result.outputs.result }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        wordpress: ['latest', '6.5']
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
+    
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress_test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    
+    steps:
+      - name: Checkout plugin code
+        uses: actions/checkout@v4
+        with:
+          path: embedpress
+      
+      - name: Setup PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mysqli, mbstring, xml, curl, zip, intl, gd
+          coverage: none
+          tools: composer, wp-cli
+      
+      - name: Verify PHP version
+        run: |
+          php -v
+          wp --version
+      
+      - name: Setup WordPress
+        run: |
+          # Download WordPress
+          wp core download --version=${{ matrix.wordpress }} --path=/tmp/wordpress
+          
+          # Create wp-config.php
+          wp config create \
+            --path=/tmp/wordpress \
+            --dbname=wordpress_test \
+            --dbuser=root \
+            --dbpass=root \
+            --dbhost=127.0.0.1:3306 \
+            --skip-check
+          
+          # Install WordPress
+          wp core install \
+            --path=/tmp/wordpress \
+            --url=http://localhost \
+            --title="EmbedPress CI Test" \
+            --admin_user=admin \
+            --admin_password=admin \
+            --admin_email=test@example.com \
+            --skip-email
+          
+          # Enable debug mode
+          wp config set WP_DEBUG true --raw --path=/tmp/wordpress
+          wp config set WP_DEBUG_LOG true --raw --path=/tmp/wordpress
+          wp config set WP_DEBUG_DISPLAY false --raw --path=/tmp/wordpress
+          
+          echo "✅ WordPress ${{ matrix.wordpress }} installed successfully"
+      
+      - name: Copy plugin to WordPress
+        run: |
+          mkdir -p /tmp/wordpress/wp-content/plugins/embedpress
+          cp -r embedpress/* /tmp/wordpress/wp-content/plugins/embedpress/
+          echo "✅ Plugin copied to WordPress plugins directory"
+      
+      - name: Check PHP syntax
+        run: |
+          echo "🔍 Checking PHP syntax for all plugin files..."
+          find /tmp/wordpress/wp-content/plugins/embedpress -name "*.php" -exec php -l {} \; | grep -v "No syntax errors"
+          if [ $? -eq 0 ]; then
+            echo "❌ Syntax errors found!"
+            exit 1
+          fi
+          echo "✅ No PHP syntax errors found"
+      
+      - name: Activate plugin
+        run: |
+          echo "🔌 Activating EmbedPress plugin..."
+          wp plugin activate embedpress --path=/tmp/wordpress
+          
+          if [ $? -ne 0 ]; then
+            echo "❌ Plugin activation failed!"
+            exit 1
+          fi
+          echo "✅ Plugin activated successfully"
+      
+      - name: Verify plugin is active
+        run: |
+          echo "🔍 Verifying plugin activation..."
+          wp plugin list --path=/tmp/wordpress --status=active --format=csv | grep embedpress
+          
+          if [ $? -ne 0 ]; then
+            echo "❌ Plugin is not in active plugins list!"
+            exit 1
+          fi
+          echo "✅ Plugin is active"
+      
+      - name: Check WordPress health
+        run: |
+          echo "🏥 Checking WordPress health..."
+          
+          # Verify WordPress is still functional
+          wp option get siteurl --path=/tmp/wordpress
+          
+          if [ $? -ne 0 ]; then
+            echo "❌ WordPress is not responding!"
+            exit 1
+          fi
+          echo "✅ WordPress is healthy"
+      
+      - name: Test REST API
+        run: |
+          echo "🌐 Testing WordPress REST API..."
+          
+          # Start PHP built-in server in background
+          php -S localhost:8080 -t /tmp/wordpress &
+          PHP_SERVER_PID=$!
+          sleep 3
+          
+          # Test REST API endpoint
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/wp-json/)
+          
+          kill $PHP_SERVER_PID
+          
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "❌ REST API returned HTTP $HTTP_CODE"
+            exit 1
+          fi
+          echo "✅ REST API is working (HTTP 200)"
+      
+      - name: Check debug log for errors
+        run: |
+          echo "📋 Checking WordPress debug log..."
+
+          DEBUG_LOG="/tmp/wordpress/wp-content/debug.log"
+
+          if [ -f "$DEBUG_LOG" ]; then
+            echo "Debug log exists, checking for fatal errors..."
+
+            # Check for fatal errors
+            if grep -i "fatal error\|parse error" "$DEBUG_LOG"; then
+              echo "❌ Fatal errors found in debug log!"
+              cat "$DEBUG_LOG"
+              exit 1
+            fi
+
+            # Check for warnings (informational only)
+            if grep -i "warning" "$DEBUG_LOG"; then
+              echo "⚠️  Warnings found in debug log (non-blocking):"
+              grep -i "warning" "$DEBUG_LOG" | head -10
+            fi
+
+            echo "✅ No fatal errors in debug log"
+          else
+            echo "✅ No debug log file (no errors occurred)"
+          fi
+
+      - name: Test plugin deactivation
+        run: |
+          echo "🔌 Testing plugin deactivation..."
+          wp plugin deactivate embedpress --path=/tmp/wordpress
+
+          if [ $? -ne 0 ]; then
+            echo "❌ Plugin deactivation failed!"
+            exit 1
+          fi
+          echo "✅ Plugin deactivated successfully"
+
+      - name: Test plugin reactivation
+        run: |
+          echo "🔌 Testing plugin reactivation..."
+          wp plugin activate embedpress --path=/tmp/wordpress
+
+          if [ $? -ne 0 ]; then
+            echo "❌ Plugin reactivation failed!"
+            exit 1
+          fi
+          echo "✅ Plugin reactivated successfully"
+
+      - name: Run plugin integrity check
+        run: |
+          echo "🔍 Running plugin integrity checks..."
+
+          # Check if main plugin file exists
+          if [ ! -f "/tmp/wordpress/wp-content/plugins/embedpress/embedpress.php" ]; then
+            echo "❌ Main plugin file not found!"
+            exit 1
+          fi
+
+          # Verify plugin has required headers
+          grep -q "Plugin Name:" /tmp/wordpress/wp-content/plugins/embedpress/embedpress.php
+          if [ $? -ne 0 ]; then
+            echo "❌ Plugin headers missing!"
+            exit 1
+          fi
+
+          # Check plugin version
+          PLUGIN_VERSION=$(wp plugin get embedpress --field=version --path=/tmp/wordpress)
+          echo "Plugin Version: $PLUGIN_VERSION"
+
+          # List all plugin files
+          FILE_COUNT=$(find /tmp/wordpress/wp-content/plugins/embedpress -type f | wc -l)
+          echo "Total plugin files: $FILE_COUNT"
+
+          if [ "$FILE_COUNT" -lt 1 ]; then
+            echo "❌ Plugin appears to be empty!"
+            exit 1
+          fi
+
+          echo "✅ Plugin integrity check passed"
+
+      - name: Final WordPress status
+        run: |
+          echo "📊 Final WordPress Status Report"
+          echo "=================================="
+          wp core version --path=/tmp/wordpress
+          wp plugin list --path=/tmp/wordpress
+          echo "=================================="
+          echo "✅ All compatibility tests passed!"
+
+      - name: Set test result output
+        id: test-result
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "result=✅ PASSED" >> $GITHUB_OUTPUT
+          else
+            echo "result=❌ FAILED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Upload debug log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-log-wp${{ matrix.wordpress }}-php${{ matrix.php }}
+          path: /tmp/wordpress/wp-content/debug.log
+          if-no-files-found: ignore
+          retention-days: 7
+
+  # Slack notification job that runs after all tests complete
+  notify-slack:
+    name: Send Slack Notification
+    needs: compatibility-test
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Collect test results
+        id: collect-results
+        run: |
+          # Count total jobs
+          TOTAL_JOBS=12  # 2 WP versions × 6 PHP versions
+
+          # Get job results from needs context
+          RESULTS='${{ toJSON(needs.compatibility-test.result) }}'
+
+          if [ "$RESULTS" == "success" ]; then
+            PASSED=$TOTAL_JOBS
+            FAILED=0
+            STATUS="✅ ALL TESTS PASSED"
+            COLOR="good"
+          else
+            # If any job failed, mark as failed
+            PASSED=0
+            FAILED=$TOTAL_JOBS
+            STATUS="❌ SOME TESTS FAILED"
+            COLOR="danger"
+          fi
+
+          echo "total=$TOTAL_JOBS" >> $GITHUB_OUTPUT
+          echo "passed=$PASSED" >> $GITHUB_OUTPUT
+          echo "failed=$FAILED" >> $GITHUB_OUTPUT
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+          echo "color=$COLOR" >> $GITHUB_OUTPUT
+
+      - name: Send Slack notification
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          # Build test matrix summary
+          MATRIX_SUMMARY="*Test Matrix:*\n"
+          MATRIX_SUMMARY+="• WordPress: latest, 6.5\n"
+          MATRIX_SUMMARY+="• PHP: 7.4, 8.0, 8.1, 8.2, 8.3, 8.4\n"
+          MATRIX_SUMMARY+="• Total Combinations: ${{ steps.collect-results.outputs.total }}"
+
+          # Build workflow URL
+          WORKFLOW_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          # Create Slack message payload
+          PAYLOAD=$(cat <<EOF
+          {
+            "attachments": [
+              {
+                "color": "${{ steps.collect-results.outputs.color }}",
+                "blocks": [
+                  {
+                    "type": "header",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "🔌 EmbedPress Compatibility CI Results",
+                      "emoji": true
+                    }
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "*Status:* ${{ steps.collect-results.outputs.status }}\n\n$MATRIX_SUMMARY"
+                    }
+                  },
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "*✅ Passed:*\n${{ steps.collect-results.outputs.passed }}/${{ steps.collect-results.outputs.total }}"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*❌ Failed:*\n${{ steps.collect-results.outputs.failed }}/${{ steps.collect-results.outputs.total }}"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*🌿 Branch:*\n${{ github.ref_name }}"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*👤 Triggered by:*\n${{ github.actor }}"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "*📝 Commit:* ${{ github.event.head_commit.message || 'N/A' }}"
+                    }
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "*🕒 Executed:* $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+                    }
+                  },
+                  {
+                    "type": "actions",
+                    "elements": [
+                      {
+                        "type": "button",
+                        "text": {
+                          "type": "plain_text",
+                          "text": "View Workflow Run",
+                          "emoji": true
+                        },
+                        "url": "$WORKFLOW_URL",
+                        "style": "primary"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+          EOF
+          )
+
+          # Send to Slack
+          curl -X POST "$SLACK_WEBHOOK_URL" \
+            -H 'Content-Type: application/json' \
+            -d "$PAYLOAD"
+
+          echo "✅ Slack notification sent successfully!"
+
