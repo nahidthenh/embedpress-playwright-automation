@@ -222,19 +222,27 @@ jobs:
           TOTAL_JOBS=19
 
           # Get job results from needs context
-          RESULTS='${{ toJSON(needs.wordpress-test.result) }}'
+          RESULT='${{ needs.wordpress-test.result }}'
 
-          if [ "$RESULTS" == "success" ]; then
+          echo "Job result: $RESULT"
+
+          if [ "$RESULT" == "success" ]; then
             PASSED=$TOTAL_JOBS
             FAILED=0
             STATUS="✅ ALL TESTS PASSED"
             COLOR="good"
-          else
-            # If any job failed, mark as failed
+          elif [ "$RESULT" == "failure" ]; then
+            # Some tests failed
             PASSED=0
             FAILED=$TOTAL_JOBS
             STATUS="❌ SOME TESTS FAILED"
             COLOR="danger"
+          else
+            # Cancelled or skipped
+            PASSED=0
+            FAILED=0
+            STATUS="⚠️ TESTS $RESULT"
+            COLOR="warning"
           fi
 
           echo "total=$TOTAL_JOBS" >> $GITHUB_OUTPUT
