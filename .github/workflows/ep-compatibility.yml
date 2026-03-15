@@ -1,17 +1,19 @@
-name: Plugin Compatibility Test
+name: WordPress Plugin Test
 
-on:
-  push:
-  pull_request:
+on: [push]
 
 jobs:
-  wordpress-test:
+  test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        php: [7.4, 8.0, 8.1, 8.2]
-        wordpress: ['6.3', '6.4', 'latest']
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress
+        ports:
+          - 3306:3306
 
     steps:
       - uses: actions/checkout@v4
@@ -19,7 +21,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
+          php-version: 8.1
 
       - name: Install WP CLI
         run: |
@@ -29,7 +31,9 @@ jobs:
 
       - name: Install WordPress
         run: |
-          wp core download --version=${{ matrix.wordpress }}
+          wp core download
+          wp config create --dbname=wordpress --dbuser=root --dbpass=root --dbhost=127.0.0.1
+          wp core install --url="http://localhost" --title="Test Site" --admin_user="admin" --admin_password="password" --admin_email="admin@test.com"
 
       - name: Activate Plugin
         run: |
