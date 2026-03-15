@@ -10,7 +10,7 @@ on:
       plugin_branch:
         description: 'Plugin Branch to Test'
         required: false
-        default: 'master'
+        default: 'main'
   push:
     branches: [main, master]
   pull_request:
@@ -46,7 +46,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: ${{ github.event.inputs.plugin_repo || 'WPDevelopers/embedpress' }}
-          ref: ${{ github.event.inputs.plugin_branch || 'master' }}
+          ref: ${{ github.event.inputs.plugin_branch || 'main' }}
           path: embedpress
 
       - name: Setup PHP ${{ matrix.php }}
