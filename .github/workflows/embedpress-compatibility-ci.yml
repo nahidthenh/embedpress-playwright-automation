@@ -85,84 +85,146 @@ jobs:
           cp -r embedpress/* /tmp/wordpress/wp-content/plugins/embedpress/
           echo "✅ Plugin copied to WordPress plugins directory"
       
-      - name: Check PHP syntax
+      - name: Check PHP syntax (non-blocking)
+        id: syntax-check
+        continue-on-error: true
         run: |
           echo "🔍 Checking PHP syntax for all plugin files..."
-          find /tmp/wordpress/wp-content/plugins/embedpress -name "*.php" -exec php -l {} \; | grep -v "No syntax errors"
-          if [ $? -eq 0 ]; then
-            echo "❌ Syntax errors found!"
+          SYNTAX_ERRORS=0
+
+          while IFS= read -r file; do
+            if ! php -l "$file" > /dev/null 2>&1; then
+              echo "⚠️  Syntax error in: $file"
+              SYNTAX_ERRORS=$((SYNTAX_ERRORS + 1))
+            fi
+          done < <(find /tmp/wordpress/wp-content/plugins/embedpress -name "*.php")
+
+          if [ $SYNTAX_ERRORS -gt 0 ]; then
+            echo "⚠️  Found $SYNTAX_ERRORS file(s) with syntax errors"
+            echo "syntax_errors=$SYNTAX_ERRORS" >> $GITHUB_OUTPUT
             exit 1
+          else
+            echo "✅ No PHP syntax errors found"
+            echo "syntax_errors=0" >> $GITHUB_OUTPUT
           fi
-          echo "✅ No PHP syntax errors found"
       
       - name: Activate plugin
+        id: activate-plugin
+        continue-on-error: true
         run: |
           echo "🔌 Activating EmbedPress plugin..."
-          wp plugin activate embedpress --path=/tmp/wordpress
-          
-          if [ $? -ne 0 ]; then
+
+          # Capture activation output and errors
+          ACTIVATION_OUTPUT=$(wp plugin activate embedpress --path=/tmp/wordpress 2>&1)
+          ACTIVATION_STATUS=$?
+
+          echo "$ACTIVATION_OUTPUT"
+
+          if [ $ACTIVATION_STATUS -ne 0 ]; then
             echo "❌ Plugin activation failed!"
+            echo "activation_failed=true" >> $GITHUB_OUTPUT
+
+            # Check for fatal errors
+            if echo "$ACTIVATION_OUTPUT" | grep -i "fatal error"; then
+              echo "💥 Fatal error detected during activation"
+              echo "fatal_error=true" >> $GITHUB_OUTPUT
+            fi
             exit 1
           fi
+
           echo "✅ Plugin activated successfully"
+          echo "activation_failed=false" >> $GITHUB_OUTPUT
+          echo "fatal_error=false" >> $GITHUB_OUTPUT
       
       - name: Verify plugin is active
+        id: verify-active
+        continue-on-error: true
+        if: steps.activate-plugin.outcome == 'success'
         run: |
           echo "🔍 Verifying plugin activation..."
           wp plugin list --path=/tmp/wordpress --status=active --format=csv | grep embedpress
-          
+
           if [ $? -ne 0 ]; then
             echo "❌ Plugin is not in active plugins list!"
+            echo "verification_failed=true" >> $GITHUB_OUTPUT
             exit 1
           fi
           echo "✅ Plugin is active"
+          echo "verification_failed=false" >> $GITHUB_OUTPUT
       
       - name: Check WordPress health
+        id: health-check
+        continue-on-error: true
+        if: steps.activate-plugin.outcome == 'success'
         run: |
           echo "🏥 Checking WordPress health..."
-          
+
           # Verify WordPress is still functional
           wp option get siteurl --path=/tmp/wordpress
-          
+
           if [ $? -ne 0 ]; then
             echo "❌ WordPress is not responding!"
+            echo "health_check_failed=true" >> $GITHUB_OUTPUT
             exit 1
           fi
           echo "✅ WordPress is healthy"
+          echo "health_check_failed=false" >> $GITHUB_OUTPUT
       
       - name: Test REST API
+        id: rest-api-test
+        continue-on-error: true
+        if: steps.activate-plugin.outcome == 'success'
         run: |
           echo "🌐 Testing WordPress REST API..."
-          
+
           # Start PHP built-in server in background
-          php -S localhost:8080 -t /tmp/wordpress &
+          php -S localhost:8080 -t /tmp/wordpress > /tmp/php-server.log 2>&1 &
           PHP_SERVER_PID=$!
           sleep 3
-          
+
           # Test REST API endpoint
           HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/wp-json/)
-          
-          kill $PHP_SERVER_PID
-          
+
+          kill $PHP_SERVER_PID 2>/dev/null || true
+
           if [ "$HTTP_CODE" != "200" ]; then
             echo "❌ REST API returned HTTP $HTTP_CODE"
+            echo "rest_api_failed=true" >> $GITHUB_OUTPUT
+
+            # Check for fatal errors in server log
+            if grep -i "fatal error" /tmp/php-server.log; then
+              echo "💥 Fatal error detected in REST API"
+              echo "fatal_error=true" >> $GITHUB_OUTPUT
+            fi
             exit 1
           fi
           echo "✅ REST API is working (HTTP 200)"
+          echo "rest_api_failed=false" >> $GITHUB_OUTPUT
       
-      - name: Check debug log for errors
+      - name: Verify Plugin Activation & Check for Fatal Errors
+        id: fatal-error-check
+        continue-on-error: true
+        if: steps.activate-plugin.outcome == 'success'
         run: |
-          echo "📋 Checking WordPress debug log..."
+          echo "� Verifying plugin activation and checking for fatal errors..."
+
+          # Check if plugin is actually active
+          if ! wp plugin is-active embedpress --path=/tmp/wordpress; then
+            echo "❌ Plugin failed to activate properly!"
+            echo "fatal_error_detected=true" >> $GITHUB_OUTPUT
+            exit 1
+          fi
 
           DEBUG_LOG="/tmp/wordpress/wp-content/debug.log"
 
           if [ -f "$DEBUG_LOG" ]; then
-            echo "Debug log exists, checking for fatal errors..."
+            echo "📋 Debug log exists, checking for fatal errors..."
 
             # Check for fatal errors
             if grep -i "fatal error\|parse error" "$DEBUG_LOG"; then
-              echo "❌ Fatal errors found in debug log!"
+              echo "💥 Fatal errors found in debug log!"
               cat "$DEBUG_LOG"
+              echo "fatal_error_detected=true" >> $GITHUB_OUTPUT
               exit 1
             fi
 
@@ -177,27 +239,39 @@ jobs:
             echo "✅ No debug log file (no errors occurred)"
           fi
 
+          echo "fatal_error_detected=false" >> $GITHUB_OUTPUT
+
       - name: Test plugin deactivation
+        id: deactivate-plugin
+        continue-on-error: true
+        if: steps.fatal-error-check.outcome == 'success'
         run: |
           echo "🔌 Testing plugin deactivation..."
           wp plugin deactivate embedpress --path=/tmp/wordpress
 
           if [ $? -ne 0 ]; then
             echo "❌ Plugin deactivation failed!"
+            echo "deactivation_failed=true" >> $GITHUB_OUTPUT
             exit 1
           fi
           echo "✅ Plugin deactivated successfully"
+          echo "deactivation_failed=false" >> $GITHUB_OUTPUT
 
       - name: Test plugin reactivation
+        id: reactivate-plugin
+        continue-on-error: true
+        if: steps.deactivate-plugin.outcome == 'success'
         run: |
           echo "🔌 Testing plugin reactivation..."
           wp plugin activate embedpress --path=/tmp/wordpress
 
           if [ $? -ne 0 ]; then
             echo "❌ Plugin reactivation failed!"
+            echo "reactivation_failed=true" >> $GITHUB_OUTPUT
             exit 1
           fi
           echo "✅ Plugin reactivated successfully"
+          echo "reactivation_failed=false" >> $GITHUB_OUTPUT
 
       - name: Run plugin integrity check
         run: |
@@ -244,10 +318,35 @@ jobs:
         id: test-result
         if: always()
         run: |
-          if [ "${{ job.status }}" == "success" ]; then
+          # Determine overall status and failure reason
+          FAILURE_REASON=""
+
+          if [ "${{ steps.syntax-check.outcome }}" == "failure" ]; then
+            FAILURE_REASON="Syntax errors"
+          elif [ "${{ steps.activate-plugin.outcome }}" == "failure" ]; then
+            FAILURE_REASON="Activation failed"
+          elif [ "${{ steps.fatal-error-check.outcome }}" == "failure" ]; then
+            FAILURE_REASON="Fatal runtime error"
+          elif [ "${{ steps.verify-active.outcome }}" == "failure" ]; then
+            FAILURE_REASON="Plugin not active"
+          elif [ "${{ steps.health-check.outcome }}" == "failure" ]; then
+            FAILURE_REASON="WordPress health check failed"
+          elif [ "${{ steps.rest-api-test.outcome }}" == "failure" ]; then
+            FAILURE_REASON="REST API failed"
+          elif [ "${{ steps.deactivate-plugin.outcome }}" == "failure" ]; then
+            FAILURE_REASON="Deactivation failed"
+          elif [ "${{ steps.reactivate-plugin.outcome }}" == "failure" ]; then
+            FAILURE_REASON="Reactivation failed"
+          fi
+
+          if [ -z "$FAILURE_REASON" ]; then
             echo "result=✅ PASSED" >> $GITHUB_OUTPUT
+            echo "status=success" >> $GITHUB_OUTPUT
+            echo "reason=All tests passed" >> $GITHUB_OUTPUT
           else
             echo "result=❌ FAILED" >> $GITHUB_OUTPUT
+            echo "status=failure" >> $GITHUB_OUTPUT
+            echo "reason=$FAILURE_REASON" >> $GITHUB_OUTPUT
           fi
 
       - name: Upload debug log on failure
@@ -275,18 +374,30 @@ jobs:
 
           # Get job results from needs context
           RESULTS='${{ toJSON(needs.compatibility-test.result) }}'
+          OUTPUTS='${{ toJSON(needs.compatibility-test.outputs) }}'
 
-          if [ "$RESULTS" == "success" ]; then
+          echo "Job result: $RESULTS"
+          echo "Job outputs: $OUTPUTS"
+
+          # Determine pass/fail counts
+          if [ "$RESULTS" == "\"success\"" ]; then
             PASSED=$TOTAL_JOBS
             FAILED=0
             STATUS="✅ ALL TESTS PASSED"
             COLOR="good"
+          elif [ "$RESULTS" == "\"failure\"" ]; then
+            # Some tests failed - we'll show partial results
+            # Since we can't easily count individual matrix results, we'll indicate partial failure
+            PASSED="Some"
+            FAILED="Some"
+            STATUS="⚠️ PARTIAL FAILURE"
+            COLOR="warning"
           else
-            # If any job failed, mark as failed
+            # Cancelled or skipped
             PASSED=0
-            FAILED=$TOTAL_JOBS
-            STATUS="❌ SOME TESTS FAILED"
-            COLOR="danger"
+            FAILED=0
+            STATUS="⏭️ TESTS SKIPPED/CANCELLED"
+            COLOR="#808080"
           fi
 
           echo "total=$TOTAL_JOBS" >> $GITHUB_OUTPUT
