@@ -2,7 +2,7 @@ name: Playwright Tests
 
 on:
   push:
-    # branches: [main, master]
+    branches: [main, master]
   schedule:
     - cron: '0 2 * * 1'  # Every Monday at 8:00 AM Bangladesh time (UTC+6)
   workflow_dispatch:  # ✅ Manual trigger for latest code

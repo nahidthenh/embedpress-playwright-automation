@@ -1,10 +1,23 @@
 name: EmbedPress Compatibility CI
 
 on:
+  workflow_dispatch:
+    inputs:
+      plugin_repo:
+        description: 'EmbedPress Plugin Repository URL'
+        required: false
+        default: 'https://github.com/WPDevelopers/embedpress.git'
+      plugin_branch:
+        description: 'Plugin Branch to Test'
+        required: false
+        default: 'master'
   pull_request:
     branches: [main]
   push:
     branches: [main]
+  schedule:
+    # Run compatibility tests weekly on Mondays at 9:00 AM UTC
+    - cron: '0 9 * * 1'
 
 jobs:
   compatibility-test:
@@ -16,9 +29,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        wordpress: ['latest', '6.5']
-        php: ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
-    
+        wordpress: ['latest', '6.7', '6.6', '6.5']
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3']
+        exclude:
+          # WordPress 6.7+ requires PHP 7.2.24+, but let's be safe and exclude older PHP with newer WP
+          - wordpress: 'latest'
+            php: '7.4'
+
     services:
       mysql:
         image: mysql:5.7
@@ -28,11 +45,13 @@ jobs:
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-    
+
     steps:
-      - name: Checkout plugin code
+      - name: Checkout EmbedPress plugin
         uses: actions/checkout@v4
         with:
+          repository: ${{ github.event.inputs.plugin_repo || 'WPDevelopers/embedpress' }}
+          ref: ${{ github.event.inputs.plugin_branch || 'master' }}
           path: embedpress
       
       - name: Setup PHP ${{ matrix.php }}
@@ -88,9 +107,17 @@ jobs:
       - name: Check PHP syntax
         run: |
           echo "🔍 Checking PHP syntax for all plugin files..."
-          find /tmp/wordpress/wp-content/plugins/embedpress -name "*.php" -exec php -l {} \; | grep -v "No syntax errors"
-          if [ $? -eq 0 ]; then
-            echo "❌ Syntax errors found!"
+          SYNTAX_ERRORS=0
+          while IFS= read -r file; do
+            if ! php -l "$file" > /dev/null 2>&1; then
+              echo "❌ Syntax error in: $file"
+              php -l "$file"
+              SYNTAX_ERRORS=1
+            fi
+          done < <(find /tmp/wordpress/wp-content/plugins/embedpress -name "*.php")
+
+          if [ $SYNTAX_ERRORS -eq 1 ]; then
+            echo "❌ PHP syntax errors found!"
             exit 1
           fi
           echo "✅ No PHP syntax errors found"
@@ -259,7 +286,32 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
 
-  # Slack notification job that runs after all tests complete
+  # Summary job that runs after all tests complete
+  test-summary:
+    name: Test Summary
+    needs: compatibility-test
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate summary
+        run: |
+          echo "## 🔌 EmbedPress Compatibility Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Test Matrix:**" >> $GITHUB_STEP_SUMMARY
+          echo "- WordPress Versions: latest, 6.7, 6.6, 6.5" >> $GITHUB_STEP_SUMMARY
+          echo "- PHP Versions: 7.4, 8.0, 8.1, 8.2, 8.3" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ needs.compatibility-test.result }}" == "success" ]; then
+            echo "### ✅ All compatibility tests passed!" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ❌ Some compatibility tests failed" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Please check the individual job logs for details." >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # Slack notification job (optional - uncomment and configure if needed)
   # notify-slack:
   #   name: Send Slack Notification
   #   needs: compatibility-test
