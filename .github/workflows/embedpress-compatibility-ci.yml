@@ -260,137 +260,137 @@ jobs:
           retention-days: 7
 
   # Slack notification job that runs after all tests complete
-  notify-slack:
-    name: Send Slack Notification
-    needs: compatibility-test
-    if: always()
-    runs-on: ubuntu-latest
+  # notify-slack:
+  #   name: Send Slack Notification
+  #   needs: compatibility-test
+  #   if: always()
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Collect test results
-        id: collect-results
-        run: |
-          # Count total jobs
-          TOTAL_JOBS=12  # 2 WP versions × 6 PHP versions
+  #   steps:
+  #     - name: Collect test results
+  #       id: collect-results
+  #       run: |
+  #         # Count total jobs
+  #         TOTAL_JOBS=12  # 2 WP versions × 6 PHP versions
 
-          # Get job results from needs context
-          RESULTS='${{ toJSON(needs.compatibility-test.result) }}'
+  #         # Get job results from needs context
+  #         RESULTS='${{ toJSON(needs.compatibility-test.result) }}'
 
-          if [ "$RESULTS" == "success" ]; then
-            PASSED=$TOTAL_JOBS
-            FAILED=0
-            STATUS="✅ ALL TESTS PASSED"
-            COLOR="good"
-          else
-            # If any job failed, mark as failed
-            PASSED=0
-            FAILED=$TOTAL_JOBS
-            STATUS="❌ SOME TESTS FAILED"
-            COLOR="danger"
-          fi
+  #         if [ "$RESULTS" == "success" ]; then
+  #           PASSED=$TOTAL_JOBS
+  #           FAILED=0
+  #           STATUS="✅ ALL TESTS PASSED"
+  #           COLOR="good"
+  #         else
+  #           # If any job failed, mark as failed
+  #           PASSED=0
+  #           FAILED=$TOTAL_JOBS
+  #           STATUS="❌ SOME TESTS FAILED"
+  #           COLOR="danger"
+  #         fi
 
-          echo "total=$TOTAL_JOBS" >> $GITHUB_OUTPUT
-          echo "passed=$PASSED" >> $GITHUB_OUTPUT
-          echo "failed=$FAILED" >> $GITHUB_OUTPUT
-          echo "status=$STATUS" >> $GITHUB_OUTPUT
-          echo "color=$COLOR" >> $GITHUB_OUTPUT
+  #         echo "total=$TOTAL_JOBS" >> $GITHUB_OUTPUT
+  #         echo "passed=$PASSED" >> $GITHUB_OUTPUT
+  #         echo "failed=$FAILED" >> $GITHUB_OUTPUT
+  #         echo "status=$STATUS" >> $GITHUB_OUTPUT
+  #         echo "color=$COLOR" >> $GITHUB_OUTPUT
 
-      - name: Send Slack notification
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        run: |
-          # Build test matrix summary
-          MATRIX_SUMMARY="*Test Matrix:*\n"
-          MATRIX_SUMMARY+="• WordPress: latest, 6.5\n"
-          MATRIX_SUMMARY+="• PHP: 7.4, 8.0, 8.1, 8.2, 8.3, 8.4\n"
-          MATRIX_SUMMARY+="• Total Combinations: ${{ steps.collect-results.outputs.total }}"
+  #     - name: Send Slack notification
+  #       env:
+  #         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+  #       run: |
+  #         # Build test matrix summary
+  #         MATRIX_SUMMARY="*Test Matrix:*\n"
+  #         MATRIX_SUMMARY+="• WordPress: latest, 6.5\n"
+  #         MATRIX_SUMMARY+="• PHP: 7.4, 8.0, 8.1, 8.2, 8.3, 8.4\n"
+  #         MATRIX_SUMMARY+="• Total Combinations: ${{ steps.collect-results.outputs.total }}"
 
-          # Build workflow URL
-          WORKFLOW_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+  #         # Build workflow URL
+  #         WORKFLOW_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
-          # Create Slack message payload
-          PAYLOAD=$(cat <<EOF
-          {
-            "attachments": [
-              {
-                "color": "${{ steps.collect-results.outputs.color }}",
-                "blocks": [
-                  {
-                    "type": "header",
-                    "text": {
-                      "type": "plain_text",
-                      "text": "🔌 EmbedPress Compatibility CI Results",
-                      "emoji": true
-                    }
-                  },
-                  {
-                    "type": "section",
-                    "text": {
-                      "type": "mrkdwn",
-                      "text": "*Status:* ${{ steps.collect-results.outputs.status }}\n\n$MATRIX_SUMMARY"
-                    }
-                  },
-                  {
-                    "type": "section",
-                    "fields": [
-                      {
-                        "type": "mrkdwn",
-                        "text": "*✅ Passed:*\n${{ steps.collect-results.outputs.passed }}/${{ steps.collect-results.outputs.total }}"
-                      },
-                      {
-                        "type": "mrkdwn",
-                        "text": "*❌ Failed:*\n${{ steps.collect-results.outputs.failed }}/${{ steps.collect-results.outputs.total }}"
-                      },
-                      {
-                        "type": "mrkdwn",
-                        "text": "*🌿 Branch:*\n${{ github.ref_name }}"
-                      },
-                      {
-                        "type": "mrkdwn",
-                        "text": "*👤 Triggered by:*\n${{ github.actor }}"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "section",
-                    "text": {
-                      "type": "mrkdwn",
-                      "text": "*📝 Commit:* ${{ github.event.head_commit.message || 'N/A' }}"
-                    }
-                  },
-                  {
-                    "type": "section",
-                    "text": {
-                      "type": "mrkdwn",
-                      "text": "*🕒 Executed:* $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-                    }
-                  },
-                  {
-                    "type": "actions",
-                    "elements": [
-                      {
-                        "type": "button",
-                        "text": {
-                          "type": "plain_text",
-                          "text": "View Workflow Run",
-                          "emoji": true
-                        },
-                        "url": "$WORKFLOW_URL",
-                        "style": "primary"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-          EOF
-          )
+  #         # Create Slack message payload
+  #         PAYLOAD=$(cat <<EOF
+  #         {
+  #           "attachments": [
+  #             {
+  #               "color": "${{ steps.collect-results.outputs.color }}",
+  #               "blocks": [
+  #                 {
+  #                   "type": "header",
+  #                   "text": {
+  #                     "type": "plain_text",
+  #                     "text": "🔌 EmbedPress Compatibility CI Results",
+  #                     "emoji": true
+  #                   }
+  #                 },
+  #                 {
+  #                   "type": "section",
+  #                   "text": {
+  #                     "type": "mrkdwn",
+  #                     "text": "*Status:* ${{ steps.collect-results.outputs.status }}\n\n$MATRIX_SUMMARY"
+  #                   }
+  #                 },
+  #                 {
+  #                   "type": "section",
+  #                   "fields": [
+  #                     {
+  #                       "type": "mrkdwn",
+  #                       "text": "*✅ Passed:*\n${{ steps.collect-results.outputs.passed }}/${{ steps.collect-results.outputs.total }}"
+  #                     },
+  #                     {
+  #                       "type": "mrkdwn",
+  #                       "text": "*❌ Failed:*\n${{ steps.collect-results.outputs.failed }}/${{ steps.collect-results.outputs.total }}"
+  #                     },
+  #                     {
+  #                       "type": "mrkdwn",
+  #                       "text": "*🌿 Branch:*\n${{ github.ref_name }}"
+  #                     },
+  #                     {
+  #                       "type": "mrkdwn",
+  #                       "text": "*👤 Triggered by:*\n${{ github.actor }}"
+  #                     }
+  #                   ]
+  #                 },
+  #                 {
+  #                   "type": "section",
+  #                   "text": {
+  #                     "type": "mrkdwn",
+  #                     "text": "*📝 Commit:* ${{ github.event.head_commit.message || 'N/A' }}"
+  #                   }
+  #                 },
+  #                 {
+  #                   "type": "section",
+  #                   "text": {
+  #                     "type": "mrkdwn",
+  #                     "text": "*🕒 Executed:* $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+  #                   }
+  #                 },
+  #                 {
+  #                   "type": "actions",
+  #                   "elements": [
+  #                     {
+  #                       "type": "button",
+  #                       "text": {
+  #                         "type": "plain_text",
+  #                         "text": "View Workflow Run",
+  #                         "emoji": true
+  #                       },
+  #                       "url": "$WORKFLOW_URL",
+  #                       "style": "primary"
+  #                     }
+  #                   ]
+  #                 }
+  #               ]
+  #             }
+  #           ]
+  #         }
+  #         EOF
+  #         )
 
-          # Send to Slack
-          curl -X POST "$SLACK_WEBHOOK_URL" \
-            -H 'Content-Type: application/json' \
-            -d "$PAYLOAD"
+  #         # Send to Slack
+  #         curl -X POST "$SLACK_WEBHOOK_URL" \
+  #           -H 'Content-Type: application/json' \
+  #           -d "$PAYLOAD"
 
-          echo "✅ Slack notification sent successfully!"
+  #         echo "✅ Slack notification sent successfully!"
 
