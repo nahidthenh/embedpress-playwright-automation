@@ -1,0 +1,36 @@
+name: Plugin Compatibility Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  wordpress-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: [7.4, 8.0, 8.1, 8.2]
+        wordpress: ['6.3', '6.4', 'latest']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Install WP CLI
+        run: |
+          curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          chmod +x wp-cli.phar
+          sudo mv wp-cli.phar /usr/local/bin/wp
+
+      - name: Install WordPress
+        run: |
+          wp core download --version=${{ matrix.wordpress }}
+
+      - name: Activate Plugin
+        run: |
+          wp plugin activate embedpress
