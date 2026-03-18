@@ -5,7 +5,8 @@ on:
     inputs:
       plugin_repo:
         description: 'EmbedPress Plugin Repository URL'
-        required: false
+        required: true
+        default: 'WPDevelopers/embedpress'
       plugin_branch:
         description: 'Plugin Branch to Test'
         required: false
