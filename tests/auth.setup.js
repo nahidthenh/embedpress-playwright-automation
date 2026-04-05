@@ -12,6 +12,13 @@ setup('authenticate', async ({ page }) => {
     await page.getByLabel('Username or Email Address').fill(username);
     await page.getByLabel('Password', { exact: true }).fill(password);
     await page.getByRole('button', { name: 'Log In' }).click();
+
+    // Dismiss "Remind me later" prompt if WordPress shows it (not always present)
+    const remindLater = page.getByRole("link", { name: "Remind me later" });
+    if (await remindLater.isVisible({ timeout: 3_000 }).catch(() => false)) {
+        await remindLater.click();
+    }
+
     await page.waitForURL('wp-admin/');
     await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
 
